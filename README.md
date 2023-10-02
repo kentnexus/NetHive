@@ -1,3 +1,3 @@
-# NetCapManagement
+# NetHive
 
-###### This repository is for Network Capacity Management
+###### This repository is for NetHive - Network Asset Management
