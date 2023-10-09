@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Product = require('./models/products');
+const User = require('./models/users');
 
 router.get('/', (req, res, next) => {
-    Product
+    User
         .find()
         .exec()
         .then(docs => {
@@ -27,23 +27,24 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    // const product = {
-    //     name: req.body.name,
-    //     price: req.body.price
-    // };
 
-    const product = new Product({
+    const user = new User({
         _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
-        price: req.body.price
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        role: req.body.role,
+        username: req.body.username,
+        password: req.body.password,
+        created_by: req.body.created_by,
+        created_dt: req.body.created_dt
     });
-    product
+    user
         .save()
         .then(result => {
             console.log(result);
             res.status(201).json({
-                message: 'Handling POST requests to /products',
-                createdProduct: result
+                message: 'Handling POST requests to /users',
+                createdUser: result
             });
         })
         .catch(err => {
@@ -56,10 +57,9 @@ router.post('/', (req, res, next) => {
 
 });
 
-router.get('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    const name = req.params.name;
-    Product.findById(id)
+router.get('/:userId', (req, res, next) => {
+    const id = req.params.userId;
+    User.findById(id)
         .exec()
         .then(doc => {
             console.log("From database", doc);
@@ -67,7 +67,7 @@ router.get('/:productId', (req, res, next) => {
                 res.status(200).json(doc);
             } else {
                 res.status(404).json({
-                    message: 'No valid entry for product',
+                    message: 'No valid entry for user',
                     name
                 });
             }
@@ -75,19 +75,19 @@ router.get('/:productId', (req, res, next) => {
         .catch(err => {
             console.log(err);
             res.status(500).json({
-                message: 'No valid entry for product',
+                message: 'No valid entry for user',
                 name
             })
         });
 });
 
-router.patch('/:productId', (req, res, next) => {
-    const id = req.params.productId;
+router.patch('/:userId', (req, res, next) => {
+    const id = req.params.userId;
     const updateOps = {};
     for (const ops of req.body) {
         updateOps[ops.propName] = ops.value;
     }
-    Product.updateOne({
+    User.updateOne({
             _id: id
         }, {
             $set: updateOps
@@ -105,9 +105,9 @@ router.patch('/:productId', (req, res, next) => {
         });
 });
 
-router.delete('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    Product.deleteOne({
+router.delete('/:userId', (req, res, next) => {
+    const id = req.params.userId;
+    User.deleteOne({
             _id: id
         })
         .exec()
