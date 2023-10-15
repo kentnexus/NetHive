@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Product = require('./models/products');
+const Asset = require('./models/assets');
 
 router.get('/', (req, res, next) => {
-    Product
+    Asset
         .find()
         .exec()
         .then(docs => {
@@ -27,17 +27,17 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    // const product = {
+    // const asset = {
     //     name: req.body.name,
     //     price: req.body.price
     // };
 
-    const product = new Product({
+    const asset = new Asset({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         price: req.body.price
     });
-    product
+    asset
         .save()
         .then(result => {
             console.log(result);
@@ -59,7 +59,7 @@ router.post('/', (req, res, next) => {
 router.get('/:productId', (req, res, next) => {
     const id = req.params.productId;
     const name = req.params.name;
-    Product.findById(id)
+    Asset.findById(id)
         .exec()
         .then(doc => {
             console.log("From database", doc);
@@ -67,7 +67,7 @@ router.get('/:productId', (req, res, next) => {
                 res.status(200).json(doc);
             } else {
                 res.status(404).json({
-                    message: 'No valid entry for product',
+                    message: 'No valid entry for asset',
                     name
                 });
             }
@@ -75,7 +75,7 @@ router.get('/:productId', (req, res, next) => {
         .catch(err => {
             console.log(err);
             res.status(500).json({
-                message: 'No valid entry for product',
+                message: 'No valid entry for asset',
                 name
             })
         });
@@ -87,7 +87,7 @@ router.patch('/:productId', (req, res, next) => {
     for (const ops of req.body) {
         updateOps[ops.propName] = ops.value;
     }
-    Product.updateOne({
+    Asset.updateOne({
             _id: id
         }, {
             $set: updateOps
@@ -107,7 +107,7 @@ router.patch('/:productId', (req, res, next) => {
 
 router.delete('/:productId', (req, res, next) => {
     const id = req.params.productId;
-    Product.deleteOne({
+    Asset.deleteOne({
             _id: id
         })
         .exec()
