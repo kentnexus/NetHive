@@ -4,17 +4,18 @@ import SearchBar from "./SearchBar.js";
 import { Link } from "react-router-dom";
 import logo from "../images/nethive_blk_logo2.png";
 
-const MainPageLayout = () => {
+const MainPageLayout = ({ children }) => {
   return (
-    <header>
-      <div className="nav-area">
+    <div>
+      <div className="header nav-area">
         <Link to="/" className="logo">
           <img src={logo} alt="LOGO" height={100} width={300} />
         </Link>
         <Navbar />
         <SearchBar />
       </div>
-    </header>
+      <main className="body_">{children}</main>
+    </div>
   );
 };
 

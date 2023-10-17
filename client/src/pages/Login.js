@@ -1,13 +1,14 @@
 import React from "react";
 const bg = require("../images/yellow_abstract_bg.jpg");
-import { Card, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import "../styles/LoginPage.css";
 import Home from "./Home";
+import { Link, Navigate } from "react-router-dom";
 
 const Login = () => {
-  // const handleSubmit = () => {
-  //   return <Link to=/home></Link>;
-  // };
+  const handleSubmit = (event) => {
+    return event.preventDefault();
+  };
 
   return (
     <div
@@ -39,7 +40,7 @@ const Login = () => {
         <Form.Group className="logininput">
           <Form.Control as="input" placeholder="Password" required />
         </Form.Group>
-        <Button className="loginbtn" type="submit">
+        <Button className="loginbtn" type="submit" onClick={handleSubmit}>
           Login
         </Button>
         <p>
