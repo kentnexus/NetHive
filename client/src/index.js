@@ -3,18 +3,16 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import App from "./App";
-import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
+import { InventoryContextProvider } from "./context/InventoryContext";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
+  <BrowserRouter>
+    <InventoryContextProvider>
       <App />
-    </BrowserRouter>
-  </React.StrictMode>
+    </InventoryContextProvider>
+  </BrowserRouter>
 );
-
-serviceWorker.unregister();

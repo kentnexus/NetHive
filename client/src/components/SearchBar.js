@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/SearchBar.css";
+import {FaSearch} from "react-icons/fa";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
@@ -19,16 +20,14 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div className="input-wrapper">
       <input
-        type="search"
+        placeholder="Type to search..."
         onChange={onInputChange}
         onKeyDown={onKeyDown}
         value={input}
       />
-      <button type="button" onClick={onSearch}>
-        Search
-      </button>
+      <FaSearch id="search-icon" onClick={onSearch}/>
     </div>
   );
 };

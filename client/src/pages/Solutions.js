@@ -1,20 +1,21 @@
 import React from "react";
 import MainPageLayout from "../components/MainPageLayout";
-import Login from "./Login";
 const bg = require("../images/bg_nethive.png");
 
-const Home = () => {
+const Solutions = () => {
   return (
-    <div style={{
+    <MainPageLayout>
+      <div  style={{
       backgroundImage: `url(${bg})`,
       minHeight: "100vh",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
-    }}> 
-      <MainPageLayout />     
-    </div>
+    }}>
+      <h1>This is solutions content</h1>
+      </div>
+    </MainPageLayout>
   );
 };
 
-export default Home;
+export default Solutions;

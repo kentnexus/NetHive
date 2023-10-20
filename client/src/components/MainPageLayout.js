@@ -2,19 +2,22 @@ import React from "react";
 import Navbar from "./Navbar.js";
 import SearchBar from "./SearchBar.js";
 import { Link } from "react-router-dom";
-import logo from "../images/nethive_blk_logo2.png";
+import logo from "../images/nethive_logo2.png";
+import UserProfile from "./UserProfile.js";
 
-const MainPageLayout = () => {
+const MainPageLayout = ({ children }) => {
   return (
-    <header>
-      <div className="nav-area">
-        <Link to="/" className="logo">
-          <img src={logo} alt="LOGO" height={100} width={300} />
+    <div>
+      <div className="header nav-area">
+        <Link to="/" >
+          <img className="logo" src={logo} alt="LOGO" />
         </Link>
         <Navbar />
         <SearchBar />
+        <UserProfile />
       </div>
-    </header>
+      <main className="body_">{children}</main>
+    </div>
   );
 };
 

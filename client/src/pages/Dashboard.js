@@ -1,20 +1,22 @@
 import React from "react";
 import MainPageLayout from "../components/MainPageLayout";
-import Login from "./Login";
 const bg = require("../images/bg_nethive.png");
 
-const Home = () => {
+const Dashboard = () => {
   return (
+    <MainPageLayout>
     <div style={{
       backgroundImage: `url(${bg})`,
       minHeight: "100vh",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
-    }}> 
-      <MainPageLayout />     
+    }}>
+      <h1>This is dashboard content</h1>
     </div>
+      
+    </MainPageLayout>
   );
 };
 
-export default Home;
+export default Dashboard;

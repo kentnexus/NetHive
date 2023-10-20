@@ -1,13 +1,21 @@
 import React from "react";
 import { navItems } from "../misc/navItems";
-import NavItems from "./NavItems";
+import { Link } from "react-router-dom";
+import { AiFillCaretDown } from "react-icons/ai";
 
 const Navbar = () => {
   return (
     <nav>
       <ul className="menus">
         {navItems.map((menu, index) => {
-          return <NavItems items={menu} key={index} />;
+          return (
+            <li className="menu-items" key={index}>
+              <Link to={menu.url} >
+                {menu.title}
+                {/* <AiFillCaretDown></AiFillCaretDown> */}
+              </Link>
+            </li>
+          );
         })}
       </ul>
     </nav>
