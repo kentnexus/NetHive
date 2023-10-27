@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Asset = require('./models/assets');
+const User = require('../models/users');
 
 router.get('/', (req, res, next) => {
-    Asset
+    User
         .find()
         .exec()
         .then(docs => {
@@ -26,40 +26,9 @@ router.get('/', (req, res, next) => {
         });
 });
 
-router.post('/', (req, res, next) => {
-    // const asset = {
-    //     name: req.body.name,
-    //     price: req.body.price
-    // };
-
-    const asset = new Asset({
-        _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
-        price: req.body.price
-    });
-    asset
-        .save()
-        .then(result => {
-            console.log(result);
-            res.status(201).json({
-                message: 'Handling POST requests to /products',
-                createdProduct: result
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            })
-        });
-
-
-});
-
-router.get('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    const name = req.params.name;
-    Asset.findById(id)
+router.get('/:userId', (req, res, next) => {
+    const id = req.params.userId;
+    User.findById(id)
         .exec()
         .then(doc => {
             console.log("From database", doc);
@@ -67,30 +36,24 @@ router.get('/:productId', (req, res, next) => {
                 res.status(200).json(doc);
             } else {
                 res.status(404).json({
-                    message: 'No valid entry for asset',
-                    name
+                    message: 'No valid entry for user'
                 });
             }
         })
         .catch(err => {
             console.log(err);
             res.status(500).json({
-                message: 'No valid entry for asset',
-                name
+                message: 'No valid entry for user'
             })
         });
 });
 
-router.patch('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    const updateOps = {};
-    for (const ops of req.body) {
-        updateOps[ops.propName] = ops.value;
-    }
-    Asset.updateOne({
+router.patch('/:userId', (req, res, next) => {
+    const id = req.params.userId;
+    User.updateOne({
             _id: id
         }, {
-            $set: updateOps
+            $set: req.body
         })
         .exec()
         .then(result => {
@@ -105,14 +68,28 @@ router.patch('/:productId', (req, res, next) => {
         });
 });
 
-router.delete('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    Asset.deleteOne({
-            _id: id
-        })
+router.delete('/deleteAll', (req, res, next) => {
+    User.deleteMany()
         .exec()
         .then(result => {
             res.status(200).json(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
+router.delete('/:userId', (req, res, next) => {
+    const id = req.params.userId;
+    User.deleteOne()
+        .exec()
+        .then(result => {
+            res.status(200).json({
+                message: 'User deleted'
+            });
         })
         .catch(err => {
             console.log(err);
