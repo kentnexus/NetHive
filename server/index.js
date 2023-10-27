@@ -24,8 +24,8 @@ app.listen(PORT, () => {
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: ["http://localhost:8081"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
   })
 );

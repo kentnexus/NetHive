@@ -1,11 +1,19 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 .loginform {
   background-color: #282c2f;
   border-top: 5px solid #fdd100;
-  width: 50%;
+  width: 15%;
   margin-top: 50px;
   margin: auto;
   padding: 50px;
-  padding-bottom: 100px;
+  padding-bottom: 10px;
   font-size: 0.8rem;
   line-height: 1.7;
   color: white;
@@ -21,6 +29,16 @@
 
 .loginbtn {
   background-color: #fdd100;
-  border-radius: 5px;
-  margin: 20px 0px;
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  margin: 20px 0px;    
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

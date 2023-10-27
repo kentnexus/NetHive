@@ -5,6 +5,8 @@ import "./App.css";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.css";
 import { InventoryContextProvider } from "./context/InventoryContext";
+export {default as Login} from "./pages/Login";
+export {default as Home} from "./pages/Home";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
