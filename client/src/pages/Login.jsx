@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-
+import { Button, Form } from "react-bootstrap";
 import 'react-toastify/dist/ReactToastify.css';
 import "../styles/LoginPage.css";
 const bg = require("../images/bg_nethive.png");
@@ -77,7 +77,8 @@ const Login = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <form className="loginform" onSubmit={handleSubmit} >
+      <div>
+      <Form className="loginform" onSubmit={handleSubmit} >
         <h1
           style={{
             fontFamily: "Jost",
@@ -89,31 +90,37 @@ const Login = () => {
           WELCOME
         </h1>
         <hr />
-        <div className="logininput">
-          <input
+        <Form.Group  className="logininput">
+          <Form.Control 
+            as="input" 
             type="email"
             name="email"
             value={email}
             placeholder="Email"
             onChange={handleOnChange}
+            required
           />
-        </div>
-        <div className="logininput">
-          <input
+        </Form.Group>
+        <Form.Group className="logininput">
+          <Form.Control input
+            as="input"
             type="password"
             name="password"
             value={password}
             placeholder="Password"
             onChange={handleOnChange}
+            required
           />
-        </div>
-        <button className="loginbtn" type="submit">Submit</button>
+        </Form.Group>
+        <button id="loginbtn" type="submit">Login</button>
         <p>
-          Don't have an account? Contact your
+          Don't have an account yet, or is your account locked? Contact your
           <a href="tel:7781234567"> IT Support </a>
         </p>
-      </form>
+      </Form>
+      </div>
     <ToastContainer/>
+    
     </div>
   );
 };

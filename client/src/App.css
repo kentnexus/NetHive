@@ -3,17 +3,21 @@
   padding: 0;
   box-sizing: border-box;
  
-}
+} */
 
 body {
   font-family: sans-serif;
-  
+
+}
+p {  
+  font-weight: normal;
+  font-size: 1rem;
 }
 
 .body_ {
   background-color: white;
   color: black;
-}
+} 
 
 .header {
   /* box-shadow:
