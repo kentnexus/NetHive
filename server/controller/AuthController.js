@@ -1,4 +1,5 @@
 const User = require("../models/users");
+const Asset = require("../models/Assets");
 const {
     createSecretToken
 } = require("../util/SecretToken");
@@ -72,10 +73,6 @@ module.exports.Login = async (req, res, next) => {
          httpOnly: false,
        });
        res.cookie("user",user);
-    //    res.cookie("id", id);
-    //    res.cookie("first_name", first_name);
-    //    res.cookie("last_name", last_name);
-    //    res.cookie("role", role);
        res.status(201).json({ message: "User logged in successfully", success: true, name: user.first_name});
        next()
     } catch (error) {

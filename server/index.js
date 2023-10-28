@@ -5,6 +5,7 @@ const app = express();
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/AuthRoute");
+const bodyParser = require('body-parser');
 const {
   MONGO_URL,
   PORT
@@ -32,6 +33,8 @@ app.use(
 
 app.use(cookieParser());
 
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", authRoute);

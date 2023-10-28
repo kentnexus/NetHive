@@ -10,7 +10,6 @@ import Solutions from "./pages/Solutions";
 import Users from "./pages/Users";
 
 const App = () => {
-
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [first_name, setUsername] = useState("");
