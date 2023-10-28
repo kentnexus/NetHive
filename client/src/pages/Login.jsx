@@ -25,11 +25,11 @@ const Login = () => {
 
   const handleError = (err) =>
     toast.error(err, {
-      position: toast.POSITION.BOTTOM_LEFT,
+      position: "bottom-left",
     });
   const handleSuccess = (msg) =>
     toast.success(msg, {
-      position: toast.POSITION.BOTTOM_LEFT,
+      position: "bottom-left",
     });
 
   const handleSubmit = async (e) => {
@@ -43,9 +43,12 @@ const Login = () => {
         { withCredentials: true }
       );
       console.log(data);
-      const { success, message } = data;
+      const { success, message, name } = data;
       if (success) {
-        handleSuccess(message);
+        handleSuccess(message);    
+        toast(`Welcome, ${name}`, {
+          position: "top-right",
+        })
         setTimeout(() => {
           navigate("/");
         }, 1000);
@@ -60,6 +63,7 @@ const Login = () => {
       email: "",
       password: "",
     });
+    console.clear();
   };
 
   return (

@@ -19,11 +19,13 @@ const UserSchema = new mongoose.Schema({
     created_dt: {
         type: Date,
         default: new Date(),
-      },
+    }
+}, {
+    versionKey: false
 });
 
 UserSchema.pre("save", async function () {
-    this.password = await bcrypt.hash(this.password,12);
+    this.password = await bcrypt.hash(this.password, 12);
 });
 
 module.exports = mongoose.model('User', UserSchema);

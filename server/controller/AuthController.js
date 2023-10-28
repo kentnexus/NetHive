@@ -63,7 +63,7 @@ module.exports.Login = async (req, res, next) => {
         return res.json({message:'Incorrect password or email' }) 
       }
       const auth = await bcrypt.compare(password,user.password)
-      if (!auth) {
+      if (!auth) { 
         return res.json({message:'Incorrect password or email' }) 
       }
        const token = createSecretToken(user._id);
@@ -71,7 +71,12 @@ module.exports.Login = async (req, res, next) => {
          withCredentials: true,
          httpOnly: false,
        });
-       res.status(201).json({ message: "User logged in successfully", success: true });
+       res.cookie("user",user);
+    //    res.cookie("id", id);
+    //    res.cookie("first_name", first_name);
+    //    res.cookie("last_name", last_name);
+    //    res.cookie("role", role);
+       res.status(201).json({ message: "User logged in successfully", success: true, name: user.first_name});
        next()
     } catch (error) {
       console.error(error);
