@@ -2,7 +2,7 @@ export const navItems = [
   // ...
   { 
     title: "Dashboard",
-    url: "/dashboard",
+    url: "/",
   },
   {
     title: "Inventory",
