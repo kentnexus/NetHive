@@ -155,9 +155,9 @@ router.post('/bulk', async (req, res, next) => {
     }
 });
 
-router.get('/:assetId', (req, res, next) => {
+router.get('/:assetNumber', (req, res, next) => {
     const assetNumber = req.params.assetNumber;
-    Asset.findById(assetNumber)
+    Asset.findOne(assetNumber)
         .exec()
         .then(doc => {
             console.log("From database", doc);
@@ -188,7 +188,36 @@ router.patch('/:assetNumber', (req, res, next) => {
     Asset.updateOne({
             assetNumber: assetNumber
         }, {
-            $set: updateOps
+            $set: {
+                "product": updateOps.product,
+                "asset_type": updateOps.asset_type,
+                "device_name": updateOps.device_name,
+                "manufacturer": updateOps.manufacturer,
+                "vendor": updateOps.vendor,
+                "model": updateOps.model,
+                "model_version": updateOps.model_version,
+                "serial_number": updateOps.serial_number,
+                "ip_address": updateOps.ip_address,
+                "snmp_community_string": updateOps.snmp_community_string,
+                "location": updateOps.location,
+                "owner_name": updateOps.owner_name,
+                "contracts_start_dt": updateOps.contracts_start_dt,
+                "contracts_end_dt": updateOps.contracts_end_dt,
+                "aggregated_to_": updateOps.aggregated_to_,
+                "status": updateOps.status,
+                "vendor_account_manager": updateOps.vendor_account_manager,
+                "contact_number": updateOps.contact_number,
+                "contact_email": updateOps.contact_email,
+                "website": updateOps.website,
+                "service_availed": updateOps.service_availed,
+                "cost": updateOps.cost,
+                "cost_frequency": updateOps.cost_frequency,
+                "tags": updateOps.tags,
+                "notes": updateOps.notes,
+                "modified_dt": updateOps.modified_dt,
+                "customer_name": updateOps.customer_name,
+                "created_by": updateOps.created_by,
+            }
         })
         .exec()
         .then(result => {
