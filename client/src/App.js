@@ -1,7 +1,8 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { ToastContainer, toast } from "react-toastify";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -13,7 +14,6 @@ const App = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [first_name, setUsername] = useState("");
-  const [role, setRole] = useState("");
 
   const removeCookies = () => {
     removeCookie("token");
@@ -25,25 +25,24 @@ const App = () => {
       if (!cookies.token) {
         navigate("/login");
       }
-      if(cookies.token && window.location.pathname == "/login"){
-        navigate("/login");
+      if (cookies.token && window.location.pathname == "/login"){
+        removeCookies();
       }
       const { data } = await axios.post(
         "http://localhost:3000/",
         {},
         { withCredentials: true }
       );
-      const { status, user, role } = data;
+      const { status, user } = data;
       setUsername(user);
-      setRole(role);
+      return status
+        ? false
+        : (removeCookies(), navigate("/login"));
     };
     verifyCookie();
-  
   }, [cookies, navigate, removeCookie]);
-  const Logout = () => {
-    removeCookies();
-    navigate("/login");
-  };
+
+  console.clear();
 
   return (
     <div className="header">
