@@ -1,5 +1,6 @@
 import React from "react";
 import MainPageLayout from "../components/MainPageLayout";
+import Analytics from "../components/Analytics";
 const bg = require("../images/bg_nethive.png");
 
 const Dashboard = () => {
@@ -12,9 +13,8 @@ const Dashboard = () => {
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
     }}>
-      <h1>This is dashboard content</h1>
+      <Analytics />
     </div>
-      
     </MainPageLayout>
   );
 };

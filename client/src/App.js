@@ -42,7 +42,7 @@ const App = () => {
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
 
-  console.clear();
+  // console.clear();
 
   return (
     <div className="header">

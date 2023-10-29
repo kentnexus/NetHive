@@ -29,7 +29,11 @@ const AssetSchema = mongoose.Schema({
     contact_email: String,
     website: String,
     service_availed: String,
-    cost: SchemaTypes.Double,
+    cost: {
+        type: Number,
+        get: getPrice,
+        set: setPrice
+    },
     cost_frequency: String,
     tags: Array,
     notes: String,
@@ -46,5 +50,13 @@ const AssetSchema = mongoose.Schema({
 }, {
     versionKey: false
 });
+
+function getPrice(num){
+    return (num.replace("$","")/100).toFixed(2);
+}
+
+function setPrice(num){
+    return num;
+}
 
 module.exports = mongoose.model('Asset', AssetSchema);
