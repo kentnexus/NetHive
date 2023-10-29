@@ -3,7 +3,10 @@ require('mongoose-double')(mongoose);
 
 const SchemaTypes = mongoose.Schema.Types;
 const AssetSchema = mongoose.Schema({
-    assetNumber: String,
+    assetNumber: {
+        type: String,
+        unique: true
+    },
     customer_account: String,
     product: String,
     asset_type: String,
