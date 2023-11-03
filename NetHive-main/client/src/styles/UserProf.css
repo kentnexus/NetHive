@@ -1,5 +1,6 @@
 .navuserProfile {
     display: flex;
+    text-align: right;
     margin: 0px 20px;
     color: white;
 }
@@ -10,9 +11,12 @@
     font-size: 2rem;
 }
 
-/* #caret-icon {
-    margin-top: 15px;   
-} */
+.classforicon {
+    display: flex;
+    position: relative;
+    top: 5px;
+    right: -720px;
+}
 
 #userdisplay {
     font-size: 0.9rem;
