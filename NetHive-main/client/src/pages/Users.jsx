@@ -1,6 +1,7 @@
 import React from "react";
 import MainPageLayout from "../components/MainPageLayout";
 const bg = require("../images/bg_nethive.png");
+import UserLists from "../components/UserLists";
 
 const Users = () => {
   return (
@@ -12,7 +13,7 @@ const Users = () => {
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
     }}>
-      <h1>This is users content</h1>
+      <UserLists/>
       </div>
       
     </MainPageLayout>
