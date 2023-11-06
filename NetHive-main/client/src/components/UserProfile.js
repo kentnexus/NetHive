@@ -19,15 +19,26 @@ const UserProfile = () => {
     navigate("/login");
   };
 
+  const ChangeName = () => {
+    //should update the name from the database
+  };
+
+  const ChangePwd = () => {
+    //should update the password from the database
+  };
+
+
   return (
     <div className="navuserProfile">
       <p id="userdisplay">Welcome, {_attr.first_name} {_attr.last_name}</p>
       <div className="usericon">    
-      <Dropdown className="d-inline mx-2">
-      <Dropdown.Toggle variant="secondary" id="dropdown-autoclose-true">
+      <Dropdown>
+      <Dropdown.Toggle variant="secondary" id="dropdown-basic-button"> 
         <FaUserCircle id="userp-icon"/>
       </Dropdown.Toggle>
-      <Dropdown.Menu className="super-colors">
+      <Dropdown.Menu>
+         <Dropdown.Item onClick={ChangeName}>Change Name</Dropdown.Item>
+        <Dropdown.Item onClick={ChangePwd}>Change Password</Dropdown.Item>
         <Dropdown.Item onClick={Logout}>Logout</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
