@@ -1,47 +1,55 @@
 import axios from "axios";
 
-const KEYS = {
-  assets: "assets",
-  assetId: "assetId",
-};
+export const getProductTypes = () => [
+  { id: "1", title: "Switch" },
+  { id: "2", title: "Router" },
+  { id: "3", title: "Workstation" },
+];
 
 export const getAssetTypes = () => [
   { id: "1", title: "Hardware" },
   { id: "2", title: "Software" },
 ];
 
-export function insertAsset(data) {
-  let assets = getAssets();
-  data["id"] = generateAssetId();
-  console.log(data);
-  assets.push(data);
-  localStorage.setItem(KEYS.assets, JSON.stringify(assets));
-}
-
-export function generateAssetId() {
-  if (localStorage.getItem(KEYS.assets === null))
-    localStorage.setItem(KEYS.assetId, "0");
-  var id = parseInt(localStorage.getItem(KEYS.assetId));
-  localStorage.setItem(KEYS.assetId, (++id).toString());
-  return id;
-}
-
-export function getAssets() {
-  if (localStorage.getItem(KEYS.assets === null))
-    localStorage.setItem(KEYS.assets, JSON.stringify([]));
-  return JSON.parse(localStorage.getItem(KEYS.assets));
-}
-
-export function fetchAssets() {
+export async function insertAsset(data) {
+  const request = {
+    ...data,
+  };
   try {
-    axios
-      .get("/assets")
-      .then((response) => {
-        const assets = response.data;
-        console.log(assets);
-        return assets;
-      })
-      .catch((error) => console.log(error));
+    const response = await axios.post("/assets", request);
+    const data = await response.data.createdAsset;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function patchAsset(data) {
+  const request = {
+    ...data,
+  };
+  console.log(request);
+  try {
+    const response = await axios.patch(`/assets/${request._id}`, request);
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+export function deleteAssets(id) {
+  try {
+    const response = axios.delete(`/assets/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchAssets() {
+  try {
+    const response = await axios.get("/assets");
+    return response.data;
   } catch (error) {
     console.error(error);
   }
