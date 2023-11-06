@@ -90,13 +90,7 @@ const Inventory = () => {
   return (
     <MainPageLayout>
       {/* <h1>This is inventory content</h1> */}
-      <div style={{
-      backgroundImage: `url(${bg})`,
-      minHeight: "100vh",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
-    }}>
+      <div>
         <Table striped bordered hover responsive className="container-">
           <thead>
             <tr>
