@@ -1,7 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Table, Toolbar } from "@mui/material";
-import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridActionsCellItem,
+  GridToolbarColumnsButton,
+  GridToolbarContainer,
+  GridToolbarDensitySelector,
+  GridToolbarExport,
+  GridToolbarFilterButton,
+  GridToolbarQuickFilter,
+} from "@mui/x-data-grid";
 import axios from "axios";
 import dayjs from "dayjs";
 import Controls from "../helpers/Controls";
@@ -173,10 +182,78 @@ const usersTable = () => {
     setEditRecord(params.row);
     setOpenPopup(true);
   }
+  function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <Toolbar sx={{ justifyContent: "flex-start" }}>
+          <GridToolbarQuickFilter
+            sx={{ m: 1, p: 1 }}
+            variant="outlined"
+            color="secondary"
+            size="small"
+            text="Filters"
+          />
+          {rowSelections.length === 0 ? (
+            ""
+          ) : (
+            <Controls.Button
+              variant="outlined"
+              color="secondary"
+              text="Delete"
+              startIcon={<DeleteIcon />}
+              onClick={() => {
+                setConfirmDialog({
+                  isOpen: true,
+                  title: `Are you sure you want to delete ${rowSelections.length} record(s)`,
+                  subTitle: "This action cannot be undone",
+                  onConfirm: () => deleteRecords(rowSelections),
+                });
+              }}
+            />
+          )}
+          <GridToolbarColumnsButton
+            sx={{ m: 1, p: 1 }}
+            size="small"
+            variant="outlined"
+            color="secondary"
+            text="Columns"
+          />
+
+          <GridToolbarDensitySelector
+            sx={{ m: 1, p: 1 }}
+            variant="outlined"
+            color="secondary"
+            size="small"
+            text="Columns"
+          />
+          <GridToolbarFilterButton
+            sx={{ m: 1, p: 1 }}
+            variant="outlined"
+            color="secondary"
+            size="small"
+            text="Columns"
+          />
+
+          <GridToolbarExport
+            sx={{ m: 1, p: 1 }}
+            size="small"
+            variant="outlined"
+            color="secondary"
+            text="Export"
+            printOptions={{
+              hideFooter: true,
+              hideToolbar: true,
+            }}
+            csvOptions={{ allColumns: true }}
+          />
+        </Toolbar>
+      </GridToolbarContainer>
+    );
+  }
 
   const TableContainer = (props) => (
     <>
-      <Toolbar sx={{ justifyContent: "space-between" }}>
+      {/* <Toolbar sx={{ justifyContent: "space-between" }}>
         {rowSelections.length === 0 ? (
           ""
         ) : (
@@ -195,7 +272,7 @@ const usersTable = () => {
             }}
           />
         )}
-      </Toolbar>
+      </Toolbar> */}
       <DataGrid
         autoHeight
         rows={rows}
@@ -214,6 +291,9 @@ const usersTable = () => {
           setRowSelections(data);
         }}
         rowSelectionModel={rowSelections}
+        slots={{
+          toolbar: CustomToolbar,
+        }}
       />
 
       <Popup

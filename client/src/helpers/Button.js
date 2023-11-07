@@ -6,9 +6,9 @@ const Button = (props) => {
 
   return (
     <MuiButton
-      sx={{ m: 1 }}
+      sx={{ m: 1, p: 1 }}
       variant={variant || "contained"}
-      size={size || "large"}
+      size={size || "small"}
       color={color || "primary"}
       onClick={onClick}
       {...other}
