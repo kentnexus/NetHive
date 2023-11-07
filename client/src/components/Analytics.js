@@ -9,6 +9,7 @@ import AssetsbyLocation from "./plotly/AssetsByLocation";
 import ExpiredAssets from "./plotly/ExpiredAssets";
 import ExpiringAssets from "./plotly/ExpiringAssets";
 
+import { AiFillHome } from "react-icons/ai";
 
 const Analytics = () => {
 
@@ -28,46 +29,51 @@ const Analytics = () => {
 
   return (
     <div style={{
-      marginBottom: '20px',
       display: 'flex',
-      borderRadius: '25px',
-      background: 'beige'
+      justifyContent:'center', 
     }}>
-      <a style={{
-        padding: '10px',
-        fontSize: '30px',
-        fontFamily: 'fantasy',
-        color: 'white',
-      }}>DASHBOARD</a>
       <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent:'center', 
         alignItems:'flex-start',
-      }}>
-          <div className="firstCol"
-            style={{
-              flexDirection: 'column',
-              margin: '0 10px',
-            }}>
-            <CategorizedAssets>{assets}</CategorizedAssets>
-            <AssetsByMan>{assets}</AssetsByMan>
-          </div>
-          <div className="secondCol">
-            <AssetsbyStatus>{assets}</AssetsbyStatus>
-            <AssetsbyLocation>{assets}</AssetsbyLocation>
-          </div>
-          <div className="thirdCol"
-            style={{
-              flexDirection: 'column',
-              margin: '0 10px'
-            }}>
-            <Cards>{assets}</Cards>
-            <h3>Expired Contracts (Last 15 Days)</h3>
-            <ExpiredAssets>{assets}</ExpiredAssets>
-            <h3>Expiring Contracts (Next 15 Days)</h3>
-            <ExpiringAssets>{assets}</ExpiringAssets>
-          </div>
+        background: 'beige',
+        borderRadius: '25px',
+        padding: '0 10px 10px 10px',
+        }}>
+          <a style={{
+            padding: '10px',
+            fontSize: '30px',
+            fontFamily: 'fantasy',
+            color: '#292929',
+          }}><AiFillHome style={{marginBottom:'6'}}/>DASHBOARD</a>
+          
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent:'center', 
+        }}>
+            <div className="firstCol"
+              style={{
+                flexDirection: 'column',
+                margin: '0 10px',
+              }}>
+              <CategorizedAssets>{assets}</CategorizedAssets>
+              <AssetsByMan>{assets}</AssetsByMan>
+            </div>
+            <div className="secondCol">
+              <AssetsbyStatus>{assets}</AssetsbyStatus>
+              <AssetsbyLocation>{assets}</AssetsbyLocation>
+            </div>
+            <div className="thirdCol"
+              style={{
+                flexDirection: 'column',
+                margin: '0 10px'
+              }}>
+              <Cards>{assets}</Cards>
+              <h3>Expired Contracts (Last 15 Days)</h3>
+              <ExpiredAssets>{assets}</ExpiredAssets>
+              <h3>Expiring Contracts (Next 15 Days)</h3>
+              <ExpiringAssets>{assets}</ExpiringAssets>
+            </div>
+        </div>
       </div>
     </div>
   );

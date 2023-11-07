@@ -84,7 +84,9 @@ router.delete('/deleteAll', (req, res, next) => {
 
 router.delete('/:userId', (req, res, next) => {
     const id = req.params.userId;
-    User.deleteOne()
+    User.deleteOne({
+        _id: id
+    })
         .exec()
         .then(result => {
             res.status(200).json({

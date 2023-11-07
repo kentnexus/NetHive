@@ -39,29 +39,54 @@ const cards = (assets) => {
               mode: "number",
               value: totalAssets,
               number: {prefix: "$"},
-              title: "Total Assets Cost", 
-              domain: { x: [0, .5], y: [.5, 1] }
+              title: {
+                text:"Total Assets Cost",
+                font: {
+                  size: 16,
+                }
+              },
+              // domain: { row: 0, column: 0 },
+              domain: {x:[0,.5], y:[.6, .95]}
             }, 
             {
               type: "indicator",
               mode: "number",
               value: assets.length,
-              title: "Number of Assets",
-              domain: { x: [0.5, 1], y: [.5, 1] }
+              title: {
+                text:"Number of Assets",
+                font: {
+                  size: 16,
+                }
+              },
+              // domain: { row: 0, column: 1 },
+              domain: {x:[.5,.9], y:[.6,.95]}
             },                 
             {
               type: "indicator",
               mode: "number",
               value: activeContracts.length,
-              title: "Active Contracts",
-              domain: { x: [0, .5], y: [0, .5] }
-            },                {
+              title: {
+                text:"Active Contracts",
+                font: {
+                  size: 16,
+                }
+              },
+              // domain: { row: 1, column: 0 },
+              domain: {x:[0,.5], y:[0,.4]}
+            },                
+            {
               type: "indicator",
               mode: "number",
               number: {suffix: '%'},
               value: (statusList['Active']/activeAssets.length)*100,
-              title: "Asset Utilization",
-              domain: { x: [0.5, 1], y: [0, .5] }
+              title: {
+                text:"Asset Utilization",
+                font: {
+                  size: 16,
+                }
+              },
+              // domain: { row: 1, column: 1 },
+              domain: {x:[.5,.9], y:[0,.4]}
             },
             ]}
             layout={{
@@ -71,11 +96,9 @@ const cards = (assets) => {
                   size: 18,
                 }
               },
-              // paper_bgcolor: "white",
               width: 600,
-              height: 400,
-              margin: { t: 75, b: 0, l: 50, r: 50 },
-              boxmode: true,
+              height: 300,
+              margin: { t: 75, b: 10, l: 0, r: 0 },
               autosize: true,
             }}
             config={{

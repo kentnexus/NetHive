@@ -67,7 +67,16 @@ const Login = () => {
   };
 
   return (
-    <div className="form_container">
+    <div className="form_container"
+      style={{
+        backgroundColor: "black",
+        backgroundImage: `url(${bg})`,
+        height: "100vh",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div>
       <Form className="loginform" onSubmit={handleSubmit} >
         <h1
