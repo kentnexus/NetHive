@@ -11,9 +11,6 @@ const bg = require("../images/bg_nethive.png");
 const Inventory = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 =======
 >>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
   // const [inventory, setInventory] = useState(null);
@@ -30,11 +27,7 @@ const Inventory = () => {
   useEffect(() => {
     const fetchInventory = async () => {
 <<<<<<< HEAD
-<<<<<<< HEAD
       const response = await fetch("http://localhost:3000/assets");
-=======
-      const response = await fetch("http://localhost:4000/api/inventory/");
->>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 =======
       const response = await fetch("http://localhost:4000/api/inventory/");
 >>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
@@ -58,11 +51,7 @@ const Inventory = () => {
     const inventory = { number, vendor, manufacturer, model };
 
 <<<<<<< HEAD
-<<<<<<< HEAD
     const response = await fetch("http://localhost:3000/assets", {
-=======
-    const response = await fetch("http://localhost:4000/api/inventory/", {
->>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 =======
     const response = await fetch("http://localhost:4000/api/inventory/", {
 >>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
@@ -101,11 +90,7 @@ const Inventory = () => {
 
   const handleDelete = async (id) => {
 <<<<<<< HEAD
-<<<<<<< HEAD
     const response = await fetch("http://localhost:3000/assets" + id, {
-=======
-    const response = await fetch("http://localhost:4000/api/inventory/" + id, {
->>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 =======
     const response = await fetch("http://localhost:4000/api/inventory/" + id, {
 >>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
@@ -118,12 +103,9 @@ const Inventory = () => {
     }
   };
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
   const { TableContainer } = useTable();
 >>>>>>> c2be9c2770a3916d73eb1c63ba0bc9ac9c1549a1
-=======
->>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 =======
 >>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 
