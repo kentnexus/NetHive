@@ -14,16 +14,16 @@ import {
 import axios from "axios";
 import dayjs from "dayjs";
 import Controls from "../helpers/Controls";
-import * as assetService from "../services/assetService";
+import * as usersService from "../services/usersService";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AssetForm from "../pages/AssetForm";
+import UserForm from "../pages/UserForm";
 import Popup from "../helpers/Popup";
-import AddIcon from "@mui/icons-material/Add";
 import Notification from "../components/Notification";
 import ConfirmDialog from "../components/ConfirmDialog";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
-const useTable = () => {
+import CircleIcon from "@mui/icons-material/Circle";
+
+const usersTable = () => {
   const [rows, setRows] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
@@ -51,11 +51,11 @@ const useTable = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    const getAllAssets = async () => {
-      const allAssets = await assetService.fetchAssets();
-      if (allAssets) setRows(allAssets);
+    const getAllUsers = async () => {
+      const allUsers = await usersService.fetchUsers();
+      if (allUsers) setRows(allUsers);
     };
-    getAllAssets();
+    getAllUsers();
     setIsLoading(false);
   }, []);
 
@@ -63,24 +63,26 @@ const useTable = () => {
 
   const addOrEdit = async (asset, resetForm) => {
     if (isEdit) {
-      const newRecord = await assetService.patchAsset(asset);
+      const newRecord = await usersService.patchUser(asset);
       console.log(newRecord);
-      const getAllAssets = async () => {
-        const allAssets = await assetService.fetchAssets();
-        if (allAssets) setRows(allAssets);
+      const getAllUsers = async () => {
+        const allUsers = await usersService.fetchUsers();
+        if (allUsers) setRows(allUsers);
       };
-      getAllAssets();
+      getAllUsers();
       setNotify({
         isOpen: true,
         message: "Updated Successfully",
         type: "success",
       });
-    } else {
-      console.log("This is add condition");
-
-      const newRecord = await assetService.insertAsset(asset);
-      updateRows(newRecord);
     }
+
+    // else {
+    //   console.log("This is add condition");
+
+    //   const newRecord = await assetService.insertAsset(asset);
+    //   updateRows(newRecord);
+    // }
     setEditRecord(null);
     setIsEdit(false);
     resetForm();
@@ -96,9 +98,9 @@ const useTable = () => {
     setIsLoading(true);
     for (var i = 0, len = rowSelections.length; i < len; i++) {
       console.log(rowSelections[i]);
-      const result = assetService.deleteAssets(rowSelections[i]);
+      const result = usersService.deleteUser(rowSelections[i]);
     }
-    setRows((r) => r.filter((x) => !selectedIDs.has(x.assetNumber)));
+    setRows((r) => r.filter((x) => !selectedIDs.has(x._id)));
     setNotify({
       isOpen: true,
       message: "Deleted Successfully",
@@ -111,9 +113,8 @@ const useTable = () => {
     {
       field: "Edit",
       headerName: "Edit",
-      width: 50,
+      width: 100,
       disableClickEventBubbling: true,
-      disableExport: true,
       renderCell: () => {
         return (
           <GridActionsCellItem
@@ -127,15 +128,17 @@ const useTable = () => {
     },
 
     {
-      field: "assetNumber",
-      headerName: "Asset Number",
-      width: 200,
+      field: "first_name",
+      headerName: "First Name",
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // editable: true,
     },
     {
-      field: "customer_account",
-      headerName: "Customer Account",
-      width: 200,
+      field: "last_name",
+      headerName: "Last Name",
+      width: 120,
 
       // type: "number",
       // width: 180,
@@ -143,210 +146,28 @@ const useTable = () => {
       headerAlign: "left",
       // editable: true,
     },
-    {
-      field: "product",
-      headerName: "Product",
-      width: 200,
 
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
     {
-      field: "asset_type",
-      headerName: "Asset Type",
-      width: 200,
-
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "device_name",
-      headerName: "Device Name",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "manufacturer",
-      headerName: "Manufacturer",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "vendor",
-      headerName: "Vendor",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "model",
-      headerName: "Model",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "model_version",
-      headerName: "Model Version",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "serial_number",
-      headerName: "Serial Number",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "ip_address",
-      headerName: "IP address",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "snmp_community_string",
-      headerName: "SNMP Community String",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "location",
-      headerName: "Location",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "owner_name",
-      headerName: "Owner Name",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "contracts_start_dt",
-      headerName: "Contract Start Date",
-      width: 200,
-
-      valueFormatter: (params) => dayjs(params.value).format("DD/MM/YYYY"),
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "contracts_end_dt",
-      headerName: "Contract End date",
-      width: 200,
-
-      valueFormatter: (params) => dayjs(params.value).format("DD/MM/YYYY"),
+      field: "email",
+      headerName: "Email",
+      width: 300,
+      align: "left",
+      headerAlign: "left",
       // width: 180,
       // editable: true,
     },
     {
       field: "status",
       headerName: "Status",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "vendor_account_manager",
-      headerName: "Vendor Account Manager",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "contact_number",
-      headerName: "Contact Number",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "contact_email",
-      headerName: "Contact Email",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "website",
-      headerName: "Website",
-      width: 200,
-
-      // width: 220,
-      // editable: true,
-    },
-    {
-      field: "service_availed",
-      headerName: "Service Availed",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "cost",
-      headerName: "Cost",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "tags",
-      headerName: "Tags",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
-    },
-    {
-      field: "notes",
-      headerName: "Notes",
-      width: 200,
-
-      // type: "date",
-      // width: 180,
-      // editable: true,
+      width: 120,
+      align: "left",
+      headerAlign: "left",
+      renderCell: (params) => {
+        if (params.value === true) {
+          return <CircleIcon sx={{ color: "green" }} />;
+        }
+        return <CircleIcon sx={{ color: "red" }} />;
+      },
     },
   ];
   function currentlySelected(params) {
@@ -361,7 +182,6 @@ const useTable = () => {
     setEditRecord(params.row);
     setOpenPopup(true);
   }
-
   function CustomToolbar() {
     return (
       <GridToolbarContainer>
@@ -391,16 +211,6 @@ const useTable = () => {
               }}
             />
           )}
-          <Controls.Button
-            variant="outlined"
-            color="secondary"
-            text="Add Asset"
-            startIcon={<AddIcon />}
-            onClick={() => {
-              setOpenPopup(true);
-              setEditRecord(null);
-            }}
-          />
           <GridToolbarColumnsButton
             sx={{ m: 1, p: 1 }}
             size="small"
@@ -443,11 +253,31 @@ const useTable = () => {
 
   const TableContainer = (props) => (
     <>
+      {/* <Toolbar sx={{ justifyContent: "space-between" }}>
+        {rowSelections.length === 0 ? (
+          ""
+        ) : (
+          <Controls.Button
+            variant="outlined"
+            color="secondary"
+            text="Delete"
+            startIcon={<DeleteIcon />}
+            onClick={() => {
+              setConfirmDialog({
+                isOpen: true,
+                title: `Are you sure you want to delete ${rowSelections.length} record(s)`,
+                subTitle: "This action cannot be undone",
+                onConfirm: () => deleteRecords(rowSelections),
+              });
+            }}
+          />
+        )}
+      </Toolbar> */}
       <DataGrid
         autoHeight
         rows={rows}
         columns={columns}
-        getRowId={(rows) => rows.assetNumber}
+        getRowId={(rows) => rows._id}
         initialState={{
           ...rows.initialState,
           pagination: { paginationModel: { pageSize: 5 } },
@@ -467,11 +297,11 @@ const useTable = () => {
       />
 
       <Popup
-        title="Asset Form"
+        title="Users Form"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        <AssetForm editRecord={editRecord} addOrEdit={addOrEdit} />
+        <UserForm editRecord={editRecord} addOrEdit={addOrEdit} />
       </Popup>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
@@ -484,4 +314,4 @@ const useTable = () => {
   return { TableContainer, updateRows, setOpenPopup };
 };
 
-export default useTable;
+export default usersTable;
