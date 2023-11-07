@@ -1,39 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 import Cards from "./plotly/Cards";
 import CategorizedAssets from "./plotly/CategorizedAssets"
 import AssetsByMan from "./plotly/AssetsbyMan";
 import AssetsbyStatus from "./plotly/AssetsbyStatus";
 import AssetsbyLocation from "./plotly/AssetsByLocation";
+import ExpiredAssets from "./plotly/ExpiredAssets";
+import ExpiringAssets from "./plotly/ExpiringAssets";
 
 
+=======
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
+=======
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 const Analytics = () => {
 
-  const [assets, setAssets] = useState([]);
-  
-  useEffect( () => { 
-      async function fetchData() {
-          try {
-              const res = await axios.get('/assets'); 
-              setAssets(res.data);
-          } catch (err) {
-              console.log(err);
-          }
+    async function getUser() {
+        try {
+          const response = await axios.get('/assets');
+          console.log(response);
+        } catch (error) {
+          console.error(error);
+        }
       }
-      fetchData();
-  }, []);
 
+<<<<<<< HEAD
+<<<<<<< HEAD
   return (
     <div>
-      <h1 style={{
-        margin:'0 100px',
-        marginBottom: '10px',
-        backgroundColor: 'white',
+      {/* <h1 style={{
+        margin:'5px 10px',
+        // marginBottom: '20px',
+        // backgroundColor: 'white',
         padding: '10px',
-        fontSize: '50px',
+        fontSize: '20px',
         fontFamily: 'fantasy',
-      }}>ASSET MANAGEMENT DASHBOARD</h1>
+        color: 15,
+      }}>ASSET MANAGEMENT DASHBOARD</h1> */}
       <div style={{
         display: 'flex',
         flexDirection: 'row',
@@ -58,7 +64,10 @@ const Analytics = () => {
               margin: '0 10px'
             }}>
             <Cards>{assets}</Cards>
-            <h1>Insert Table</h1>
+            <h3>Expired Contracts (Last 15 Days)</h3>
+            <ExpiredAssets>{assets}</ExpiredAssets>
+            <h3>Expiring Contracts (Next 15 Days)</h3>
+            <ExpiringAssets>{assets}</ExpiringAssets>
           </div>
       </div>
     </div>
@@ -66,3 +75,19 @@ const Analytics = () => {
 };
 
 export default Analytics;
+=======
+=======
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
+    return (
+        <div>
+            <h1>This is Dashboard Analytics</h1>
+        </div>
+    );
+  };
+  
+<<<<<<< HEAD
+  export default Analytics;
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
+=======
+  export default Analytics;
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)

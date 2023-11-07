@@ -1,11 +1,3 @@
-.table_container {
-  margin: 10px 50px;
-}
-
-.asset_box {
-  height: "80%";
-  width: "80%";
-  background-color: white;
-  border-radius: 1rem;
-  align-content: center;
+.table_container{
+    margin: 10px 50px;
 }
