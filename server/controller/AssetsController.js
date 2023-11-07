@@ -5,6 +5,7 @@ const Asset = require("../models/Assets");
 
 router.get("/", (req, res, next) => {
   Asset.find()
+    .sort({ created_dt: -1 })
     .exec()
     .then((docs) => {
       console.log(docs);
@@ -256,6 +257,29 @@ router.delete("/:assetNumber", (req, res, next) => {
   Asset.deleteOne({
     assetNumber: assetNumber,
   })
+    .exec()
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
+    });
+});
+
+router.patch("/:id", (req, res, next) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "No such record" });
+  }
+  Asset.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    { ...req.body }
+  )
     .exec()
     .then((result) => {
       res.status(200).json(result);

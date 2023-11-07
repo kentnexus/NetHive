@@ -33,7 +33,9 @@ const initialValues = {
   notes: "",
 };
 
-const AssetForm = () => {
+const AssetForm = (props) => {
+  const { addOrEdit, editRecord } = props;
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("assetNumber" in fieldValues)
@@ -124,11 +126,16 @@ const AssetForm = () => {
     e.preventDefault();
 
     if (validate()) {
-      console.log(values);
-      assetService.insertAsset(values);
-      resetForm();
+      // console.log(values);
+      addOrEdit(values, resetForm);
     }
   };
+
+  useEffect(() => {
+    if (editRecord != null) {
+      setValues({ ...editRecord });
+    }
+  }, [editRecord]);
 
   return (
     <div>
@@ -149,11 +156,12 @@ const AssetForm = () => {
               onChange={handleInputChange}
               error={errors.customer_account}
             />
-            <Controls.Input
+            <Controls.Select
               label="Product"
               name="product"
               value={values.product}
               onChange={handleInputChange}
+              options={assetService.getProductTypes()}
               error={errors.product}
             />
             <Controls.Select

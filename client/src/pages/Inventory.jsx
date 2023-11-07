@@ -1,14 +1,12 @@
 import React from "react";
 import MainPageLayout from "../components/MainPageLayout";
-import { useEffect, useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Paper } from "@mui/material";
 import "../styles/Sidebar.css";
-import { useInventoryContext } from "../hooks/useInventoryContext";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 const bg = require("../images/bg_nethive.png");
+import useTable from "../hooks/useTable";
 
 const Inventory = () => {
+<<<<<<< HEAD
   // const [inventory, setInventory] = useState(null);
 
   const { inventory, dispatch } = useInventoryContext();
@@ -86,139 +84,26 @@ const Inventory = () => {
       dispatch({ type: "DELETE_INVENTORY", payload: json });
     }
   };
+=======
+  const { TableContainer } = useTable();
+>>>>>>> c2be9c2770a3916d73eb1c63ba0bc9ac9c1549a1
 
   return (
     <MainPageLayout>
       {/* <h1>This is inventory content</h1> */}
-      <div>
-        <Table striped bordered hover responsive className="container-">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Number</th>
-              <th>Vendor</th>
-              <th>Manufacturer</th>
-              <th>Model</th>
-              <th>Created At</th>
-            </tr>
-          </thead>
-          <tbody>
-            {inventory &&
-              inventory.map((invt) => (
-                <tr key={invt._id}>
-                  <td className="text-center">
-                    {/* {index + 1} */}
-                    <RiDeleteBin6Line
-                      onClick={() => {
-                        handleDelete(invt._id);
-                      }}
-                    ></RiDeleteBin6Line>
-                    {/* <span>Delete</span> */}
-                  </td>
-                  <td>{invt.number}</td>
-                  <td>{invt.vendor}</td>
-                  <td>{invt.manufacturer}</td>
-                  <td>{invt.model}</td>
-                  <td>
-                    {formatDistanceToNow(new Date(invt.createdAt), {
-                      addSuffix: true,
-                    })}
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </Table>
-      </div>
-      <div className="justify-content-end">
-        <Button variant="outline-secondary" className="m-2">
-          DELETE
-        </Button>
-        <Button variant="outline-secondary" className="m-2">
-          MODIFY
-        </Button>
-        <Button
-          variant="outline-secondary"
-          className="m-2"
-          onClick={toggleSidebar}
-        >
-          ADD
-        </Button>
-      </div>
-      <div className={`sidebar ${isOpen == true ? "active" : ""}`}>
-        <div className="sd-header">
-          <h6 className="mb-0">Create New Asset</h6>
-          <div className="btn btn-dark" onClick={toggleSidebar}>
-            <i className="fa fa-times"></i>
-          </div>
-        </div>
-        <div className="sd-body">
-          <Table>
-            <tr>
-              <td>Number:</td>
-              <td>
-                <input
-                  type="number"
-                  onChange={(ev) => setNumber(ev.target.value)}
-                  value={number}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Vendor</td>
-              <td>
-                <input
-                  type="text"
-                  onChange={(ev) => setVendor(ev.target.value)}
-                  value={vendor}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Manufacturer</td>
-              <td>
-                <input
-                  type="text"
-                  onChange={(ev) => setManufacturer(ev.target.value)}
-                  value={manufacturer}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Model</td>
-              <td>
-                <input
-                  type="text"
-                  onChange={(ev) => setModel(ev.target.value)}
-                  value={model}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                <Button
-                  variant="outline-secondary"
-                  className="m-2"
-                  onClick={handleCancel}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  variant="outline-secondary"
-                  className="m-2"
-                  onClick={handleSubmit}
-                >
-                  Submit
-                </Button>
-              </td>
-            </tr>
-          </Table>
-        </div>
-      </div>
       <div
-        className={`sidebar-overlay ${isOpen == true ? "active" : ""}`}
-        onClick={toggleSidebar}
-      ></div>
+        style={{
+          backgroundImage: `url(${bg})`,
+          minHeight: "100vh",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      >
+        <Paper sx={{ p: 3, m: 5 }} elevation={3}>
+          <TableContainer></TableContainer>
+        </Paper>
+      </div>
     </MainPageLayout>
   );
 };
