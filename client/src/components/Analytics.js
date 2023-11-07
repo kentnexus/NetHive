@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Cards from "./plotly/Cards";
 import CategorizedAssets from "./plotly/CategorizedAssets"
 import AssetsByMan from "./plotly/AssetsbyMan";
@@ -11,6 +12,8 @@ import ExpiredAssets from "./plotly/ExpiredAssets";
 import ExpiringAssets from "./plotly/ExpiringAssets";
 
 
+=======
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 =======
 >>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 const Analytics = () => {
@@ -24,6 +27,7 @@ const Analytics = () => {
         }
       }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   return (
     <div>
@@ -72,6 +76,8 @@ const Analytics = () => {
 
 export default Analytics;
 =======
+=======
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
     return (
         <div>
             <h1>This is Dashboard Analytics</h1>
@@ -79,5 +85,9 @@ export default Analytics;
     );
   };
   
+<<<<<<< HEAD
+  export default Analytics;
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
+=======
   export default Analytics;
 >>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)

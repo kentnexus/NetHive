@@ -26,6 +26,7 @@ router.get('/', (req, res, next) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 router.patch("/:assetNumber", (req, res, next) => {
   const assetNumber = req.params.assetNumber;
   const updateOps = {};
@@ -72,6 +73,8 @@ router.patch("/:assetNumber", (req, res, next) => {
         created_by: updateOps.created_by,
       },
 =======
+=======
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 router.post('/', (req, res, next) => {
     const asset = new Asset({
         assetNumber: req.body.assetNumber,
@@ -199,6 +202,9 @@ router.post('/bulk', async (req, res, next) => {
         res.send({
             message: "Assets have been added and updated."
         });
+<<<<<<< HEAD
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
+=======
 >>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
     }
 });
