@@ -1,4 +1,4 @@
-sconst mongoose = require('mongoose');
+const mongoose = require('mongoose');
 require('mongoose-double')(mongoose);
 
 const SchemaTypes = mongoose.Schema.Types;

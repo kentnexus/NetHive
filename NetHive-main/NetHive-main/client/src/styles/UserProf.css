@@ -14,18 +14,12 @@
     font-size: 2rem;
 }
 
-<<<<<<< HEAD
 .classforicon {
     display: flex;
     position: relative;
     top: 5px;
     right: -720px;
 }
-=======
-/* #caret-icon {
-    margin-top: 15px;   
-} */
->>>>>>> 59883238015d0fa4438c49a1728aafd60bba83fa
 
 #userdisplay {
     font-size: 0.9rem;
