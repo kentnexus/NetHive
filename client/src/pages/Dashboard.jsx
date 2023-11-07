@@ -6,7 +6,13 @@ const bg = require("../images/bg_nethive.png");
 const Dashboard = () => {
   return (
     <MainPageLayout>
-    <div>
+    <div style={{
+      backgroundImage: `url(${bg})`,
+      minHeight: "100vh",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+    }}>
       <Analytics />
     </div>
     </MainPageLayout>

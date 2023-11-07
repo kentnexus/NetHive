@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 
+<<<<<<< HEAD
 import Cards from "./plotly/Cards";
 import CategorizedAssets from "./plotly/CategorizedAssets"
 import AssetsByMan from "./plotly/AssetsbyMan";
@@ -10,22 +11,20 @@ import ExpiredAssets from "./plotly/ExpiredAssets";
 import ExpiringAssets from "./plotly/ExpiringAssets";
 
 
+=======
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 const Analytics = () => {
 
-  const [assets, setAssets] = useState([]);
-  
-  useEffect( () => { 
-      async function fetchData() {
-          try {
-              const res = await axios.get('/assets'); 
-              setAssets(res.data);
-          } catch (err) {
-              console.log(err);
-          }
+    async function getUser() {
+        try {
+          const response = await axios.get('/assets');
+          console.log(response);
+        } catch (error) {
+          console.error(error);
+        }
       }
-      fetchData();
-  }, []);
 
+<<<<<<< HEAD
   return (
     <div>
       {/* <h1 style={{
@@ -72,3 +71,13 @@ const Analytics = () => {
 };
 
 export default Analytics;
+=======
+    return (
+        <div>
+            <h1>This is Dashboard Analytics</h1>
+        </div>
+    );
+  };
+  
+  export default Analytics;
+>>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
