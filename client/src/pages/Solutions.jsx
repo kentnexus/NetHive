@@ -9,15 +9,9 @@ const Solutions = () => {
 
   return (
     <MainPageLayout>
-      <div  style={{
-      backgroundImage: `url(${bg})`,
-      minHeight: "100vh",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
-    }}>
+      <div>
       {/* <h1>This is solutions content</h1> */}
-          <TabularExample/>
+          {/* <TabularExample/> */}
            </div>
     </MainPageLayout>
   );

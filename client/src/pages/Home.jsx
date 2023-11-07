@@ -38,13 +38,7 @@ const Home = () => {
 
 
   return (
-    <div style={{
-      backgroundImage: `url(${bg})`,
-      minHeight: "100vh",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
-    }}> 
+    <div> 
       <MainPageLayout />     
     </div>
   );

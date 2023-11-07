@@ -1,8 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import Cards from "./plotly/Cards";
 import CategorizedAssets from "./plotly/CategorizedAssets"
 import AssetsByMan from "./plotly/AssetsbyMan";
@@ -12,34 +10,35 @@ import ExpiredAssets from "./plotly/ExpiredAssets";
 import ExpiringAssets from "./plotly/ExpiringAssets";
 
 
-=======
->>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
-=======
->>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
 const Analytics = () => {
 
-    async function getUser() {
-        try {
-          const response = await axios.get('/assets');
-          console.log(response);
-        } catch (error) {
-          console.error(error);
-        }
-      }
+  const [assets, setAssets] = useState([]);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+  useEffect( () => { 
+      async function fetchData() {
+          try {
+              const res = await axios.get('/assets'); 
+              setAssets(res.data);
+          } catch (err) {
+              console.log(err);
+          }
+      }
+      fetchData();
+  }, []);
+
   return (
-    <div>
-      {/* <h1 style={{
-        margin:'5px 10px',
-        // marginBottom: '20px',
-        // backgroundColor: 'white',
+    <div style={{
+      marginBottom: '20px',
+      display: 'flex',
+      borderRadius: '25px',
+      background: 'beige'
+    }}>
+      <a style={{
         padding: '10px',
-        fontSize: '20px',
+        fontSize: '30px',
         fontFamily: 'fantasy',
-        color: 15,
-      }}>ASSET MANAGEMENT DASHBOARD</h1> */}
+        color: 'white',
+      }}>DASHBOARD</a>
       <div style={{
         display: 'flex',
         flexDirection: 'row',
@@ -75,19 +74,3 @@ const Analytics = () => {
 };
 
 export default Analytics;
-=======
-=======
->>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
-    return (
-        <div>
-            <h1>This is Dashboard Analytics</h1>
-        </div>
-    );
-  };
-  
-<<<<<<< HEAD
-  export default Analytics;
->>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)
-=======
-  export default Analytics;
->>>>>>> parent of c2be9c27 (Merge branch 'main' of https://github.com/kentnexus/NetHive)

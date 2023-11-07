@@ -17,7 +17,7 @@ const UserProfile = () => {
   const Logout = () => {
     removeCookie("token");
     removeCookie("user");
-    navigate("/");
+    navigate("/login");
   };
 
   return (
