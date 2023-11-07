@@ -11,6 +11,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AssetForm from "../pages/AssetForm";
 import Popup from "../helpers/Popup";
 import AddIcon from "@mui/icons-material/Add";
+import Notification from "../components/Notification";
+import ConfirmDialog from "../components/ConfirmDialog";
 
 const useTable = () => {
   const [rows, setRows] = useState("");
@@ -25,6 +27,17 @@ const useTable = () => {
 
   const [editRecord, setEditRecord] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
+
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+  const [confirmDialog, setConfirmDialog] = useState({
+    isOpen: false,
+    title: "",
+    subTitle: "",
+  });
 
   useEffect(() => {
     setIsLoading(true);
@@ -44,6 +57,11 @@ const useTable = () => {
       console.log("this is edit Condition");
       // const newRecord = await assetService.patchAsset(asset);
       // console.log(newRecord);
+      setNotify({
+        isOpen: true,
+        message: "Created Successfully",
+        type: "success",
+      });
     } else {
       console.log("This is add condition");
 
@@ -57,6 +75,10 @@ const useTable = () => {
   };
 
   const deleteRecords = (rowSelections) => {
+    setConfirmDialog({
+      ...confirmDialog,
+      isOpen: false,
+    });
     const selectedIDs = new Set(rowSelections);
     setIsLoading(true);
     for (var i = 0, len = rowSelections.length; i < len; i++) {
@@ -64,7 +86,11 @@ const useTable = () => {
       const result = assetService.deleteAssets(rowSelections[i]);
     }
     setRows((r) => r.filter((x) => !selectedIDs.has(x.assetNumber)));
-
+    setNotify({
+      isOpen: true,
+      message: "Deleted Successfully",
+      type: "error",
+    });
     setIsLoading(false);
   };
 
@@ -334,7 +360,12 @@ const useTable = () => {
             text="Delete"
             startIcon={<DeleteIcon />}
             onClick={() => {
-              deleteRecords(rowSelections);
+              setConfirmDialog({
+                isOpen: true,
+                title: `Are you sure you want to delete ${rowSelections.length} record(s)`,
+                subTitle: "This action cannot be undone",
+                onConfirm: () => deleteRecords(rowSelections),
+              });
             }}
           />
         )}
@@ -356,7 +387,7 @@ const useTable = () => {
         getRowId={(rows) => rows.assetNumber}
         initialState={{
           ...rows.initialState,
-          pagination: { paginationModel: { pageSize: 10 } },
+          pagination: { paginationModel: { pageSize: 5 } },
         }}
         pageSizeOptions={[5, 10, 25]}
         loading={isLoading}
@@ -376,6 +407,11 @@ const useTable = () => {
       >
         <AssetForm editRecord={editRecord} addOrEdit={addOrEdit} />
       </Popup>
+      <Notification notify={notify} setNotify={setNotify} />
+      <ConfirmDialog
+        confirmDialog={confirmDialog}
+        setConfirmDialog={setConfirmDialog}
+      />
     </>
   );
 
