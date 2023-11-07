@@ -27,15 +27,16 @@ const AssetsbyLocation = (assets) => {
       }]}
         layout={{       
           title: {
-            text:"<b>Asset Locations",
+            text:"<b>Assets by Location",
             font: {size:18},
         },
           autosize: true,
         //   paper_bgcolor: "white",
-          width: 400,
+          width: 350,
           height: 350,
-          margin: { t: 75, b: 75, l: 50, r: 40},
+          margin: { t: 75, b: 25, l: 50, r: 20},
           bargap: 0.05,
+          font: {size:9}
         }}
       />
     </div>

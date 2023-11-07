@@ -53,7 +53,7 @@ const CategorizedAssets = (assets) => {
             font: {size:18},
         },
           // paper_bgcolor: "white",
-          width: 400,
+          width: 350,
           height: 350,
           margin: { t: 75, b: 0, l: 0, r: 0},
           autosize: true,

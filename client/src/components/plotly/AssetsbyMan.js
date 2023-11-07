@@ -24,7 +24,7 @@ const AssetsByMan = (assets) => {
                 marker: {
                     colors: ['rgb(177, 127, 38)', 'rgb(205, 152, 36)', 'rgb(99, 79, 37)', 'rgb(129, 180, 179)', 'rgb(124, 103, 37)']
                 },
-                insidetextorientation: "radial"
+                // insidetextorientation: "radial"
             }]}
             layout = {{
                 title: {
@@ -32,16 +32,16 @@ const AssetsByMan = (assets) => {
                     font: {size:18},
                 },
                 font: {size:9},
-                width: 400,
+                width: 350,
                 height: 400,
                 margin: { t: 75, b: 50, l: 0, r: 0},
                 showlegend: false,
-                legend: {
-                    orientation: 'h',
-                    font: {
-                        size: 11
-                    }
-                },
+                // legend: {
+                //     orientation: 'h',
+                //     font: {
+                //         size: 11
+                //     }
+                // },
                 autosize: true,
             }}
             config={{

@@ -22,7 +22,7 @@ const Inventory = () => {
 
   useEffect(() => {
     const fetchInventory = async () => {
-      const response = await fetch("http://localhost:4000/api/inventory/");
+      const response = await fetch("http://localhost:3000/assets");
       const json = await response.json();
 
       if (response.ok) {
@@ -42,7 +42,7 @@ const Inventory = () => {
   const handleSubmit = async (e) => {
     const inventory = { number, vendor, manufacturer, model };
 
-    const response = await fetch("http://localhost:4000/api/inventory/", {
+    const response = await fetch("http://localhost:3000/assets", {
       method: "POST",
       body: JSON.stringify(inventory),
       headers: {
@@ -77,7 +77,7 @@ const Inventory = () => {
   };
 
   const handleDelete = async (id) => {
-    const response = await fetch("http://localhost:4000/api/inventory/" + id, {
+    const response = await fetch("http://localhost:3000/assets" + id, {
       method: "DELETE",
     });
     const json = await response.json();

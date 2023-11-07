@@ -180,9 +180,13 @@ router.get("/:assetNumber", (req, res, next) => {
 router.patch("/:assetNumber", (req, res, next) => {
   const assetNumber = req.params.assetNumber;
   const updateOps = {};
-  for (const ops of req.body) {
-    updateOps[ops.propName] = ops.value;
+  
+  for (const [key, value] of Object.entries(req.body)) {
+    updateOps[key] = value;
   }
+
+  console.log(updateOps)
+
   Asset.updateOne(
     {
       assetNumber: assetNumber,

@@ -26,7 +26,8 @@ const App = () => {
         navigate("/login");
       }
       if (cookies.token && window.location.pathname == "/login"){
-        removeCookies();
+        // removeCookies();
+        navigate("/");
       }
       const { data } = await axios.post(
         "http://localhost:3000/",
@@ -36,7 +37,7 @@ const App = () => {
       const { status, user } = data;
       setUsername(user);
       return status
-        ? false
+        ? true
         : (removeCookies(), navigate("/login"));
     };
     verifyCookie();
