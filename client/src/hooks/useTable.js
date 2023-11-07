@@ -54,12 +54,16 @@ const useTable = () => {
 
   const addOrEdit = async (asset, resetForm) => {
     if (isEdit) {
-      console.log("this is edit Condition");
-      // const newRecord = await assetService.patchAsset(asset);
-      // console.log(newRecord);
+      const newRecord = await assetService.patchAsset(asset);
+      console.log(newRecord);
+      const getAllAssets = async () => {
+        const allAssets = await assetService.fetchAssets();
+        if (allAssets) setRows(allAssets);
+      };
+      getAllAssets();
       setNotify({
         isOpen: true,
-        message: "Created Successfully",
+        message: "Updated Successfully",
         type: "success",
       });
     } else {
