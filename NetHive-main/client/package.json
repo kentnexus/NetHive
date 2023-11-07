@@ -14,7 +14,10 @@
     "date-fns": "^2.30.0",
     "jsonwebtoken": "^9.0.2",
     "plotly.js": "^2.27.0",
+<<<<<<< HEAD
     "puppeteer": "^21.5.0",
+=======
+>>>>>>> 59883238015d0fa4438c49a1728aafd60bba83fa
     "react": "18.2.0",
     "react-bootstrap": "^2.9.0",
     "react-cookie": "^6.1.1",

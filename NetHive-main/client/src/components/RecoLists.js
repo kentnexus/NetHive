@@ -1,4 +1,5 @@
 import React from "react";
+import {useState} from "react";
 import { FormControl,Select,InputLabel,Box, MenuItem} from '@mui/material';
 import "../styles/SolutionsStyle.css";
 
@@ -39,30 +40,124 @@ function RenderingArrayOfObjects() {
 }
 
 const RecoLists = () => {
-  const [asset, setAge] = React.useState('');
+  const initialData = [
+    { id: 1, type: 'Both', product: 'All',manufacturer:'All',customer_account: 'All', asset_number:'All', device_name: 'All' },
+  ];
+
+  const [selection, setData] = useState(initialData);
+  const [filters, setFilters] = useState({
+    type:'',
+    product:'',
+    manufacturer:'',
+    customer_account: '',
+    asset_number: '',
+    device_name: '',
+  });
+
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setData(event.target.value);
   };
 
   return (
     <div className="sscontainer">
     <div className="column">
-    <h3>Lists of Assets</h3>
-    <Box sx={{ overflow: 'auto' }}>
-      <FormControl fullWidth>
-      <InputLabel >Selected asset</InputLabel>
+    <h3>Select an option </h3>
+  
+         <Box sx={{ overflow: 'auto' }}>
+         <FormControl fullWidth>
+         <label style={{margin: '5px'}}>Type</label>
         <Select
-          value={asset}
+          value={selection}
           onChange={handleChange}
           >  
           {/* pool of network device here  */}
-          <MenuItem value={1}>NH0004351</MenuItem>
-          <MenuItem value={2}>NH0004352</MenuItem>
-          <MenuItem value={3}>NH0004353</MenuItem>
+          <MenuItem value={1}>Both</MenuItem>
+          <MenuItem value={2}>Hardware</MenuItem>
+          <MenuItem value={3}>Software</MenuItem>
          </Select> 
          </FormControl>
-         </Box>
+         </Box> 
+
+         <Box sx={{ overflow: 'auto' }}>
+         <FormControl fullWidth>
+         <label style={{margin: '5px'}}>Product</label>
+        <Select
+          value={selection}
+          onChange={handleChange}
+          >  
+          {/* pool of network device here  */}
+          <MenuItem value={5}>All</MenuItem>
+          <MenuItem value={6}>AP</MenuItem>
+          <MenuItem value={7}>Workstation</MenuItem>
+          <MenuItem value={8}>Printer</MenuItem>
+          <MenuItem value={9}>Switch</MenuItem>
+          <MenuItem value={10}>Router</MenuItem>
+          <MenuItem value={11}>Firewall</MenuItem>
+          <MenuItem value={12}>Not Applicable</MenuItem>
+         </Select> 
+         </FormControl>
+         </Box> 
+
+         <Box sx={{ overflow: 'auto' }}>
+         <FormControl fullWidth>
+         <label style={{margin: '5px'}}>Manufacturer</label>
+        <Select
+          value={selection}
+          onChange={handleChange}
+          >  
+          <MenuItem value={20}>All</MenuItem>
+          <MenuItem value={21}>MAC</MenuItem>
+          <MenuItem value={22}>Dell</MenuItem>
+          <MenuItem value={23}>HP</MenuItem>
+          <MenuItem value={24}>Cisco</MenuItem>
+          <MenuItem value={25}>Arista</MenuItem>
+          <MenuItem value={26}>Palo Alto</MenuItem>
+          <MenuItem value={26}>Fortinet</MenuItem>
+          <MenuItem value={26}>Aruba</MenuItem>
+         </Select> 
+         </FormControl>
+         </Box> 
+         
+         <Box sx={{ overflow: 'auto' }}>
+         <FormControl fullWidth>
+         <label style={{margin: '5px'}}>Customer Account</label>
+        <Select
+          value={selection}
+          onChange={handleChange}
+          >  
+          {/* pool of customer account here  */}
+          <MenuItem value={40}>XYZ</MenuItem>
+         </Select> 
+         </FormControl>
+         </Box> 
+
+         <Box sx={{ overflow: 'auto' }}>
+         <FormControl fullWidth>
+         <label style={{margin: '5px'}}>Asset Number</label>
+        <Select
+          value={selection}
+          onChange={handleChange}
+          >  
+          {/* pool of network device here  */}
+          <MenuItem value={50}>NH000153</MenuItem>
+         </Select> 
+         </FormControl>
+         </Box> 
+
+         <Box sx={{ overflow: 'auto' }}>
+         <FormControl fullWidth>
+         <label style={{margin: '5px'}}>Device Name</label>
+        <Select
+          value={selection}
+          onChange={handleChange}
+          >  
+          {/* pool of network device here  */}
+          <MenuItem value={30}>XYZ-0045</MenuItem>
+         </Select> 
+         </FormControl>
+         </Box> 
+
          </div>
       
       <div className="column">
@@ -70,6 +165,7 @@ const RecoLists = () => {
         <RenderingArrayOfObjects/>
       </div>
     </div>
+    
   );
 };
 

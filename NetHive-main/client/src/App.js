@@ -42,7 +42,11 @@ const App = () => {
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
 
+<<<<<<< HEAD
   console.clear();
+=======
+  // console.clear();
+>>>>>>> 59883238015d0fa4438c49a1728aafd60bba83fa
 
   return (
     <div className="header">

@@ -17,3 +17,7 @@
 FormControl {
     background-color: red;
 }
+
+InputLabel {
+    margin: 5px;
+}

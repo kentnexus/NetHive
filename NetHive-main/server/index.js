@@ -6,6 +6,12 @@ require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/AuthRoute");
 const bodyParser = require('body-parser');
+<<<<<<< HEAD
+const browserObject = require('./vendorscraper/browser');
+const scraperController = require('./vendorscraper/pageController');
+
+=======
+>>>>>>> 59883238015d0fa4438c49a1728aafd60bba83fa
 const {
   MONGO_URL,
   PORT
@@ -37,4 +43,15 @@ app.use(express.json({ limit: '10mb' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+<<<<<<< HEAD
 app.use("/", authRoute);
+
+//Start the browser and create a browser instance
+let browserInstance = browserObject.startBrowser();
+
+// Pass the browser instance to the scraper controller
+scraperController(browserInstance)
+
+=======
+app.use("/", authRoute);
+>>>>>>> 59883238015d0fa4438c49a1728aafd60bba83fa
