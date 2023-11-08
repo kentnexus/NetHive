@@ -450,7 +450,7 @@ const useTable = () => {
         getRowId={(rows) => rows.assetNumber}
         initialState={{
           ...rows.initialState,
-          pagination: { paginationModel: { pageSize: 5 } },
+          pagination: { paginationModel: { pageSize: 10 } },
         }}
         pageSizeOptions={[5, 10, 25]}
         loading={isLoading}

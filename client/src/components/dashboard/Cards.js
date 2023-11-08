@@ -1,7 +1,7 @@
 import React from "react";
 import Plotly from "react-plotly.js";
 
-const {cost, counts, convertArrayToObject} = require("../../functions/analytics.js")
+const {counts} = require("../../functions/analytics.js")
 
 const cards = (assets) => {
 
@@ -19,7 +19,7 @@ const cards = (assets) => {
 
       const contract_dt = new Date(assets[i]['contracts_end_dt'])
       
-      if(contract_dt.getDate() >= date.getDate()) {
+      if(contract_dt >= date) {
         activeContracts.push(assets[i]['contracts_end_dt']);
       }
 
@@ -28,7 +28,7 @@ const cards = (assets) => {
 
   const statusList = counts(activeAssets)
 
-  console.log(statusList)
+  // console.log(statusList)
 
   return (
     <div>
@@ -76,7 +76,7 @@ const cards = (assets) => {
             },                
             {
               type: "indicator",
-              mode: "number",
+              mode : "number",
               number: {suffix: '%'},
               value: (statusList['Active']/activeAssets.length)*100,
               title: {
@@ -97,12 +97,12 @@ const cards = (assets) => {
                 }
               },
               width: 600,
-              height: 300,
-              margin: { t: 75, b: 10, l: 0, r: 0 },
+              height: 327,
+              margin: { t: 75, b: 10, l: 25, r: 0 },
               autosize: true,
             }}
             config={{
-              responsive: true
+              responsive: true,
             }}
           />
     </div>

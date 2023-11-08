@@ -1,7 +1,7 @@
 import React from "react";
 import Plotly from "react-plotly.js";
 
-const {cost, counts, convertArrayToObject} = require("../../functions/analytics.js")
+const {counts} = require("../../functions/analytics.js")
 
 const AssetsByMan = (assets) => {
     
