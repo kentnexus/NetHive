@@ -11,7 +11,7 @@ export async function patchUser(data) {
   };
   console.log(request);
   try {
-    const response = await axios.patch(`/assets/${request._id}`, request);
+    const response = await axios.patch(`/users/${request._id}`, request);
     const data = await response.data;
     return data;
   } catch (error) {

@@ -338,9 +338,20 @@ const AssetForm = (props) => {
             />
           </Grid>
           <Grid item xs={4}>
-            <Controls.Button type="submit" text="Submit" />
+            <Controls.Button
+              size="large"
+              type="submit"
+              text="Submit"
+              sx={{ m: 2 }}
+            />
 
-            <Controls.Button color="inherit" text="Reset" onClick={resetForm} />
+            <Controls.Button
+              color="inherit"
+              text="Reset"
+              onClick={resetForm}
+              size="large"
+              sx={{ m: 2 }}
+            />
           </Grid>
         </Grid>
       </Form>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Table, Toolbar } from "@mui/material";
+import { Toolbar } from "@mui/material";
 import {
   DataGrid,
   GridActionsCellItem,
@@ -11,7 +11,6 @@ import {
   GridToolbarFilterButton,
   GridToolbarQuickFilter,
 } from "@mui/x-data-grid";
-import axios from "axios";
 import dayjs from "dayjs";
 import Controls from "../helpers/Controls";
 import * as assetService from "../services/assetService";
@@ -22,7 +21,6 @@ import Popup from "../helpers/Popup";
 import AddIcon from "@mui/icons-material/Add";
 import Notification from "../components/Notification";
 import ConfirmDialog from "../components/ConfirmDialog";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
 const useTable = () => {
   const [rows, setRows] = useState("");
 
@@ -114,6 +112,7 @@ const useTable = () => {
       width: 50,
       disableClickEventBubbling: true,
       disableExport: true,
+      filterable: false,
       renderCell: () => {
         return (
           <GridActionsCellItem
@@ -129,13 +128,15 @@ const useTable = () => {
     {
       field: "assetNumber",
       headerName: "Asset Number",
-      width: 200,
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // editable: true,
     },
     {
       field: "customer_account",
       headerName: "Customer Account",
-      width: 200,
+      width: 150,
 
       // type: "number",
       // width: 180,
@@ -146,7 +147,7 @@ const useTable = () => {
     {
       field: "product",
       headerName: "Product",
-      width: 200,
+      width: 120,
 
       // type: "date",
       // width: 180,
@@ -155,7 +156,9 @@ const useTable = () => {
     {
       field: "asset_type",
       headerName: "Asset Type",
-      width: 200,
+      width: 120,
+      align: "left",
+      headerAlign: "left",
 
       // width: 180,
       // editable: true,
@@ -163,7 +166,9 @@ const useTable = () => {
     {
       field: "device_name",
       headerName: "Device Name",
-      width: 200,
+      width: 130,
+      align: "left",
+      headerAlign: "left",
 
       // type: "date",
       // width: 180,
@@ -172,7 +177,9 @@ const useTable = () => {
     {
       field: "manufacturer",
       headerName: "Manufacturer",
-      width: 200,
+      width: 120,
+      align: "left",
+      headerAlign: "left",
 
       // type: "date",
       // width: 180,
@@ -181,8 +188,9 @@ const useTable = () => {
     {
       field: "vendor",
       headerName: "Vendor",
-      width: 200,
-
+      width: 150,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -190,8 +198,9 @@ const useTable = () => {
     {
       field: "model",
       headerName: "Model",
-      width: 200,
-
+      width: 150,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -199,8 +208,9 @@ const useTable = () => {
     {
       field: "model_version",
       headerName: "Model Version",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -208,8 +218,9 @@ const useTable = () => {
     {
       field: "serial_number",
       headerName: "Serial Number",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -217,8 +228,9 @@ const useTable = () => {
     {
       field: "ip_address",
       headerName: "IP address",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -226,8 +238,9 @@ const useTable = () => {
     {
       field: "snmp_community_string",
       headerName: "SNMP Community String",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -235,7 +248,7 @@ const useTable = () => {
     {
       field: "location",
       headerName: "Location",
-      width: 200,
+      width: 120,
 
       // type: "date",
       // width: 180,
@@ -244,8 +257,9 @@ const useTable = () => {
     {
       field: "owner_name",
       headerName: "Owner Name",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -253,7 +267,7 @@ const useTable = () => {
     {
       field: "contracts_start_dt",
       headerName: "Contract Start Date",
-      width: 200,
+      width: 150,
 
       valueFormatter: (params) => dayjs(params.value).format("DD/MM/YYYY"),
       // width: 180,
@@ -262,8 +276,9 @@ const useTable = () => {
     {
       field: "contracts_end_dt",
       headerName: "Contract End date",
-      width: 200,
-
+      width: 150,
+      align: "left",
+      headerAlign: "left",
       valueFormatter: (params) => dayjs(params.value).format("DD/MM/YYYY"),
       // width: 180,
       // editable: true,
@@ -271,8 +286,9 @@ const useTable = () => {
     {
       field: "status",
       headerName: "Status",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -280,8 +296,9 @@ const useTable = () => {
     {
       field: "vendor_account_manager",
       headerName: "Vendor Account Manager",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -289,8 +306,9 @@ const useTable = () => {
     {
       field: "contact_number",
       headerName: "Contact Number",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -298,8 +316,9 @@ const useTable = () => {
     {
       field: "contact_email",
       headerName: "Contact Email",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -307,16 +326,18 @@ const useTable = () => {
     {
       field: "website",
       headerName: "Website",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // width: 220,
       // editable: true,
     },
     {
       field: "service_availed",
       headerName: "Service Availed",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -324,8 +345,9 @@ const useTable = () => {
     {
       field: "cost",
       headerName: "Cost",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -333,8 +355,9 @@ const useTable = () => {
     {
       field: "tags",
       headerName: "Tags",
-      width: 200,
-
+      width: 120,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
@@ -342,8 +365,9 @@ const useTable = () => {
     {
       field: "notes",
       headerName: "Notes",
-      width: 200,
-
+      width: 400,
+      align: "left",
+      headerAlign: "left",
       // type: "date",
       // width: 180,
       // editable: true,
