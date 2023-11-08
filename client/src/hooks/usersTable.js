@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Table, Toolbar } from "@mui/material";
+import { Toolbar } from "@mui/material";
 import {
   DataGrid,
   GridActionsCellItem,
@@ -11,8 +11,7 @@ import {
   GridToolbarFilterButton,
   GridToolbarQuickFilter,
 } from "@mui/x-data-grid";
-import axios from "axios";
-import dayjs from "dayjs";
+
 import Controls from "../helpers/Controls";
 import * as usersService from "../services/usersService";
 import EditIcon from "@mui/icons-material/Edit";
@@ -61,15 +60,19 @@ const usersTable = () => {
 
   const [openPopup, setOpenPopup] = useState(false);
 
-  const addOrEdit = async (asset, resetForm) => {
+  const addOrEdit = async (user, resetForm) => {
     if (isEdit) {
-      const newRecord = await usersService.patchUser(asset);
+      const userInfo = (({ _id, first_name, last_name, email }) => ({
+        _id,
+        first_name,
+        last_name,
+        email,
+      }))(user);
+      const newRecord = await usersService.patchUser(userInfo);
       console.log(newRecord);
-      const getAllUsers = async () => {
-        const allUsers = await usersService.fetchUsers();
-        if (allUsers) setRows(allUsers);
-      };
-      getAllUsers();
+      const allUsers = await usersService.fetchUsers();
+      if (allUsers) setRows(allUsers);
+
       setNotify({
         isOpen: true,
         message: "Updated Successfully",
@@ -77,12 +80,6 @@ const usersTable = () => {
       });
     }
 
-    // else {
-    //   console.log("This is add condition");
-
-    //   const newRecord = await assetService.insertAsset(asset);
-    //   updateRows(newRecord);
-    // }
     setEditRecord(null);
     setIsEdit(false);
     resetForm();
@@ -115,6 +112,8 @@ const usersTable = () => {
       headerName: "Edit",
       width: 100,
       disableClickEventBubbling: true,
+      disableExport: true,
+      filterable: false,
       renderCell: () => {
         return (
           <GridActionsCellItem
