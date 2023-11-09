@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import "../styles/UserProf.css";
 import { FaUserCircle } from "react-icons/fa";
-import { AiFillCaretDown } from "react-icons/ai";
 
 const UserProfile = () => {
 
@@ -24,12 +23,11 @@ const UserProfile = () => {
     <div className="navuserProfile">
       <p id="userdisplay">Welcome, {_attr.first_name} {_attr.last_name}</p>
       <div className="usericon">    
-      <Dropdown>
-
-      <Dropdown.Toggle variant="secondary" id="dropdown-basic-button"> 
+      <Dropdown className="d-inline mx-2">
+      <Dropdown.Toggle variant="secondary" id="dropdown-autoclose-true">
         <FaUserCircle id="userp-icon"/>
       </Dropdown.Toggle>
-      <Dropdown.Menu>
+      <Dropdown.Menu className="super-colors">
         <Dropdown.Item onClick={Logout}>Logout</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import Cards from "./plotly/Cards";
-import CategorizedAssets from "./plotly/CategorizedAssets"
-import AssetsByMan from "./plotly/AssetsbyMan";
-import AssetsbyStatus from "./plotly/AssetsbyStatus";
-import AssetsbyLocation from "./plotly/AssetsByLocation";
-import ExpiredAssets from "./plotly/ExpiredAssets";
-import ExpiringAssets from "./plotly/ExpiringAssets";
+import Cards from "./dashboard/Cards";
+import CategorizedAssets from "./dashboard/CategorizedAssets"
+import AssetsByMan from "./dashboard/AssetsbyMan";
+import AssetsbyStatus from "./dashboard/AssetsbyStatus";
+import AssetsbyLocation from "./dashboard/AssetsByLocation";
+import Contractslist from "./dashboard/Contractslist";
 
 import { AiFillHome } from "react-icons/ai";
 
@@ -68,10 +67,7 @@ const Analytics = () => {
                 margin: '0 10px'
               }}>
               <Cards>{assets}</Cards>
-              <h3>Expired Contracts (Last 15 Days)</h3>
-              <ExpiredAssets>{assets}</ExpiredAssets>
-              <h3>Expiring Contracts (Next 15 Days)</h3>
-              <ExpiringAssets>{assets}</ExpiringAssets>
+              <Contractslist>{assets}</Contractslist>
             </div>
         </div>
       </div>

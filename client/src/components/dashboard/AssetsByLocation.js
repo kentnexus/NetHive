@@ -1,33 +1,33 @@
 import React from "react";
 import Plotly from "react-plotly.js";
 
-const {cost, counts, convertArrayToObject} = require("../../functions/analytics.js")
+const {counts} = require("../../functions/analytics.js")
 
-const AssetsbyStatus = (assets) => {
+const AssetsbyLocation = (assets) => {
 
     assets = assets.children
-    let stats = []
+    let loc = []
   
     for (let i=0; i<assets.length;i++){
-        stats.push(assets[i]['status'])
+        loc.push(assets[i]['location'])
     }
 
-    const statsList = counts(stats)
+    const locList = counts(loc)
 
   return (
     <div>
       <Plotly 
         data = {[{
           type: 'bar',
-          y: Object.values(statsList),
-          x: Object.keys(statsList),         
+          y: Object.values(locList),
+          x: Object.keys(locList),         
           marker: {
             color: 'rgb(205, 152, 36)'
         },
       }]}
         layout={{       
           title: {
-            text:"<b>Assets by Status",
+            text:"<b>Assets by Location",
             font: {size:18},
         },
           autosize: true,
@@ -36,12 +36,11 @@ const AssetsbyStatus = (assets) => {
           height: 350,
           margin: { t: 75, b: 25, l: 50, r: 20},
           bargap: 0.05,
-          font: {size:9},
-          autosize: true
+          font: {size:9}
         }}
       />
     </div>
   );
 };
 
-export default AssetsbyStatus;
+export default AssetsbyLocation;
