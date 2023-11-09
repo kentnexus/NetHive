@@ -26,7 +26,7 @@ const UserProfile = () => {
       <div className="usericon">    
       <Dropdown>
 
-      <Dropdown.Toggle>
+      <Dropdown.Toggle variant="secondary" id="dropdown-basic-button"> 
         <FaUserCircle id="userp-icon"/>
       </Dropdown.Toggle>
       <Dropdown.Menu>

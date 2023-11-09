@@ -1,0 +1,47 @@
+.sscontainer{
+    margin: 10px 50px;
+    padding: 20px;
+    display: flex;
+    min-height: 600px;
+}
+
+
+.column {
+    flex: 50%;
+    padding: 10px;
+    background-color: rgba(251, 250, 250, 0.833);
+    margin:10px;
+    border-radius: 5px;
+}
+.content {
+    height: 800px;
+    overflow: auto;
+}
+
+.scrape-block h1 {
+    font-size: 1.2rem;
+    color: black;
+}
+.scrape-block p {
+    font-size: 1rem;
+    min-height: fit-content;
+    font-weight: bold;
+    
+}
+
+.scrape-block {
+    background-color: rgba(248, 246, 246, 0.959);
+    box-shadow:  5px 5px 2px #282c2f;
+    border-radius: 15px;
+    margin: 20px;
+    padding: 10px;
+}
+
+.scrape-block a {
+    color: black;
+}
+
+#boxcon {
+    margin: 20px 10px;
+}
+
