@@ -29,7 +29,7 @@ const MainPageLayout = ({ children }) => {
           <img className="logo" src={logo} alt="LOGO" />
         </Link>
         <Navbar />
-        <SearchBar />
+        {/* <SearchBar /> */}
         <UserProfile />
       </div>
       <main className="body_" 

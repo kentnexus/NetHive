@@ -20,7 +20,8 @@ const AssetsbyLocation = (assets) => {
         data = {[{
           type: 'bar',
           y: Object.values(locList),
-          x: Object.keys(locList),         
+          x: Object.keys(locList),        
+          text: Object.values(locList),    
           marker: {
             color: 'rgb(205, 152, 36)'
         },

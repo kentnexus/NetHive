@@ -35,7 +35,7 @@ const AssetsByMan = (assets) => {
                 width: 350,
                 height: 400,
                 margin: { t: 75, b: 50, l: 0, r: 0},
-                showlegend: false,
+                // showlegend: false,
                 // legend: {
                 //     orientation: 'h',
                 //     font: {

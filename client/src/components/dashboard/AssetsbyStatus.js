@@ -20,7 +20,8 @@ const AssetsbyStatus = (assets) => {
         data = {[{
           type: 'bar',
           y: Object.values(statsList),
-          x: Object.keys(statsList),         
+          x: Object.keys(statsList),     
+          text: Object.values(statsList),    
           marker: {
             color: 'rgb(205, 152, 36)'
         },

@@ -33,7 +33,7 @@ const Analytics = () => {
     }}>
       <div style={{
         alignItems:'flex-start',
-        background: 'beige',
+        backgroundColor: 'rgba(177, 179, 177,0.3)',
         borderRadius: '25px',
         padding: '0 10px 10px 10px',
         }}>
@@ -41,9 +41,8 @@ const Analytics = () => {
             padding: '10px',
             fontSize: '30px',
             fontFamily: 'fantasy',
-            color: '#292929',
+            color: 'beige',
           }}><AiFillHome style={{marginBottom:'6'}}/>DASHBOARD</a>
-          
         <div style={{
           display: 'flex',
           flexDirection: 'row',
