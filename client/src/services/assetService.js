@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect } from "react";
 
 export const getProductTypes = () => [
   { id: "1", title: "Switch" },
@@ -27,12 +28,18 @@ export async function insertAsset(data) {
 export async function insertBulkAssets(data) {
   const request = data;
   console.log("request data: ", request);
+
   try {
-    const response = await axios.post("/assets/bulk", request);
-    const data = await response.data;
+    const {response} = await axios.post("/assets/bulk", request, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response;
+    console.log(response)
     return data;
   } catch (error) {
-    return error;
+    return error.response.data;
   }
 }
 

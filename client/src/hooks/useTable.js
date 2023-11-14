@@ -69,7 +69,7 @@ const useTable = () => {
   const addOrEdit = async (asset, resetForm) => {
     if (isEdit) {
       const newRecord = await assetService.patchAsset(asset);
-      console.log(newRecord);
+      // console.log(newRecord);
       const getAllAssets = async () => {
         const allAssets = await assetService.fetchAssets();
         if (allAssets) setRows(allAssets);
@@ -100,7 +100,7 @@ const useTable = () => {
     const selectedIDs = new Set(rowSelections);
     setIsLoading(true);
     for (var i = 0, len = rowSelections.length; i < len; i++) {
-      console.log(rowSelections[i]);
+      // console.log(rowSelections[i]);
       const result = assetService.deleteAssets(rowSelections[i]);
     }
     setRows((r) => r.filter((x) => !selectedIDs.has(x.assetNumber)));
@@ -112,31 +112,40 @@ const useTable = () => {
     setIsLoading(false);
   };
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    console.log("fetch csv", file);
 
-    Papa.parse(file, {
-      header: true,
-      skipEmptyLines: true,
-      complete: function (result) {
-        // console.log(result.data);
-        setCsvData(result.data);
-        // console.log(csvData);
-      },
-    });
-    console.log(csvData);
+  const handleFileUpload = (event) => {
+    
+    const file = event.target.files[0];
+
+    function loadFile(file) {
+      let text = (new Response(file)).text();
+      setCsvData(text);
+    }
+
+    loadFile(file)
+    // Papa.parse(file, {
+    //   header: true,
+    //   skipEmptyLines: true,
+    //   complete: function (result) {
+    //     console.log(result);
+    //     // setCsvData(result.data);
+    //   },
+    // });
+
+    // console.log(csvData);
+
     const bulkAdd = async () => {
-      console.log("bulk add", csvData);
+      // console.log("bulk add", csvData);
       const newRecord = await assetService.insertBulkAssets(csvData);
       console.log("success: ", newRecord);
     };
     bulkAdd();
+
     const getAllAssets = async () => {
       const allAssets = await assetService.fetchAssets();
       if (allAssets) setRows(allAssets);
     };
-    getAllAssets();
+    // getAllAssets();
   };
 
   const columns = [
@@ -413,7 +422,7 @@ const useTable = () => {
     if (!(field === "Edit")) {
       return;
     }
-    console.log(params.row);
+    // console.log(params.row);
 
     setIsEdit(true);
     setEditRecord(params.row);
@@ -505,7 +514,7 @@ const useTable = () => {
             type="file"
             style={{ display: "none" }}
             id="upload"
-            accept=".csv"
+            accept=".json"
             onChange={handleFileUpload}
           />
           {/* <Controls.Button
