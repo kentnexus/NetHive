@@ -5,6 +5,7 @@ const Asset = require("../models/Assets");
 
 router.get("/", (req, res, next) => {
   Asset.find()
+    .sort({ created_dt: -1 })
     .exec()
     .then((docs) => {
       // console.log(docs);
@@ -24,48 +25,92 @@ router.get("/", (req, res, next) => {
     });
 });
 
+const counterSchema = {
+  id: {
+    type: String,
+  },
+  seq: {
+    type: Number,
+  },
+};
+
+const counterModel = mongoose.model("counter", counterSchema);
+
 router.post("/", (req, res, next) => {
-  const asset = new Asset({
-    assetNumber: req.body.assetNumber,
-    customer_account: req.body.customer_account,
-    product: req.body.product,
-    asset_type: req.body.asset_type,
-    device_name: req.body.device_name,
-    manufacturer: req.body.manufacturer,
-    vendor: req.body.vendor,
-    model: req.body.model,
-    model_version: req.body.model_version,
-    serial_number: req.body.serial_number,
-    ip_address: req.body.ip_address,
-    snmp_community_string: req.body.snmp_community_string,
-    location: req.body.location,
-    owner_name: req.body.owner_name,
-    contracts_start_dt: req.body.contracts_start_dt,
-    contracts_end_dt: req.body.contracts_end_dt,
-    aggregated_to_: req.body.aggregated_to_,
-    status: req.body.status,
-    vendor_account_manager: req.body.vendor_account_manager,
-    contact_number: req.body.contact_number,
-    contact_email: req.body.contact_email,
-    website: req.body.website,
-    service_availed: req.body.service_availed,
-    cost: req.body.cost,
-    cost_frequency: req.body.cost_frequency,
-    tags: req.body.tags,
-    notes: req.body.notes,
-    modified_dt: req.body.modified_dt,
-    customer_name: req.body.customer_name,
-    created_by: req.body.created_by,
-    created_dt: req.body.created_dt,
-  });
-  asset
-    .save()
-    .then((result) => {
-      console.log(result);
-      res.status(201).json({
-        message: "Handling POST requests to /assets",
-        createdAsset: result,
+  counterModel
+    .findOneAndUpdate(
+      { id: "autoAssetnNo" },
+      { $inc: { seq: 1 } },
+      { new: true }
+    )
+    .then((cd) => {
+      let seqId;
+      if (cd == null) {
+        const newVal = new counterModel({ id: "autoAssetnNo", seq: 1 });
+        newVal.save();
+        seqId =
+          "NH" +
+          cd.seq.toLocaleString("en-US", {
+            minimumIntegerDigits: 8,
+            useGrouping: false,
+          });
+      } else {
+        seqId =
+          "NH" +
+          cd.seq.toLocaleString("en-US", {
+            minimumIntegerDigits: 8,
+            useGrouping: false,
+          });
+      }
+
+      const asset = new Asset({
+        assetNumber: seqId,
+        customer_account: req.body.customer_account,
+        product: req.body.product,
+        asset_type: req.body.asset_type,
+        device_name: req.body.device_name,
+        manufacturer: req.body.manufacturer,
+        vendor: req.body.vendor,
+        model: req.body.model,
+        model_version: req.body.model_version,
+        serial_number: req.body.serial_number,
+        ip_address: req.body.ip_address,
+        snmp_community_string: req.body.snmp_community_string,
+        location: req.body.location,
+        owner_name: req.body.owner_name,
+        contracts_start_dt: req.body.contracts_start_dt,
+        contracts_end_dt: req.body.contracts_end_dt,
+        aggregated_to_: req.body.aggregated_to_,
+        status: req.body.status,
+        vendor_account_manager: req.body.vendor_account_manager,
+        contact_number: req.body.contact_number,
+        contact_email: req.body.contact_email,
+        website: req.body.website,
+        service_availed: req.body.service_availed,
+        cost: req.body.cost,
+        cost_frequency: req.body.cost_frequency,
+        tags: req.body.tags,
+        notes: req.body.notes,
+        modified_dt: req.body.modified_dt,
+        customer_name: req.body.customer_name,
+        created_by: req.body.created_by,
+        created_dt: req.body.created_dt,
       });
+      asset
+        .save()
+        .then((result) => {
+          console.log(result);
+          res.status(201).json({
+            message: "Handling POST requests to /assets",
+            createdAsset: result,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json({
+            error: err,
+          });
+        });
     })
     .catch((err) => {
       console.log(err);
@@ -180,12 +225,12 @@ router.get("/:assetNumber", (req, res, next) => {
 router.patch("/:assetNumber", (req, res, next) => {
   const assetNumber = req.params.assetNumber;
   const updateOps = {};
-  
+
   for (const [key, value] of Object.entries(req.body)) {
     updateOps[key] = value;
   }
 
-  console.log(updateOps)
+  console.log(updateOps);
 
   Asset.updateOne(
     {
@@ -269,26 +314,26 @@ router.delete("/:assetNumber", (req, res, next) => {
 });
 
 router.patch("/:id", (req, res, next) => {
-    const { id } = req.params;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: "No such record" });
-    }
-    Asset.findOneAndUpdate(
-      {
-        _id: id,
-      },
-      { ...req.body }
-    )
-      .exec()
-      .then((result) => {
-        res.status(200).json(result);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json({
-          error: err,
-        });
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "No such record" });
+  }
+  Asset.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    { ...req.body }
+  )
+    .exec()
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
       });
-  });
+    });
+});
 
 module.exports = router;

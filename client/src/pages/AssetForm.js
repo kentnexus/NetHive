@@ -5,7 +5,7 @@ import { useForm, Form } from "../hooks/useForm";
 import * as assetService from "../services/assetService";
 
 const initialValues = {
-  assetNumber: "",
+  assetNumber: "Auto-generated",
   customer_account: "",
   product: "",
   asset_type: "",
@@ -38,14 +38,10 @@ const AssetForm = (props) => {
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    if ("assetNumber" in fieldValues)
-      temp.assetNumber = fieldValues.assetNumber
-        ? ""
-        : "This field is required";
     if ("customer_account" in fieldValues)
-      temp.customer_account = fieldValues.customer_account
+      temp.customer_account = /([A-Z]){3}/.test(fieldValues.customer_account)
         ? ""
-        : "This field is required";
+        : "Three Uppercase Characters only";
     if ("product" in fieldValues)
       temp.product = fieldValues.product ? "" : "This field is required";
     if ("asset_type" in fieldValues)
@@ -62,16 +58,16 @@ const AssetForm = (props) => {
       temp.vendor = fieldValues.vendor ? "" : "This field is required";
     if ("model" in fieldValues)
       temp.model = fieldValues.model ? "" : "This field is required";
-    if ("model_version" in fieldValues)
-      temp.model_version = fieldValues.model_version
-        ? ""
-        : "This field is required";
-    if ("serial_number" in fieldValues)
-      temp.serial_number = fieldValues.serial_number
-        ? ""
-        : "This field is required";
-    if ("ip_address" in fieldValues)
-      temp.ip_address = fieldValues.ip_address ? "" : "This field is required";
+    // if ("model_version" in fieldValues)
+    //   temp.model_version = fieldValues.model_version
+    //     ? ""
+    //     : "This field is required";
+    // if ("serial_number" in fieldValues)
+    //   temp.serial_number = fieldValues.serial_number
+    //     ? ""
+    //     : "This field is required";
+    // if ("ip_address" in fieldValues)
+    //   temp.ip_address = fieldValues.ip_address ? "" : "This field is required";
     if ("snmp_community_string" in fieldValues)
       temp.snmp_community_string = fieldValues.snmp_community_string
         ? ""
@@ -82,10 +78,10 @@ const AssetForm = (props) => {
       temp.owner_name = fieldValues.owner_name ? "" : "This field is required";
     // temp.contracts_start_dt = new Date();
     //   temp.contracts_end_dt = new Date();
-    if ("aggregated_to_" in fieldValues)
-      temp.aggregated_to_ = fieldValues.aggregated_to_
-        ? ""
-        : "This field is required";
+    // if ("aggregated_to_" in fieldValues)
+    //   temp.aggregated_to_ = fieldValues.aggregated_to_
+    //     ? ""
+    //     : "This field is required";
     if ("status" in fieldValues)
       temp.status = fieldValues.status ? "" : "This field is required";
     if ("vendor_account_manager" in fieldValues)
@@ -98,19 +94,24 @@ const AssetForm = (props) => {
           ? ""
           : "Minimum 10 numbers required";
     if ("contact_email" in fieldValues)
-      temp.contact_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(
+      temp.contact_email = /$^|^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(
         fieldValues.contact_email
       )
         ? ""
         : "Invalid Email";
     if ("website" in fieldValues)
-      temp.website = fieldValues.website ? "" : "This field is required";
+      temp.website =
+        /$^|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?/.test(
+          fieldValues.website
+        )
+          ? ""
+          : "Invalid wesbite";
     if ("service_availed" in fieldValues)
       temp.service_availed = fieldValues.service_availed
         ? ""
         : "This field is required";
     if ("cost" in fieldValues)
-      temp.cost = fieldValues.cost > 0 ? "" : "This field is required";
+      temp.cost = fieldValues.cost > 0 ? "" : "Cannot be 0 or negative";
 
     setErrors({ ...temp });
 
@@ -143,11 +144,13 @@ const AssetForm = (props) => {
         <Grid container>
           <Grid item xs={4}>
             <Controls.Input
+              disabled="true"
+              InputProps={{
+                readOnly: true,
+              }}
               label="Asset Number"
               name="assetNumber"
               value={values.assetNumber}
-              onChange={handleInputChange}
-              error={errors.assetNumber}
             />
             <Controls.Input
               label="Customer Account"
@@ -261,13 +264,13 @@ const AssetForm = (props) => {
             />
           </Grid>
           <Grid item xs={4}>
-            <Controls.Input
+            {/* <Controls.Input
               label="Aggregated to"
               name="aggregated_to_"
               value={values.aggregated_to_}
               onChange={handleInputChange}
               error={errors.aggregated_to_}
-            />
+            /> */}
             <Controls.Input
               label="Status"
               name="status"
@@ -317,11 +320,8 @@ const AssetForm = (props) => {
               value={values.cost}
               onChange={handleInputChange}
               error={errors.cost}
+              type="number"
             />
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Grid item xs={4}>
             <Controls.Input
               label="Tags"
               name="tags"
@@ -329,12 +329,16 @@ const AssetForm = (props) => {
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item xs={4}>
+        </Grid>
+        <Grid container>
+          {/* <Grid item xs={4}></Grid> */}
+          <Grid item xs={8}>
             <Controls.Input
               label="Notes"
               name="notes"
               value={values.notes}
               onChange={handleInputChange}
+              sx={{ width: "100%" }}
             />
           </Grid>
           <Grid item xs={4}>
@@ -342,7 +346,7 @@ const AssetForm = (props) => {
               size="large"
               type="submit"
               text="Submit"
-              sx={{ m: 2 }}
+              sx={{ m: 1 }}
             />
 
             <Controls.Button
@@ -350,7 +354,7 @@ const AssetForm = (props) => {
               text="Reset"
               onClick={resetForm}
               size="large"
-              sx={{ m: 2 }}
+              sx={{ m: 1 }}
             />
           </Grid>
         </Grid>
