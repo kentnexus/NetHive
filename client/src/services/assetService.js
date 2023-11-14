@@ -24,6 +24,18 @@ export async function insertAsset(data) {
   }
 }
 
+export async function insertBulkAssets(data) {
+  const request = data;
+  console.log("request data: ", request);
+  try {
+    const response = await axios.post("/assets/bulk", request);
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
 export async function patchAsset(data) {
   const request = {
     ...data,

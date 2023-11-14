@@ -21,12 +21,19 @@ import Popup from "../helpers/Popup";
 import AddIcon from "@mui/icons-material/Add";
 import Notification from "../components/Notification";
 import ConfirmDialog from "../components/ConfirmDialog";
+import UploadIcon from "@mui/icons-material/Upload";
+import { styled } from "@mui/material/styles";
+import { Input, InputLabel } from "@mui/material";
+import Papa from "papaparse";
+
 const useTable = () => {
   const [rows, setRows] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
 
   const [rowSelections, setRowSelections] = useState([]);
+
+  const [csvData, setCsvData] = useState([]);
 
   const updateRows = (newRow) => {
     setRows((prevRows) => [newRow, ...prevRows]);
@@ -74,7 +81,7 @@ const useTable = () => {
         type: "success",
       });
     } else {
-      console.log("This is add condition");
+      // console.log("This is add condition");
 
       const newRecord = await assetService.insertAsset(asset);
       updateRows(newRecord);
@@ -103,6 +110,33 @@ const useTable = () => {
       type: "error",
     });
     setIsLoading(false);
+  };
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    console.log("fetch csv", file);
+
+    Papa.parse(file, {
+      header: true,
+      skipEmptyLines: true,
+      complete: function (result) {
+        // console.log(result.data);
+        setCsvData(result.data);
+        // console.log(csvData);
+      },
+    });
+    console.log(csvData);
+    const bulkAdd = async () => {
+      console.log("bulk add", csvData);
+      const newRecord = await assetService.insertBulkAssets(csvData);
+      console.log("success: ", newRecord);
+    };
+    bulkAdd();
+    const getAllAssets = async () => {
+      const allAssets = await assetService.fetchAssets();
+      if (allAssets) setRows(allAssets);
+    };
+    getAllAssets();
   };
 
   const columns = [
@@ -432,7 +466,6 @@ const useTable = () => {
             color="secondary"
             text="Columns"
           />
-
           <GridToolbarDensitySelector
             sx={{ m: 1, p: 1 }}
             variant="outlined"
@@ -447,7 +480,6 @@ const useTable = () => {
             size="small"
             text="Columns"
           />
-
           <GridToolbarExport
             sx={{ m: 1, p: 1 }}
             size="small"
@@ -460,6 +492,34 @@ const useTable = () => {
             }}
             csvOptions={{ allColumns: true }}
           />
+          <InputLabel htmlFor="upload">
+            <Controls.Button
+              variant="outlined"
+              color="secondary"
+              startIcon={<UploadIcon />}
+              component="span"
+              text="Import"
+            ></Controls.Button>
+          </InputLabel>
+          <input
+            type="file"
+            style={{ display: "none" }}
+            id="upload"
+            accept=".csv"
+            onChange={handleFileUpload}
+          />
+          {/* <Controls.Button
+            variant="outlined"
+            color="secondary"
+            // type="file"
+            // accept=".csv"
+            startIcon={<UploadIcon />}
+            component="label"
+
+            // onClick={(e) => handleFileUpload(e)}
+          >
+            <input type="file" accept=".csv" hidden />
+          </Controls.Button> */}
         </Toolbar>
       </GridToolbarContainer>
     );
@@ -471,7 +531,7 @@ const useTable = () => {
         autoHeight
         rows={rows}
         columns={columns}
-        getRowId={(rows) => rows.assetNumber}
+        getRowId={(rows) => rows._id}
         initialState={{
           ...rows.initialState,
           pagination: { paginationModel: { pageSize: 10 } },
