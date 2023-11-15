@@ -35,6 +35,8 @@ const useTable = () => {
 
   const [jsonData, setJsonData] = useState([]);
 
+  const [popupTitle, setPopupTitle] = useState("");
+
   const updateRows = (newRow) => {
     setRows((prevRows) => [newRow, ...prevRows]);
   };
@@ -112,9 +114,7 @@ const useTable = () => {
     setIsLoading(false);
   };
 
-
   const handleFileUpload = (event) => {
-    
     const file = event.target.files[0];
 
     async function loadFile(file) {
@@ -177,7 +177,7 @@ const useTable = () => {
       width: 120,
       align: "left",
       headerAlign: "left",
-      // editable: true,
+      // editable: false,
     },
     {
       field: "customer_account",
@@ -264,7 +264,7 @@ const useTable = () => {
     {
       field: "serial_number",
       headerName: "Serial Number",
-      width: 120,
+      width: 200,
       align: "left",
       headerAlign: "left",
       // type: "date",
@@ -425,8 +425,7 @@ const useTable = () => {
     if (!(field === "Edit")) {
       return;
     }
-    // console.log(params.row);
-
+    setPopupTitle("Edit Asset");
     setIsEdit(true);
     setEditRecord(params.row);
     setOpenPopup(true);
@@ -467,6 +466,7 @@ const useTable = () => {
             text="Add Asset"
             startIcon={<AddIcon />}
             onClick={() => {
+              setPopupTitle("New Asset");
               setOpenPopup(true);
               setEditRecord(null);
             }}
@@ -540,30 +540,29 @@ const useTable = () => {
   const TableContainer = (props) => (
     <>
       <DataGrid
-        autoHeight
         rows={rows}
         columns={columns}
-        getRowId={(rows) => rows._id}
+        getRowId={(rows) => rows.assetNumber}
         initialState={{
           ...rows.initialState,
           pagination: { paginationModel: { pageSize: 10 } },
         }}
         pageSizeOptions={[5, 10, 25]}
         loading={isLoading}
-        onCellClick={currentlySelected}
         checkboxSelection
         disableRowSelectionOnClick
         onRowSelectionModelChange={(data) => {
           setRowSelections(data);
         }}
         rowSelectionModel={rowSelections}
+        onCellClick={currentlySelected}
         slots={{
           toolbar: CustomToolbar,
         }}
       />
 
       <Popup
-        title="Asset Form"
+        title={popupTitle}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

@@ -5,6 +5,8 @@ export const getProductTypes = () => [
   { id: "1", title: "Switch" },
   { id: "2", title: "Router" },
   { id: "3", title: "Workstation" },
+  { id: "4", title: "Firewall" },
+  { id: "5", title: "AP" },
 ];
 
 export const getAssetTypes = () => [
@@ -30,13 +32,13 @@ export async function insertBulkAssets(data) {
   console.log("request data: ", request);
 
   try {
-    const {response} = await axios.post("/assets/bulk", request, {
+    const { response } = await axios.post("/assets/bulk", request, {
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     });
     const data = await response;
-    console.log(response)
+    console.log(response);
     return data;
   } catch (error) {
     return error.response.data;
