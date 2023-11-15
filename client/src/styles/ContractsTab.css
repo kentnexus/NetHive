@@ -1,4 +1,4 @@
-.Tabs {
+/* .Tabs {
     width: 80%;
     height: auto;
     min-height: 400px;
@@ -10,47 +10,46 @@
     @media (max-width: 769px) {
       padding: 1rem 0;
     }
-  
-  }
+} */
   
   /* Tab Navigation */
-  ul.nav {
-    width: 60%;
-    margin: 0 auto .4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid #adaf8c;
-    border-radius: 2rem;
-    @media (max-width: 768px) {
-      width: 90%;
-    }
+ul.nav {
+  width: 60%;
+  margin: 0.4rem auto .4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #adaf8c;
+  border-radius: 2rem;
+  @media (max-width: 768px) {
+    width: 90%;
   }
-  ul.nav li {
-    width: 50%;
-    padding: .1rem;
-    list-style: none;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.7s;
-    border-bottom-left-radius: 2rem;
-    border-top-left-radius: 2rem;
-  }
-  ul.nav li:nth-child(2) {
-    border-radius: 0;
-    border-bottom-right-radius: 2rem;
-    border-top-right-radius: 2rem;
-  }
-  ul.nav li:hover {
-    background: rgba(205, 152, 36, 0.15);
-  }
-  ul.nav li.active {
-    background: rgb(205, 152, 36);
-  }
-  
-  /* First and Second Tab Styles */
-  .FirstTab p,
-  .SecondTab p {
-    font-size: .5rem;
-    text-align: center;
-  }
+}
+ul.nav li {
+  width: 50%;
+  padding: .1rem;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.7s;
+  border-bottom-left-radius: 2rem;
+  border-top-left-radius: 2rem;
+}
+ul.nav li:nth-child(2) {
+  border-radius: 0;
+  border-bottom-right-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+ul.nav li:hover {
+  background: rgba(205, 152, 36, 0.15);
+}
+ul.nav li.active {
+  background: rgb(205, 152, 36);
+}
+
+/* First and Second Tab Styles */
+.FirstTab p,
+.SecondTab p {
+  font-size: .5rem;
+  text-align: center;
+}

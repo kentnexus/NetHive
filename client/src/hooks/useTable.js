@@ -33,7 +33,7 @@ const useTable = () => {
 
   const [rowSelections, setRowSelections] = useState([]);
 
-  const [csvData, setCsvData] = useState([]);
+  const [jsonData, setJsonData] = useState([]);
 
   const updateRows = (newRow) => {
     setRows((prevRows) => [newRow, ...prevRows]);
@@ -117,12 +117,15 @@ const useTable = () => {
     
     const file = event.target.files[0];
 
-    function loadFile(file) {
-      let text = (new Response(file)).text();
-      setCsvData(text);
+    async function loadFile(file) {
+      let text = await (new Response(file)).text();
+      console.log("loading file");
+      // setJsonData(text);
+      bulkAdd(text);
     }
 
-    loadFile(file)
+    loadFile(file);
+
     // Papa.parse(file, {
     //   header: true,
     //   skipEmptyLines: true,
@@ -132,20 +135,20 @@ const useTable = () => {
     //   },
     // });
 
-    // console.log(csvData);
-
-    const bulkAdd = async () => {
-      // console.log("bulk add", csvData);
-      const newRecord = await assetService.insertBulkAssets(csvData);
+    const bulkAdd = async (jsonText) => {
+      // console.log("bulk add", jsonData);
+      const newRecord = await assetService.insertBulkAssets(jsonText);
       console.log("success: ", newRecord);
+      
+      getAllAssets();
     };
-    bulkAdd();
 
     const getAllAssets = async () => {
       const allAssets = await assetService.fetchAssets();
       if (allAssets) setRows(allAssets);
     };
-    // getAllAssets();
+
+    event.preventDefault();
   };
 
   const columns = [

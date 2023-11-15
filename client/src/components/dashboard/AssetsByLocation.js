@@ -15,7 +15,10 @@ const AssetsbyLocation = (assets) => {
     const locList = counts(loc)
 
   return (
-    <div>
+    <div style={{
+      backgroundColor: 'white', 
+      borderRadius: '15px',
+      padding: '10px 5px'}}>
       <Plotly 
         data = {[{
           type: 'bar',
@@ -34,8 +37,8 @@ const AssetsbyLocation = (assets) => {
           autosize: true,
         //   paper_bgcolor: "white",
           width: 350,
-          height: 350,
-          margin: { t: 75, b: 25, l: 50, r: 20},
+          height: 295,
+          margin: { t: 30, b: 25, l: 50, r: 20},
           bargap: 0.05,
           font: {size:9}
         }}

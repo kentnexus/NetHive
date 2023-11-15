@@ -26,7 +26,7 @@ export async function insertAsset(data) {
 }
 
 export async function insertBulkAssets(data) {
-  const request = data;
+  const request = await data;
   console.log("request data: ", request);
 
   try {

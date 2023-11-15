@@ -37,12 +37,14 @@ const ExpiringAssets = (assets) => {
         {
             field: "contracts_start_dt",
             headerName: "Start Date",
-            valueFormatter: (params) => dayjs(params.value).format("DD/MM/YYYY")
+            valueFormatter: (params) => dayjs(params.value).format("DD/MM/YYYY"),
+            width: 120,
         },
         {
             field: "contracts_end_dt",
             headerName: "End Date",
-            valueFormatter: (params) => dayjs(params.value).format("DD/MM/YYYY")
+            valueFormatter: (params) => dayjs(params.value).format("DD/MM/YYYY"),
+            width: 120,
         },
         {
             field: "customer_account",
@@ -65,17 +67,17 @@ const ExpiringAssets = (assets) => {
 
     const [paginationModel, setPaginationModel] = useState({
         page: 0,
-        pageSize: 5,
+        pageSize: 10,
     })
 
     return (
-        <div style={{width:600, backgroundColor:'white'}}>
+        <div style={{height: 357, width: 600, backgroundColor:'white'}}>
             <DataGrid
-                autoHeight
+                // autoHeight
                 rows={contracts}
                 columns={columns}
                 getRowId={(rows) => rows._id}
-                pageSizeOptions={[5]}
+                pageSizeOptions={[10]}
                 paginationModel={paginationModel}   
                 onPaginationModelChange={setPaginationModel}
                 initialState={{
