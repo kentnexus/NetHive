@@ -15,7 +15,11 @@ const AssetsbyStatus = (assets) => {
   const statsList = counts(stats)
 
   return (
-    <div>
+    <div style={{
+      backgroundColor: 'white', 
+      borderRadius: '15px',
+      padding: '10px 5px',
+      marginBottom: '10px'}}>
       <Plotly 
         data = {[{
           type: 'bar',
@@ -33,8 +37,8 @@ const AssetsbyStatus = (assets) => {
         },
           autosize: true,
           width: 350,
-          height: 400,
-          margin: { t: 75, b: 25, l: 50, r: 20},
+          height: 390,
+          margin: { t: 30, b: 25, l: 50, r: 20},
           bargap: 0.05,
           font: {size:9},
           autosize: true,

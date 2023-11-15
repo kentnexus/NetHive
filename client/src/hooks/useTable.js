@@ -35,7 +35,7 @@ const useTable = () => {
 
   const [rowSelections, setRowSelections] = useState([]);
 
-  const [csvData, setCsvData] = useState([]);
+  const [jsonData, setJsonData] = useState([]);
 
   const [popupTitle, setPopupTitle] = useState("");
 
@@ -146,33 +146,50 @@ const useTable = () => {
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     console.log("fetch csv", file);
+    async function loadFile(file) {
+      let text = await new Response(file).text();
+      console.log("loading file");
+      // setJsonData(text);
+      bulkAdd(text);
+    }
 
-    console.log(csvData);
+    loadFile(file);
 
-    const bulkAdd = async () => {
-      // console.log("bulk add", csvData);
-      const newRecord = await assetService.insertBulkAssets(csvData);
+    // Papa.parse(file, {
+    //   header: true,
+    //   skipEmptyLines: true,
+    //   complete: function (result) {
+    //     console.log(result);
+    //     // setCsvData(result.data);
+    //   },
+    // });
+
+    const bulkAdd = async (jsonText) => {
+      // console.log("bulk add", jsonData);
+      const newRecord = await assetService.insertBulkAssets(jsonText);
       console.log("success: ", newRecord);
-    };
-    bulkAdd();
 
-    const getAllAssets = async () => {
-      const allAssets = await assetService.fetchAssets();
-      if (allAssets) {
-        if (cookies.user.role === "admin") {
-          setRows(allAssets);
-        } else {
-          let filteredRows = [];
-          for (let i = 0; i < allAssets.length; i++) {
-            if (allAssets[i].customer_account === cookies.user.account_name) {
-              filteredRows = [...filteredRows, allAssets[i]];
+      const getAllAssets = async () => {
+        const allAssets = await assetService.fetchAssets();
+        if (allAssets) {
+          if (cookies.user.role === "admin") {
+            setRows(allAssets);
+          } else {
+            let filteredRows = [];
+            for (let i = 0; i < allAssets.length; i++) {
+              if (allAssets[i].customer_account === cookies.user.account_name) {
+                filteredRows = [...filteredRows, allAssets[i]];
+              }
             }
+            setRows(filteredRows);
           }
-          setRows(filteredRows);
         }
-      }
+      };
+
+      getAllAssets();
     };
-    getAllAssets();
+
+    event.preventDefault();
   };
 
   const columns = [
@@ -541,7 +558,7 @@ const useTable = () => {
             type="file"
             style={{ display: "none" }}
             id="upload"
-            accept=".csv"
+            accept=".json"
             onChange={handleFileUpload}
           />
           {/* <Controls.Button

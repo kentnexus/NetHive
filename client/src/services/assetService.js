@@ -33,8 +33,13 @@ export async function insertAsset(data) {
   }
 }
 
-export function insertBulkAssets(data) {
-  const request = data;
+// <<<<<<< HEAD
+// export function insertBulkAssets(data) {
+//   const request = data;
+// =======
+export async function insertBulkAssets(data) {
+  const request = await data;
+  // >>>>>>> a3c5b6d155af188a5fff33253813107809428ae6
   console.log("request data: ", request);
 
   try {

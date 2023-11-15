@@ -31,80 +31,126 @@ const cards = (assets) => {
   // console.log(statusList)
 
   return (
-    <div>
+    <div style={{
+      backgroundColor: 'white', 
+      // paddingTop: '10px', 
+      display: 'flex',
+      justifyContent:'center',
+      alignItems: 'center', 
+      flexDirection: 'column',
+      borderRadius: '15px',
+      paddingBottom: '10px'
+      }}>
+      <a style={{
+        margin: '5px 0',
+        fontSize: '20px',
+        // fontWeight: 'bold',
+        color: '#3b3b3b'
+        }}>
+        <b>Assets & Contracts</b>
+      </a>
+      <div>
         <Plotly
-            data={[            
-            {
-              type: "indicator",
-              mode: "number",
-              value: totalAssets,
-              number: {prefix: "$"},
-              title: {
-                text:"Total Assets Cost",
-                font: {
-                  size: 16,
-                }
-              },
-              // domain: { row: 0, column: 0 },
-              domain: {x:[0,.5], y:[.6, .95]}
-            }, 
-            {
-              type: "indicator",
-              mode: "number",
-              value: assets.length,
-              title: {
-                text:"Number of Assets",
-                font: {
-                  size: 16,
-                }
-              },
-              // domain: { row: 0, column: 1 },
-              domain: {x:[.5,.9], y:[.6,.95]}
-            },                 
-            {
-              type: "indicator",
-              mode: "number",
-              value: activeContracts.length,
-              title: {
-                text:"Active Contracts",
-                font: {
-                  size: 16,
-                }
-              },
-              // domain: { row: 1, column: 0 },
-              domain: {x:[0,.5], y:[0,.4]}
-            },                
-            {
-              type: "indicator",
-              mode : "number",
-              number: {suffix: '%'},
-              value: (statusList['Active']/activeAssets.length)*100,
-              title: {
-                text:"Asset Utilization",
-                font: {
-                  size: 16,
-                }
-              },
-              // domain: { row: 1, column: 1 },
-              domain: {x:[.5,.9], y:[0,.4]}
+          data={[            
+          {
+            type: "indicator",
+            mode: "number",
+            value: totalAssets,
+            number: {prefix: "$"},
+            title: {
+              text:"Total Assets Cost",
+              font: {
+                size: 16,
+              }
             },
-            ]}
-            layout={{
-              title: {
-                text:"<b>Assets & Contracts",
-                font: {
-                  size: 18,
-                }
-              },
-              width: 600,
-              height: 327,
-              margin: { t: 75, b: 10, l: 25, r: 0 },
-              autosize: true,
-            }}
-            config={{
-              responsive: true,
-            }}
-          />
+          }, 
+          ]}
+          layout={{
+            width: 300,
+            height: 135,
+            margin: { t: 10, b: 0, l: 25, r: 25 },
+            autosize: true,
+          }}
+          config={{
+            responsive: true,
+          }}
+        />
+        <Plotly
+          data={[            
+          {
+            type: "indicator",
+            mode: "number",
+            value: assets.length,
+            title: {
+              text:"Number of Assets",
+              font: {
+                size: 16,
+              }
+            },
+          }, 
+          ]}
+          layout={{
+            width: 300,
+            height: 135,
+            margin: { t: 20, b: 0, l: 25, r: 25 },
+            autosize: true,
+          }}
+          config={{
+            responsive: true,
+          }}
+        />
+      </div>
+      <div>
+        <Plotly
+          data={[            
+          {
+            type: "indicator",
+            mode: "number",
+            value: activeContracts.length,
+            title: {
+              text:"Active Contracts",
+              font: {
+                size: 16,
+              }
+            },
+          }, 
+          ]}
+          layout={{
+            width: 300,
+            height: 120,
+            margin: { t: 30, b: 0, l: 25, r: 25 },
+            autosize: true,
+          }}
+          config={{
+            responsive: true,
+          }}
+        />
+        <Plotly
+          data={[            
+          {
+            type: "indicator",
+            mode : "number",
+            number: {suffix: '%'},
+            value: (statusList['Active']/activeAssets.length)*100,
+            title: {
+              text:"Asset Utilization",
+              font: {
+                size: 16,
+              }
+            },
+          }, 
+          ]}
+          layout={{
+            width: 300,
+            height: 120,
+            margin: { t: 30, b: 0, l: 25, r: 25 },
+            autosize: true,
+          }}
+          config={{
+            responsive: true,
+          }}
+        />
+      </div>
     </div>
   );
 };

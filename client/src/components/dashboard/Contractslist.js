@@ -56,7 +56,11 @@ const Contractslist = (assets) => {
           onClick={handleTab2}
           >Over Due Contracts</li>
         </ul>
-        <div className="outlet">
+        <div className="outlet" 
+          style={{
+            backgroundColor: 'white', 
+            borderRadius: '15px',
+            padding: '15px 5px',}}>
           {activeTab === "tab1" ? <ExpiringAssets>{assetList}</ExpiringAssets> : <ExpiredAssets>{assetList}</ExpiredAssets>}
         </div>
     </div>

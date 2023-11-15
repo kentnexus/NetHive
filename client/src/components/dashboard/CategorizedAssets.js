@@ -32,7 +32,11 @@ const CategorizedAssets = (assets) => {
     }
 
   return (
-    <div>
+    <div style={{
+      backgroundColor: 'white', 
+      borderRadius: '15px',
+      padding: '10px 5px',
+      marginBottom: '10px'}}>
       <Plotly 
         data = {[{
           type: "sunburst",
@@ -54,8 +58,8 @@ const CategorizedAssets = (assets) => {
         },
           // paper_bgcolor: "white",
           width: 350,
-          height: 350,
-          margin: { t: 75, b: 0, l: 0, r: 0},
+          height: 320,
+          margin: { t: 30, b: 0, l: 0, r: 0},
           autosize: true,
         }}
       />
