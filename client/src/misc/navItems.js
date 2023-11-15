@@ -1,6 +1,22 @@
-export const navItems = [
+export const navUserItems = [
   // ...
-  { 
+  {
+    title: "Dashboard",
+    url: "/",
+  },
+  {
+    title: "Inventory",
+    url: "/inventory",
+  },
+  {
+    title: "Solutions",
+    url: "/solutions",
+  },
+];
+
+export const navAdminItems = [
+  // ...
+  {
     title: "Dashboard",
     url: "/",
   },

@@ -8,6 +8,12 @@ export const getProductTypes = () => [
   { id: "4", title: "Firewall" },
   { id: "5", title: "AP" },
 ];
+export const getStatusTypes = () => [
+  { id: "1", title: "Active" },
+  { id: "2", title: "Decommised" },
+  { id: "3", title: "Maintenance" },
+  { id: "4", title: "In-Stock" },
+];
 
 export const getAssetTypes = () => [
   { id: "1", title: "Hardware" },
@@ -27,17 +33,17 @@ export async function insertAsset(data) {
   }
 }
 
-export async function insertBulkAssets(data) {
+export function insertBulkAssets(data) {
   const request = data;
   console.log("request data: ", request);
 
   try {
-    const { response } = await axios.post("/assets/bulk", request, {
+    const { response } = axios.post("/assets/bulk", request, {
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const data = await response;
+    const data = response;
     console.log(response);
     return data;
   } catch (error) {

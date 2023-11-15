@@ -25,6 +25,8 @@ import UploadIcon from "@mui/icons-material/Upload";
 import { styled } from "@mui/material/styles";
 import { Input, InputLabel } from "@mui/material";
 import Papa from "papaparse";
+import { useCookies } from "react-cookie";
+import { all } from "axios";
 
 const useTable = () => {
   const [rows, setRows] = useState("");
@@ -36,6 +38,8 @@ const useTable = () => {
   const [csvData, setCsvData] = useState([]);
 
   const [popupTitle, setPopupTitle] = useState("");
+
+  const [cookies, removeCookie] = useCookies([]);
 
   const updateRows = (newRow) => {
     setRows((prevRows) => [newRow, ...prevRows]);
@@ -60,9 +64,22 @@ const useTable = () => {
 
     const getAllAssets = async () => {
       const allAssets = await assetService.fetchAssets();
-      if (allAssets) setRows(allAssets);
+      if (allAssets) {
+        if (cookies.user.role === "admin") {
+          setRows(allAssets);
+        } else {
+          let filteredRows = [];
+          for (let i = 0; i < allAssets.length; i++) {
+            if (allAssets[i].customer_account === cookies.user.account_name) {
+              filteredRows = [...filteredRows, allAssets[i]];
+            }
+          }
+          setRows(filteredRows);
+        }
+      }
     };
     getAllAssets();
+
     setIsLoading(false);
   }, []);
 
@@ -74,7 +91,19 @@ const useTable = () => {
       // console.log(newRecord);
       const getAllAssets = async () => {
         const allAssets = await assetService.fetchAssets();
-        if (allAssets) setRows(allAssets);
+        if (allAssets) {
+          if (cookies.user.role === "admin") {
+            setRows(allAssets);
+          } else {
+            let filteredRows = [];
+            for (let i = 0; i < allAssets.length; i++) {
+              if (allAssets[i].customer_account === cookies.user.account_name) {
+                filteredRows = [...filteredRows, allAssets[i]];
+              }
+            }
+            setRows(filteredRows);
+          }
+        }
       };
       getAllAssets();
       setNotify({
@@ -116,23 +145,9 @@ const useTable = () => {
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
+    console.log("fetch csv", file);
 
-    function loadFile(file) {
-      let text = new Response(file).text();
-      setCsvData(text);
-    }
-
-    loadFile(file);
-    // Papa.parse(file, {
-    //   header: true,
-    //   skipEmptyLines: true,
-    //   complete: function (result) {
-    //     console.log(result);
-    //     // setCsvData(result.data);
-    //   },
-    // });
-
-    // console.log(csvData);
+    console.log(csvData);
 
     const bulkAdd = async () => {
       // console.log("bulk add", csvData);
@@ -143,9 +158,21 @@ const useTable = () => {
 
     const getAllAssets = async () => {
       const allAssets = await assetService.fetchAssets();
-      if (allAssets) setRows(allAssets);
+      if (allAssets) {
+        if (cookies.user.role === "admin") {
+          setRows(allAssets);
+        } else {
+          let filteredRows = [];
+          for (let i = 0; i < allAssets.length; i++) {
+            if (allAssets[i].customer_account === cookies.user.account_name) {
+              filteredRows = [...filteredRows, allAssets[i]];
+            }
+          }
+          setRows(filteredRows);
+        }
+      }
     };
-    // getAllAssets();
+    getAllAssets();
   };
 
   const columns = [
@@ -514,7 +541,7 @@ const useTable = () => {
             type="file"
             style={{ display: "none" }}
             id="upload"
-            accept=".json"
+            accept=".csv"
             onChange={handleFileUpload}
           />
           {/* <Controls.Button
@@ -548,9 +575,7 @@ const useTable = () => {
         loading={isLoading}
         checkboxSelection
         disableRowSelectionOnClick
-        onRowSelectionModelChange={(data) => {
-          setRowSelections(data);
-        }}
+        onRowSelectionModelChange={(data) => setRowSelections(data)}
         rowSelectionModel={rowSelections}
         onCellClick={currentlySelected}
         slots={{
