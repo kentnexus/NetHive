@@ -11,7 +11,7 @@ import {
   GridToolbarFilterButton,
   GridToolbarQuickFilter,
 } from "@mui/x-data-grid";
-
+import AddIcon from "@mui/icons-material/Add";
 import Controls from "../helpers/Controls";
 import * as usersService from "../services/usersService";
 import EditIcon from "@mui/icons-material/Edit";
@@ -29,12 +29,15 @@ const usersTable = () => {
 
   const [rowSelections, setRowSelections] = useState([]);
 
+  const [popupTitle, setPopupTitle] = useState("");
+
+  const [editRecord, setEditRecord] = useState(null);
+
+  const [isEdit, setIsEdit] = useState(false);
+
   const updateRows = (newRow) => {
     setRows((prevRows) => [newRow, ...prevRows]);
   };
-
-  const [editRecord, setEditRecord] = useState(null);
-  const [isEdit, setIsEdit] = useState(false);
 
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -62,11 +65,20 @@ const usersTable = () => {
 
   const addOrEdit = async (user, resetForm) => {
     if (isEdit) {
-      const userInfo = (({ _id, first_name, last_name, email }) => ({
+      const userInfo = (({
         _id,
         first_name,
         last_name,
         email,
+        account_name,
+        status,
+      }) => ({
+        _id,
+        first_name,
+        last_name,
+        email,
+        account_name,
+        status,
       }))(user);
       const newRecord = await usersService.patchUser(userInfo);
       console.log(newRecord);
@@ -78,6 +90,15 @@ const usersTable = () => {
         message: "Updated Successfully",
         type: "success",
       });
+    } else {
+      console.log("This is add condition");
+      setNotify({
+        isOpen: true,
+        message: "Add Inser Query Here",
+        type: "error",
+      });
+      // const newRecord = await usersService.insertUser(user);
+      // updateRows(newRecord);
     }
 
     setEditRecord(null);
@@ -145,7 +166,15 @@ const usersTable = () => {
       headerAlign: "left",
       // editable: true,
     },
-
+    {
+      field: "account_name",
+      headerName: "Company",
+      width: 120,
+      align: "left",
+      headerAlign: "left",
+      // width: 180,
+      // editable: true,
+    },
     {
       field: "email",
       headerName: "Email",
@@ -155,6 +184,7 @@ const usersTable = () => {
       // width: 180,
       // editable: true,
     },
+
     {
       field: "status",
       headerName: "Status",
@@ -175,7 +205,7 @@ const usersTable = () => {
     if (!(field === "Edit")) {
       return;
     }
-    console.log(params.row);
+    setPopupTitle("Edit User");
 
     setIsEdit(true);
     setEditRecord(params.row);
@@ -210,6 +240,17 @@ const usersTable = () => {
               }}
             />
           )}
+          <Controls.Button
+            variant="outlined"
+            color="secondary"
+            text="Add User"
+            startIcon={<AddIcon />}
+            onClick={() => {
+              setPopupTitle("New User");
+              setOpenPopup(true);
+              setEditRecord(null);
+            }}
+          />
           <GridToolbarColumnsButton
             sx={{ m: 1, p: 1 }}
             size="small"
@@ -296,11 +337,15 @@ const usersTable = () => {
       />
 
       <Popup
-        title="Users Form"
+        title={popupTitle}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        <UserForm editRecord={editRecord} addOrEdit={addOrEdit} />
+        <UserForm
+          editRecord={editRecord}
+          addOrEdit={addOrEdit}
+          popupTitle={popupTitle}
+        />
       </Popup>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

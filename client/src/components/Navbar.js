@@ -29,7 +29,7 @@ const Navbar = () => {
           alignItems: "center",
         }}
       >
-        {_attr.map((menu, index) => {
+        {navItems.navAdminItems.map((menu, index) => {
           return (
             // <<<<<<< HEAD
             <li className="menu-items" key={index} style={{ marginTop: "5px" }}>
