@@ -25,6 +25,7 @@ const AssetsByMan = (assets) => {
                     values: Object.values(manCounts),
                     labels: Object.keys(manCounts),
                     textinfo: 'label+percent',
+                    textposition: 'inside',
                     marker: {
                         colors: ['rgb(177, 127, 38)', 'rgb(205, 152, 36)', 'rgb(99, 79, 37)', 'rgb(129, 180, 179)', 'rgb(124, 103, 37)']
                     },

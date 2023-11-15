@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const User = require('../models/Users');
+const date = new Date();
 
 router.get('/', (req, res, next) => {
     User
@@ -53,7 +54,11 @@ router.patch('/:userId', (req, res, next) => {
     User.updateOne({
             _id: id
         }, {
-            $set: req.body
+            $set: {...req.body,
+        // }, {
+            // $set: {
+                modified_dt: date,
+            }
         })
         .exec()
         .then(result => {

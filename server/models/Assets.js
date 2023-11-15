@@ -39,13 +39,13 @@ const AssetSchema = mongoose.Schema({
     notes: String,
     modified_dt: {
         type: Date,
-        default: new Date(),
+        default: Date.now(),
     },
     customer_name: String,
     created_by: String,
     created_dt: {
         type: Date,
-        default: new Date(),
+        default: Date.now(),
     },
 }, {
     versionKey: false

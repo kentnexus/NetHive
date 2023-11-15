@@ -20,11 +20,11 @@ const UserSchema = new mongoose.Schema(
     created_by: String,
     created_dt: {
         type: Date,
-        default: new Date(),
+        default: Date.now(),
     },
     modified_dt: {
         type: Date,
-        default: new Date(),
+        default: Date.now(),
     }
 }, {
     versionKey: false

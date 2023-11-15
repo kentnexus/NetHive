@@ -35,6 +35,7 @@ const counterSchema = {
 };
 
 const counterModel = mongoose.model("counter", counterSchema);
+const date = new Date();
 
 router.post("/", (req, res, next) => {
   counterModel
@@ -91,7 +92,7 @@ router.post("/", (req, res, next) => {
         cost_frequency: req.body.cost_frequency,
         tags: req.body.tags,
         notes: req.body.notes,
-        modified_dt: req.body.modified_dt,
+        modified_dt: date,
         customer_name: req.body.customer_name,
         created_by: req.body.created_by,
         created_dt: req.body.created_dt,
@@ -170,7 +171,7 @@ router.post("/bulk", async (req, res, next) => {
               cost_frequency: updateOps["_doc"].cost_frequency,
               tags: updateOps["_doc"].tags,
               notes: updateOps["_doc"].notes,
-              modified_dt: updateOps["_doc"].modified_dt,
+              modified_dt: date,
               customer_name: updateOps["_doc"].customer_name,
               created_by: updateOps["_doc"].created_by,
             },
@@ -263,7 +264,7 @@ router.patch("/:assetNumber", (req, res, next) => {
         cost_frequency: updateOps.cost_frequency,
         tags: updateOps.tags,
         notes: updateOps.notes,
-        modified_dt: updateOps.modified_dt,
+        modified_dt: date,
         customer_name: updateOps.customer_name,
         created_by: updateOps.created_by,
       },
