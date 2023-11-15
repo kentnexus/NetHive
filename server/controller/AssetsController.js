@@ -5,7 +5,7 @@ const Asset = require("../models/Assets");
 
 router.get("/", (req, res, next) => {
   Asset.find()
-    .sort({ created_dt: -1 })
+    .sort({ modified_dt: -1 })
     .exec()
     .then((docs) => {
       // console.log(docs);

@@ -90,9 +90,11 @@ const AssetForm = (props) => {
         : "This field is required";
     if ("contact_number" in fieldValues)
       temp.contact_number =
-        fieldValues.contact_number.length > 9
+        /$^|^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(
+          fieldValues.contact_number
+        )
           ? ""
-          : "Minimum 10 numbers required";
+          : "Incorrect phone Number";
     if ("contact_email" in fieldValues)
       temp.contact_email = /$^|^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(
         fieldValues.contact_email
@@ -145,9 +147,9 @@ const AssetForm = (props) => {
           <Grid item xs={4}>
             <Controls.Input
               disabled="true"
-              InputProps={{
-                readOnly: true,
-              }}
+              // InputProps={{
+              //   readOnly: true,
+              // }}
               label="Asset Number"
               name="assetNumber"
               value={values.assetNumber}
@@ -271,13 +273,22 @@ const AssetForm = (props) => {
               onChange={handleInputChange}
               error={errors.aggregated_to_}
             /> */}
-            <Controls.Input
+            <Controls.Select
               label="Status"
               name="status"
               value={values.status}
               onChange={handleInputChange}
+              options={assetService.getStatusTypes()}
               error={errors.status}
-            />{" "}
+            />
+            {/* <Controls.Input
+              label="Status"
+              name="status"
+              value={values.status}
+              onChange={handleInputChange}
+              options={assetService.getStatusTypes()}
+              error={errors.status}
+            />{" "} */}
             <Controls.Input
               label="Vendor Account Manager"
               name="vendor_account_manager"
@@ -288,7 +299,7 @@ const AssetForm = (props) => {
             <Controls.Input
               label="Contact Number"
               name="contact_number"
-              type="number"
+              // type="number"
               value={values.contact_number}
               onChange={handleInputChange}
               error={errors.contact_number}
@@ -348,7 +359,6 @@ const AssetForm = (props) => {
               text="Submit"
               sx={{ m: 1 }}
             />
-
             <Controls.Button
               color="inherit"
               text="Reset"

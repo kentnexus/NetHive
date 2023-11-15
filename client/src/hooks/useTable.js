@@ -25,6 +25,8 @@ import UploadIcon from "@mui/icons-material/Upload";
 import { styled } from "@mui/material/styles";
 import { Input, InputLabel } from "@mui/material";
 import Papa from "papaparse";
+import { useCookies } from "react-cookie";
+import { all } from "axios";
 
 const useTable = () => {
   const [rows, setRows] = useState("");
@@ -36,6 +38,8 @@ const useTable = () => {
   const [jsonData, setJsonData] = useState([]);
 
   const [popupTitle, setPopupTitle] = useState("");
+
+  const [cookies, removeCookie] = useCookies([]);
 
   const updateRows = (newRow) => {
     setRows((prevRows) => [newRow, ...prevRows]);
@@ -60,9 +64,22 @@ const useTable = () => {
 
     const getAllAssets = async () => {
       const allAssets = await assetService.fetchAssets();
-      if (allAssets) setRows(allAssets);
+      if (allAssets) {
+        if (cookies.user.role === "admin") {
+          setRows(allAssets);
+        } else {
+          let filteredRows = [];
+          for (let i = 0; i < allAssets.length; i++) {
+            if (allAssets[i].customer_account === cookies.user.account_name) {
+              filteredRows = [...filteredRows, allAssets[i]];
+            }
+          }
+          setRows(filteredRows);
+        }
+      }
     };
     getAllAssets();
+
     setIsLoading(false);
   }, []);
 
@@ -74,7 +91,19 @@ const useTable = () => {
       // console.log(newRecord);
       const getAllAssets = async () => {
         const allAssets = await assetService.fetchAssets();
-        if (allAssets) setRows(allAssets);
+        if (allAssets) {
+          if (cookies.user.role === "admin") {
+            setRows(allAssets);
+          } else {
+            let filteredRows = [];
+            for (let i = 0; i < allAssets.length; i++) {
+              if (allAssets[i].customer_account === cookies.user.account_name) {
+                filteredRows = [...filteredRows, allAssets[i]];
+              }
+            }
+            setRows(filteredRows);
+          }
+        }
       };
       getAllAssets();
       setNotify({
@@ -116,9 +145,9 @@ const useTable = () => {
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
-
+    console.log("fetch csv", file);
     async function loadFile(file) {
-      let text = await (new Response(file)).text();
+      let text = await new Response(file).text();
       console.log("loading file");
       // setJsonData(text);
       bulkAdd(text);
@@ -139,13 +168,25 @@ const useTable = () => {
       // console.log("bulk add", jsonData);
       const newRecord = await assetService.insertBulkAssets(jsonText);
       console.log("success: ", newRecord);
-      
-      getAllAssets();
-    };
 
-    const getAllAssets = async () => {
-      const allAssets = await assetService.fetchAssets();
-      if (allAssets) setRows(allAssets);
+      const getAllAssets = async () => {
+        const allAssets = await assetService.fetchAssets();
+        if (allAssets) {
+          if (cookies.user.role === "admin") {
+            setRows(allAssets);
+          } else {
+            let filteredRows = [];
+            for (let i = 0; i < allAssets.length; i++) {
+              if (allAssets[i].customer_account === cookies.user.account_name) {
+                filteredRows = [...filteredRows, allAssets[i]];
+              }
+            }
+            setRows(filteredRows);
+          }
+        }
+      };
+
+      getAllAssets();
     };
 
     event.preventDefault();
@@ -551,9 +592,7 @@ const useTable = () => {
         loading={isLoading}
         checkboxSelection
         disableRowSelectionOnClick
-        onRowSelectionModelChange={(data) => {
-          setRowSelections(data);
-        }}
+        onRowSelectionModelChange={(data) => setRowSelections(data)}
         rowSelectionModel={rowSelections}
         onCellClick={currentlySelected}
         slots={{
