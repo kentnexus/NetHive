@@ -29,14 +29,18 @@ const Navbar = () => {
           alignItems: "center",
         }}
       >
-        {navItems.navAdminItems.map((menu, index) => {
+        {_attr.map((menu, index) => {
           return (
             // <<<<<<< HEAD
             <li className="menu-items" key={index} style={{ marginTop: "5px" }}>
-              <Link to={menu.url}>
+              <Link
+                to={menu.url}
+                // style={activeTab === menu ? activeStyle : {}}
+                // onClick={(setActiveTab = menu)}
+              >
                 {/* ======= */}
                 {/* <li className="menu-items" key={index} style={{marginTop:'5px'}}>
-              <NavLink to={menu.url} 
+              <Link to={menu.url} 
                   // style={activeTab === menu ? activeStyle : {}} 
                   // onClick={setActiveTab = menu}
                   
