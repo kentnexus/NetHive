@@ -8,7 +8,6 @@ import AssetsByMan from "./dashboard/AssetsbyMan";
 import AssetsbyStatus from "./dashboard/AssetsbyStatus";
 import AssetsbyLocation from "./dashboard/AssetsByLocation";
 import Contractslist from "./dashboard/Contractslist";
-import { useCookies } from "react-cookie";
 import { AiFillHome } from "react-icons/ai";
 
 const Analytics = () => {
