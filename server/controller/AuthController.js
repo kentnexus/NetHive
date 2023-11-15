@@ -1,4 +1,4 @@
-const User = require("../models/users");
+const User = require("../models/Users");
 const Asset = require("../models/Assets");
 const {
     createSecretToken
@@ -11,6 +11,7 @@ module.exports.Signup = async (req, res, next) => {
             first_name,
             last_name,
             role,
+            account_name,
             status,
             email,
             password,
@@ -29,11 +30,13 @@ module.exports.Signup = async (req, res, next) => {
             first_name,
             last_name,
             role,
+            account_name,
             status,
             email,
             password,
             created_by,
-            created_dt
+            created_dt,
+            modified_dt
         });
         const token = createSecretToken(user._id);
         res.cookie("token", token, {
@@ -66,6 +69,10 @@ module.exports.Login = async (req, res, next) => {
       const auth = await bcrypt.compare(password,user.password)
       if (!auth) { 
         return res.json({message:'Incorrect password or email' }) 
+      }
+      const status = user.status;
+      if(!status){
+        return res.json({message:'Account is locked and inactive. Please contact your IT support.' }) 
       }
        const token = createSecretToken(user._id);
        res.cookie("token", token, {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 import Cards from "./dashboard/Cards";
 import CategorizedAssets from "./dashboard/CategorizedAssets"
@@ -13,12 +14,25 @@ import { AiFillHome } from "react-icons/ai";
 const Analytics = () => {
 
   const [assets, setAssets] = useState([]);
+  const [cookies, removeCookie] = useCookies([]);
+  const user = cookies.user;
 
   useEffect( () => { 
       async function fetchData() {
           try {
               const res = await axios.get('/assets'); 
-              setAssets(res.data);
+              // console.log(user.account_name);
+              if (user.role == 'admin') {
+                setAssets(res.data);
+              } else {
+                // console.log(res.data[0]["customer_account"])
+                let assetsList = [];
+                
+                for(let i = 0; i<res.data.length; i++){
+                  res.data[i]["customer_account"] == user.account_name ? assetsList.push(res.data[i]) : null;
+                }
+                setAssets(assetsList);
+              }
           } catch (err) {
               console.log(err);
           }

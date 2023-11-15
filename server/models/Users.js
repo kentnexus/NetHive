@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
     first_name: String,
     last_name: String,
     role: String,
+    company: String,
     status: Boolean,
     email: {
         type: String,
@@ -17,6 +18,10 @@ const UserSchema = new mongoose.Schema({
     },
     created_by: String,
     created_dt: {
+        type: Date,
+        default: new Date(),
+    },
+    modified_dt: {
         type: Date,
         default: new Date(),
     }
