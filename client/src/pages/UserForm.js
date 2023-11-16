@@ -11,6 +11,7 @@ const initialValues = {
   account_name: "",
   password: "",
   status: false,
+  role: "user"
 };
 const statusItems = [
   { id: 1, value: true, title: "Active" },

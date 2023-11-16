@@ -35,3 +35,16 @@ export async function fetchUsers() {
     console.error(error);
   }
 }
+
+export async function insertUser(data) {
+  const request = {
+    ...data,
+  };
+  try {
+    const response = await axios.post("/signup", request);
+    const data = await response.data.user;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -26,6 +26,7 @@ const AssetsbyStatus = (assets) => {
           y: Object.values(statsList),
           x: Object.keys(statsList),     
           text: Object.values(statsList),    
+          textposition: 'outside',   
           marker: {
             color: 'rgb(205, 152, 36)'
         },

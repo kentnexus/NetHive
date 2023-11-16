@@ -16,7 +16,8 @@ module.exports.Signup = async (req, res, next) => {
             email,
             password,
             created_by,
-            created_dt
+            created_dt,
+            modified_dt
         } = req.body;
         const existingUser = await User.findOne({
             email

@@ -25,6 +25,7 @@ const AssetsbyLocation = (assets) => {
           y: Object.values(locList),
           x: Object.keys(locList),        
           text: Object.values(locList),    
+          textposition: 'outside',
           marker: {
             color: 'rgb(205, 152, 36)'
         },

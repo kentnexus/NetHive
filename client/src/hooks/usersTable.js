@@ -72,6 +72,7 @@ const usersTable = () => {
         email,
         account_name,
         status,
+        // role
       }) => ({
         _id,
         first_name,
@@ -79,6 +80,7 @@ const usersTable = () => {
         email,
         account_name,
         status,
+        // role
       }))(user);
       const newRecord = await usersService.patchUser(userInfo);
       console.log(newRecord);
@@ -91,14 +93,14 @@ const usersTable = () => {
         type: "success",
       });
     } else {
-      console.log("This is add condition");
+      // console.log("This is add condition");
       setNotify({
         isOpen: true,
-        message: "Add Inser Query Here",
-        type: "error",
+        message: "A user has been created",
+        type: "success",
       });
-      // const newRecord = await usersService.insertUser(user);
-      // updateRows(newRecord);
+      const newRecord = await usersService.insertUser(user);
+      updateRows(newRecord);
     }
 
     setEditRecord(null);
@@ -197,6 +199,15 @@ const usersTable = () => {
         }
         return <CircleIcon sx={{ color: "red" }} />;
       },
+    },
+    {
+      field: "role",
+      headerName: "Role",
+      value: "user",
+      width: 120,
+      align: "left",
+      headerAlign: "left",
+      editable: false,
     },
   ];
   function currentlySelected(params) {
