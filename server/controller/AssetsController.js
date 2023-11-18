@@ -123,7 +123,7 @@ router.post("/", (req, res, next) => {
 
 router.post("/bulk", async (req, res, next) => {
   const data = req.body;
-  let stat = 1;
+  let stats = [];
 
   for (let i = 0; i < data.length; i++) {
     const asset = new Asset(data[i]);
@@ -178,25 +178,22 @@ router.post("/bulk", async (req, res, next) => {
           }
         )
           .exec()
+          .then(
+            stats.push(data[i].assetNumber + " has been updated.")
+          )
           .catch((err) => {
-            console.log(err);
+            stats.push(err)
           });
       } else {
-        asset.save(data[i]);
+        asset.save(data[i])
+        stats.push(data[i].assetNumber + " has been added.")
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      stats.push(err)
     }
   }
-  if (stat == 1) {
-    res.send({
-      message: "Assets have been added.",
-    });
-  } else {
-    res.send({
-      message: "Assets have been added and updated.",
-    });
-  }
+  console.log(stats)
+  res.send(stats)
 });
 
 router.get("/:assetNumber", (req, res, next) => {
@@ -299,6 +296,7 @@ router.delete("/bulk", (req, res, next) => {
 
 router.delete("/:assetNumber", (req, res, next) => {
   const assetNumber = req.params.assetNumber;
+  
   Asset.deleteOne({
     assetNumber: assetNumber,
   })
@@ -311,7 +309,25 @@ router.delete("/:assetNumber", (req, res, next) => {
       res.status(500).json({
         error: err,
       });
-    });
+    });   
+});
+
+router.delete("/id/:id", (req, res, next) => {
+  const id = req.params.id;
+  
+  Asset.deleteOne({
+    _id: id,
+  })
+    .exec()
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
+    });   
 });
 
 router.patch("/:id", (req, res, next) => {

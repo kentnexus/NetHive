@@ -25,10 +25,10 @@ const App = () => {
       if (!cookies.token) {
         navigate("/login");
       }
-      if (cookies.token && window.location.pathname == "/login"){
-        removeCookies();
+      // if (cookies.token && window.location.pathname == "/login"){
+        // removeCookies();
         // navigate("/");
-      }
+      // }
       const { data } = await axios.post(
         "http://localhost:3000/",
         {},

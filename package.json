@@ -9,7 +9,6 @@
     "client": "cd client && npm run start",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
-  "proxy": "http://localhost:3000",
   "keywords": [
     "node",
     "restful",
@@ -19,5 +18,8 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
   }
 }

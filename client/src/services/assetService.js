@@ -25,7 +25,7 @@ export async function insertAsset(data) {
     ...data,
   };
   try {
-    const response = await axios.post("/assets", request);
+    const response = await axios.post("http://localhost:3000/assets", request);
     const data = await response.data.createdAsset;
     return data;
   } catch (error) {
@@ -40,16 +40,16 @@ export async function insertAsset(data) {
 export async function insertBulkAssets(data) {
   const request = await data;
   // >>>>>>> a3c5b6d155af188a5fff33253813107809428ae6
-  console.log("request data: ", request);
+  // console.log("request data: ", request);
 
   try {
-    const { response } = axios.post("/assets/bulk", request, {
+    const response = axios.post("http://localhost:3000/assets/bulk", request, {
       headers: {
         "Content-Type": "application/json",
       },
     });
     const data = response;
-    console.log(response);
+    // console.log(data);
     return data;
   } catch (error) {
     return error.response.data;
@@ -74,7 +74,7 @@ export async function patchAsset(data) {
 }
 export function deleteAssets(id) {
   try {
-    const response = axios.delete(`/assets/${id}`);
+    const response = axios.delete(`http://localhost:3000/assets/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -83,7 +83,7 @@ export function deleteAssets(id) {
 
 export async function fetchAssets() {
   try {
-    const response = await axios.get("/assets");
+    const response = await axios.get("http://localhost:3000/assets");
     return response.data;
   } catch (error) {
     console.error(error);

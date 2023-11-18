@@ -18,7 +18,7 @@ const Analytics = () => {
   useEffect( () => { 
       async function fetchData() {
           try {
-              const res = await axios.get('/assets'); 
+              const res = await axios.get('http://localhost:3000/assets'); 
               // console.log(user.account_name);
               if (user.role == 'admin') {
                 setAssets(res.data);

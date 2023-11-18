@@ -6,6 +6,7 @@ require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/AuthRoute");
 const bodyParser = require('body-parser');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const {
   MONGO_URL,
   PORT
@@ -38,3 +39,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", authRoute);
+
+module.exports = function(app) {
+  app.use(
+    '/',
+    createProxyMiddleware({
+      target: 'http://localhost:3000',
+      changeOrigin: true,
+    })
+  );
+};

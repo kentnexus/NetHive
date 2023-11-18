@@ -145,12 +145,13 @@ const useTable = () => {
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
-    console.log("fetch csv", file);
+    // console.log("fetch json", file);
     async function loadFile(file) {
       let text = await new Response(file).text();
-      console.log("loading file");
+      // console.log("loading file");
       // setJsonData(text);
       bulkAdd(text);
+      getAllAssets();
     }
 
     loadFile(file);
@@ -167,26 +168,24 @@ const useTable = () => {
     const bulkAdd = async (jsonText) => {
       // console.log("bulk add", jsonData);
       const newRecord = await assetService.insertBulkAssets(jsonText);
-      console.log("success: ", newRecord);
+      console.log("success: ", newRecord.data);
+    }
 
-      const getAllAssets = async () => {
-        const allAssets = await assetService.fetchAssets();
-        if (allAssets) {
-          if (cookies.user.role === "admin") {
-            setRows(allAssets);
-          } else {
-            let filteredRows = [];
-            for (let i = 0; i < allAssets.length; i++) {
-              if (allAssets[i].customer_account === cookies.user.account_name) {
-                filteredRows = [...filteredRows, allAssets[i]];
-              }
+    const getAllAssets = async () => {
+      const allAssets = await assetService.fetchAssets();
+      if (allAssets) {
+        if (cookies.user.role === "admin") {
+          setRows(allAssets);
+        } else {
+          let filteredRows = [];
+          for (let i = 0; i < allAssets.length; i++) {
+            if (allAssets[i].customer_account === cookies.user.account_name) {
+              filteredRows = [...filteredRows, allAssets[i]];
             }
-            setRows(filteredRows);
           }
+          setRows(filteredRows);
         }
-      };
-
-      getAllAssets();
+      }
     };
 
     event.preventDefault();
