@@ -6,6 +6,9 @@ require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/AuthRoute");
 const bodyParser = require('body-parser');
+const scrapeRoute = require('./routes/ScrapeRoute');
+
+
 const {
   MONGO_URL,
   PORT
@@ -38,3 +41,5 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", authRoute);
+
+app.use('/api', scrapeRoute);
