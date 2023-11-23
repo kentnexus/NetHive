@@ -23,7 +23,7 @@ const scrapeData = async (req, res) => {
         defaultViewport: false,
         args: ["--disable-setuid-sandbox"],
         'ignoreHTTPSErrors': true,
-        timeout: 60000,
+        timeout: 0,
       }
     });
 
@@ -40,32 +40,36 @@ const scrapeData = async (req, res) => {
 
 
         // Extract Contents
+        try {
+          const scrapedData = await page.evaluate((pageUrl) => {
+            console.log(`Scraping ..` + pageUrl);
+            const devices = Array.from(document.querySelectorAll('div.search-results > div.search-result'))
+            const data = devices.map(device => ({
+              product: 'Switch',
+              productdesc: device.querySelector('h2 > a').innerText,
+              model: device.querySelector('.product-codes > .mfg-code').innerText,
+              price: device.querySelector('div.price-type-price').innerText,
+              url: "https://www.cdw.com" + device.querySelector('h2 > a').getAttribute('href'),
+            }))
+            console.log(`Data Scraped for..` + pageUrl);
+            return data
+          })
+          console.log('Scraped data was successful', scrapedData);
+          scrapedDataArray.push(...scrapedData);
 
-        const scrapedData = await page.evaluate((pageUrl) => {
-          console.log(`Scraping ..` + pageUrl);
-          const devices = Array.from(document.querySelectorAll('div.search-results > div.search-result'))
-          const data = devices.map(device => ({
-            product: 'Switch',
-            productdesc: device.querySelector('h2 > a').innerText,
-            model: device.querySelector('.product-codes > .mfg-code').innerText,
-            price: device.querySelector('div.price-type-price').innerText,
-            url: "https://www.cdw.com" + device.querySelector('h2 > a').getAttribute('href'),
-          }))
-          console.log(`Data Scraped for..` + pageUrl);
-          return data
-        })
-        console.log('Scraped data was successful', scrapedData);
-        scrapedDataArray.push(...scrapedData);
+          // Check for the presence of the "next page" link
+          hasNextPage = await page.evaluate(() => {
+            const nextPageButton = document.querySelector('a.no-hover');
+            return nextPageButton !== null;
+          });
 
-        // Check for the presence of the "next page" link
-        hasNextPage = await page.evaluate(() => {
-          const nextPageButton = document.querySelector('a.no-hover');
-          return nextPageButton !== null;
-        });
+          // Move to the next page
+          if (hasNextPage) {
+            pageIdx++;
+          }
 
-        // Move to the next page
-        if (hasNextPage) {
-          pageIdx++;
+        } catch (error) {
+          console.error('Error during scraping:', error.message);
         }
       }
 

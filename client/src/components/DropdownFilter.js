@@ -34,8 +34,6 @@ const DropdownFilter = () => {
   const assetNumbers = assets.map((item) => item.assetNumber);
   const deviceNames = assets.map((item) => item.deviceName);
   const types = assets.map((item) => item.type);
-  // const products = assets.map((item) => item.product);
-  // const manufacturers = assets.map((item) => item.manufacturer);
 
   const data = {
     optionType: [
@@ -209,9 +207,9 @@ return (
     <Box sx={{ overflow: 'auto' }}>
       <FormControl fullWidth>
         Device Name:
-        <Select value={assetNumber} onChange={handleDeviceNameChange}>
+        <Select value={deviceName} onChange={handleDeviceNameChange}>
           {data.optiondeviceName.map((option) => (
-            <MenuItem  value={option.value}>
+            <MenuItem value={option.value}>
               {option.label}
             </MenuItem>
           ))}
