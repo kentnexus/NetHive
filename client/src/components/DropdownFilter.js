@@ -9,8 +9,8 @@ const DropdownFilter = () => {
   const [type, setType] = useState('all');
   const [product, setProduct] = useState('all');
   const [manufacturer, setManufacturer] = useState('all');
-  const [assetNumber, setAssetNumber] = useState('');
-  const [deviceName, setDeviceName] = useState('');
+  const [assetNumber, setAssetNumber] = useState('all');
+  const [deviceName, setDeviceName] = useState('all');
 
   const [assets, setAssets] = useState([]);
 
@@ -32,9 +32,8 @@ const DropdownFilter = () => {
 
 
   const assetNumbers = assets.map((item) => item.assetNumber);
-  const deviceNames = assets.map((item) => item.deviceName);
-  const types = assets.map((item) => item.type);
-
+  const deviceNames = assets.map((item) => item.device_name);
+  
   const data = {
     optionType: [
       { value: 'all', label: 'All' },
@@ -49,15 +48,15 @@ const DropdownFilter = () => {
         { value: 'all', label: 'All' },
         { value: 'ap', label: 'Access Point' },
         { value: 'swi', label: 'Switch' },
-        { value: 'rtr', label: 'Router' },
-        { value: 'fw', label: 'Firewall' },
+        { value: 'router', label: 'Router' },
+        { value: 'firewall', label: 'Firewall' },
       ],
       all: [
         { value: 'all', label: 'All' },
         { value: 'ap', label: 'Access Point' },
-        { value: 'swi', label: 'Switch' },
-        { value: 'rtr', label: 'Router' },
-        { value: 'fw', label: 'Firewall' },
+        { value: 'switch', label: 'Switch' },
+        { value: 'router', label: 'Router' },
+        { value: 'firewall', label: 'Firewall' },
         { value: 'na', label: 'Not Applicable' },
       ],
     },
@@ -66,164 +65,168 @@ const DropdownFilter = () => {
         { value: 'all', label: 'All' },
         { value: 'cisco', label: 'Cisco' },
         { value: 'hp', label: 'HP' },
-        { value: 'pa', label: 'Palo Alto' },
-        { value: 'forti', label: 'Fortinet' },
-        { value: 'aru', label: 'Aruba' },
+        { value: 'paloalto', label: 'Palo Alto' },
+        { value: 'fortinet', label: 'Fortinet' },
+        { value: 'aruba', label: 'Aruba' },
         { value: 'aironet', label: 'Cisco Aironet' },
         { value: 'arista', label: 'Arista' },
         { value: 'others', label: 'Others' },
       ],
       ap: [
-        { value: 'aru', label: 'Aruba' },
+        { value: 'aruba', label: 'Aruba' },
         { value: 'aironet', label: 'Cisco Aironet' },
       ],
-      swi: [
+      switch: [
         { value: 'cisco', label: 'Cisco' },
         { value: 'hp', label: 'HP' },
         { value: 'arista', label: 'Arista' },
       ],
-      rtr: [
+      router: [
         { value: 'cisco', label: 'Cisco' },
         { value: 'hp', label: 'HP' },
         { value: 'arista', label: 'Arista' },
       ],
-      fw: [
-        { value: 'pa', label: 'Palo Alto' },
-        { value: 'forti', label: 'Fortinet' },
+      firewall: [
+        { value: 'paloalto', label: 'Palo Alto' },
+        { value: 'fortinet', label: 'Fortinet' },
       ],
       na: [
         { value: 'others', label: 'Others' },
       ],
     },
-    optionassetNumber: 
-    assetNumbers.map((assetNumber) => ({
-      value: assetNumber,
-      label: assetNumber,
-    })),
-    optiondeviceName: 
-    deviceNames.map((deviceName) => ({
-      value: deviceName,
-      label: deviceName,
-    })),
+    optionassetNumber: [
+      { value: 'all', label: 'All' },
+      ...assetNumbers.map((assetNumber) => ({
+        value: assetNumber,
+        label: assetNumber,
+      })),
+    ],
+    optiondeviceName: [
+      { value: 'all', label: 'All' },
+      ...deviceNames.map((deviceName) => ({
+        value: deviceName,
+        label: deviceName,
+      })),
+    ],
   }
 
 
-const handleTypeChange = (event) => {
-  setType(event.target.value);
-  setProduct('all');
-  setManufacturer('all');
-  setAssetNumber('all');
-  setDeviceName('all');
-};
+  const handleTypeChange = (event) => {
+    setType(event.target.value);
+    setProduct('all');
+    setManufacturer('all');
+    setAssetNumber('all');
+    setDeviceName('all');
+  };
 
-const handleProductChange = (event) => {
-  const selectedType = event.target.value;
-  setProduct(selectedType);
-};
+  const handleProductChange = (event) => {
+    const selectedType = event.target.value;
+    setProduct(selectedType);
+  };
 
-const handleManufacturerChange = (event) => {
-  setManufacturer(event.target.value);
-};
+  const handleManufacturerChange = (event) => {
+    setManufacturer(event.target.value);
+  };
 
-const handleAssetNumberChange = (event) => {
-  setAssetNumber(event.target.value);
-};
+  const handleAssetNumberChange = (event) => {
+    setAssetNumber(event.target.value);
+  };
 
-const handleDeviceNameChange = (event) => {
-  setDeviceName(event.target.value);
-};
+  const handleDeviceNameChange = (event) => {
+    setDeviceName(event.target.value);
+  };
 
-const handleCollectSelections = () => {
-  <ScrapeLoad
-    selectedType={type}
-    selectedProduct={product}
-    selectedManufacturer={manufacturer}
-    selectedAssetNumber={assetNumber}
-    selectedDeviceName={deviceName}
-  />
-  {console.log("Selection: ", type, product, manufacturer)}
-};
+  const handleCollectSelections = () => {
+    <ScrapeLoad
+      selectedType={type}
+      selectedProduct={product}
+      selectedManufacturer={manufacturer}
+      selectedAssetNumber={assetNumber}
+      selectedDeviceName={deviceName}
+    />
+    { console.log("Selection: ", type, product, manufacturer) }
+  };
 
-useEffect(() => {
+  useEffect(() => {
 
-}, [type, product, manufacturer, assetNumber, deviceName]);
+  }, [type, product, manufacturer, assetNumber, deviceName]);
 
 
-return (
-  <div>
-    <Box sx={{ overflow: 'auto' }}>
-      <FormControl fullWidth>
-        Type:
-        <Select value={type} onChange={handleTypeChange}>
-          {data.optionType.map((option) => (
-            <MenuItem value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
-    <br />
-    <Box sx={{ overflow: 'auto' }}>
-      <FormControl fullWidth>
-        Product:
-        <Select value={product} onChange={handleProductChange}>
-          {(data.optionProduct[type] || []).map((option) => (
-            <MenuItem value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
-    <br />
-    <Box sx={{ overflow: 'auto' }}>
-      <FormControl fullWidth>
-        Manufacturer:
-        <Select value={manufacturer} onChange={handleManufacturerChange}>
-          {(data.optionManufacturer[product] || []).map((option) => (
-            <MenuItem value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
-    <br />
+  return (
+    <div>
+      <Box sx={{ overflow: 'auto' }}>
+        <FormControl fullWidth>
+          Type:
+          <Select value={type} onChange={handleTypeChange}>
+            {data.optionType.map((option) => (
+              <MenuItem value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+      <br />
+      <Box sx={{ overflow: 'auto' }}>
+        <FormControl fullWidth>
+          Product:
+          <Select value={product} onChange={handleProductChange}>
+            {(data.optionProduct[type] || []).map((option) => (
+              <MenuItem value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+      <br />
+      <Box sx={{ overflow: 'auto' }}>
+        <FormControl fullWidth>
+          Manufacturer:
+          <Select value={manufacturer} onChange={handleManufacturerChange}>
+            {(data.optionManufacturer[type] || data.optionManufacturer[product]  || []).map((option) => (
+              <MenuItem value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+      <br />
 
-    <Box sx={{ overflow: 'auto' }}>
-      <FormControl fullWidth>
-        Asset Number:
-        <Select value={assetNumber} onChange={handleAssetNumberChange}>
-          {data.optionassetNumber.map((option) => (
-            <MenuItem value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
-    <br />
-    <Box sx={{ overflow: 'auto' }}>
-      <FormControl fullWidth>
-        Device Name:
-        <Select value={deviceName} onChange={handleDeviceNameChange}>
-          {data.optiondeviceName.map((option) => (
-            <MenuItem value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+      <Box sx={{ overflow: 'auto' }}>
+        <FormControl fullWidth>
+          Asset Number:
+          <Select value={assetNumber} onChange={handleAssetNumberChange}>
+            {data.optionassetNumber.map((option) => (
+              <MenuItem value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+      <br />
+      <Box sx={{ overflow: 'auto' }}>
+        <FormControl fullWidth>
+          Device Name:
+          <Select value={deviceName} onChange={handleDeviceNameChange}>
+            {data.optiondeviceName.map((option) => (
+              <MenuItem value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
 
-    <br />
-    <Button variant="contained" onClick={handleCollectSelections}>
+      <br />
+      <Button variant="secondary" onClick={handleCollectSelections}>
         Filter
       </Button>
 
-  </div >
-)
+    </div >
+  )
 };
 
 export default DropdownFilter;

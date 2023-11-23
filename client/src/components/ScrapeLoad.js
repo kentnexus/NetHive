@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/Solutions.css';
+import ScrapeDisplay from '../components/ScrapeDisplay';
 
-const ScrapeLoad = ({selectedProduct, selectedManufacturer, selectedAssetNumber, selectedDeviceName}) => {
+const ScrapeLoad = ({ selectedType, selectedProduct, selectedManufacturer, selectedAssetNumber, selectedDeviceName }) => {
   const [dataScraped, setDataScraped] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
@@ -21,44 +22,25 @@ const ScrapeLoad = ({selectedProduct, selectedManufacturer, selectedAssetNumber,
     };
 
     fetchData();
-  }, [selectedProduct, selectedManufacturer, selectedAssetNumber, selectedDeviceName]);
+  }, [selectedType, selectedProduct, selectedManufacturer, selectedAssetNumber, selectedDeviceName]);
 
   const applyFilter = () => {
     let filteredResults = [...dataScraped];
-    // Apply filters based on selected values
-    if (selectedProduct && selectedProduct !== 'all') {
-      filteredResults = filteredResults.filter(item => item.product === selectedProduct);
-      {console.log('filtered :', selectedProduct)}
+
+    if (selectedType !== 'sw' && selectedType !== 'all') {
+      filteredResults = [...dataScraped]
     }
-    else if (selectedManufacturer && selectedManufacturer !== 'all') {
-      const lowerCaseManufacturer = selectedManufacturer.toLowerCase();
-      filteredResults = filteredResults.filter(item => item.productdesc.toLowerCase().includes(lowerCaseManufacturer));
-      {console.log('filtered :', selectedManufacturer)}
+    if (selectedProduct && selectedProduct !== 'all') {
+      filteredResults = filteredResults.filter(item => item.product.includes(selectedProduct) || item.productdesc.includes(selectedProduct));
+    }
+
+    if (selectedManufacturer && selectedManufacturer !== 'all') {
+      filteredResults = filteredResults.filter(item => item.productdesc.includes(selectedManufacturer));
     }
     setFilteredData(filteredResults);
   };
 
-  
-  return (
-    <div>
-       <p>Number of items in filtered data: {filteredData.length}</p>
-      {console.log('filtered scraped data: ', filteredData)}
-      {filteredData && filteredData.length > 0 ? (
-        filteredData.map((item) => (
-          <div className="scrape-block">
-            <h1>
-              <a href={item.url}>{item.productdesc}</a>
-            </h1>
-            Model: {item.model}
-            <br />
-            Price: {item.price}
-          </div>
-        ))
-      ) : (
-        <p>Loading .. </p>
-      )}
-    </div>
-  );
+  return <ScrapeDisplay dataScraped={dataScraped} filteredData={filteredData} />;
 };
 
 export default ScrapeLoad;
