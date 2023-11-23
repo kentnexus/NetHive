@@ -1,13 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, Select, InputLabel, Box, MenuItem } from '@mui/material';
+import { FormControl, Select, Button, Box, MenuItem } from '@mui/material';
 import "../styles/Solutions.css";
+import * as assetService from "../services/assetService";
+import ScrapeLoad from '../components/ScrapeLoad.js';
+
 
 const DropdownFilter = () => {
-  const [type, setType] = useState(1);
-  const [product, setProduct] = useState(1);
-  const [manufacturer, setManufacturer] = useState(1);
-  const [assetNumber, setAssetNumber] = useState(1);
-  const [deviceName, setDeviceName] = useState(1);
+  const [type, setType] = useState('all');
+  const [product, setProduct] = useState('all');
+  const [manufacturer, setManufacturer] = useState('all');
+  const [assetNumber, setAssetNumber] = useState('');
+  const [deviceName, setDeviceName] = useState('');
+
+  const [assets, setAssets] = useState([]);
+
+
+  useEffect(() => {
+    const getAllAssets = async () => {
+      try {
+        const allAssets = await assetService.fetchAssets();
+        if (allAssets) {
+          setAssets(allAssets);
+        }
+      } catch (error) {
+        console.error('Error fetching assets:', error);
+      }
+    };
+
+    getAllAssets();
+  }, []);
+
+
+  const assetNumbers = assets.map((item) => item.assetNumber);
+  const deviceNames = assets.map((item) => item.deviceName);
+  const types = assets.map((item) => item.type);
+  // const products = assets.map((item) => item.product);
+  // const manufacturers = assets.map((item) => item.manufacturer);
 
   const data = {
     optionType: [
@@ -37,140 +65,167 @@ const DropdownFilter = () => {
     },
     optionManufacturer: {
       all: [
-        { value: 1, label: 'All' },
-        { value: 2, label: 'Cisco' },
-        { value: 3, label: 'HP' },
-        { value: 4, label: 'Palo Alto' },
-        { value: 5, label: 'Fortinet' },
-        { value: 6, label: 'Aruba' },
-        { value: 7, label: 'Cisco Aironet' },
-        { value: 8, label: 'Arista' },
-        { value: 50, label: 'Others' },
+        { value: 'all', label: 'All' },
+        { value: 'cisco', label: 'Cisco' },
+        { value: 'hp', label: 'HP' },
+        { value: 'pa', label: 'Palo Alto' },
+        { value: 'forti', label: 'Fortinet' },
+        { value: 'aru', label: 'Aruba' },
+        { value: 'aironet', label: 'Cisco Aironet' },
+        { value: 'arista', label: 'Arista' },
+        { value: 'others', label: 'Others' },
       ],
       ap: [
-        { value: 6, label: 'Aruba' },
-        { value: 7, label: 'Cisco Aironet' },
+        { value: 'aru', label: 'Aruba' },
+        { value: 'aironet', label: 'Cisco Aironet' },
       ],
       swi: [
-        { value: 2, label: 'Cisco' },
-        { value: 3, label: 'HP' },
-        { value: 8, label: 'Arista' },
+        { value: 'cisco', label: 'Cisco' },
+        { value: 'hp', label: 'HP' },
+        { value: 'arista', label: 'Arista' },
       ],
       rtr: [
-        { value: 2, label: 'Cisco' },
-        { value: 3, label: 'HP' },
-        { value: 8, label: 'Arista' },
+        { value: 'cisco', label: 'Cisco' },
+        { value: 'hp', label: 'HP' },
+        { value: 'arista', label: 'Arista' },
       ],
       fw: [
-        { value: 4, label: 'Palo Alto' },
-        { value: 5, label: 'Fortinet' },
+        { value: 'pa', label: 'Palo Alto' },
+        { value: 'forti', label: 'Fortinet' },
       ],
       na: [
-        { value: 50, label: 'Others' },
-      ],
-
-      assetNumber: [
-        // Include your asset number options here
-      ],
-      deviceName: [
-        // Include your device name options here
+        { value: 'others', label: 'Others' },
       ],
     },
-  };
+    optionassetNumber: 
+    assetNumbers.map((assetNumber) => ({
+      value: assetNumber,
+      label: assetNumber,
+    })),
+    optiondeviceName: 
+    deviceNames.map((deviceName) => ({
+      value: deviceName,
+      label: deviceName,
+    })),
+  }
 
-  const handleTypeChange = (event) => {
-    setType(event.target.value);
-    setProduct('all');
-    setManufacturer('all');
-    setAssetNumber('all');
-    setDeviceName('all');
-  };
 
-  const handleProductChange = (event) => {
-    const selectedType = event.target.value;
-    setProduct(selectedType);
-  };
+const handleTypeChange = (event) => {
+  setType(event.target.value);
+  setProduct('all');
+  setManufacturer('all');
+  setAssetNumber('all');
+  setDeviceName('all');
+};
 
-  const handleManufacturerChange = (event) => {
-    setManufacturer(event.target.value);
-  };
+const handleProductChange = (event) => {
+  const selectedType = event.target.value;
+  setProduct(selectedType);
+};
 
-  const handleAssetNumberChange = (event) => {
-    setAssetNumber(event.target.value);
-  };
+const handleManufacturerChange = (event) => {
+  setManufacturer(event.target.value);
+};
 
-  const handleDeviceNameChange = (event) => {
-    setDeviceName(event.target.value);
-  };
+const handleAssetNumberChange = (event) => {
+  setAssetNumber(event.target.value);
+};
 
-  useEffect(() => {
-  }, [type, product, manufacturer, assetNumber, deviceName]);
+const handleDeviceNameChange = (event) => {
+  setDeviceName(event.target.value);
+};
 
-  return (
-    <div>
-      <Box sx={{ overflow: 'auto' }}>
-        <FormControl fullWidth>
-          Type:
-          <Select value={type} onChange={handleTypeChange}>
-            {data.optionType.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
-      <br />
-      <Box sx={{ overflow: 'auto' }}>
-        <FormControl fullWidth>
-          Product:
-          <Select value={product} onChange={handleProductChange}>
-            {(data.optionProduct[type] || []).map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
-      <br />
-      <Box sx={{ overflow: 'auto' }}>
-        <FormControl fullWidth>
-          Manufacturer:
-          <Select value={manufacturer} onChange={handleManufacturerChange}>
-            {(data.optionManufacturer[product] || []).map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
-      <br />
+const handleCollectSelections = () => {
+  <ScrapeLoad
+    selectedType={type}
+    selectedProduct={product}
+    selectedManufacturer={manufacturer}
+    selectedAssetNumber={assetNumber}
+    selectedDeviceName={deviceName}
+  />
+  {console.log("Selection: ", type, product, manufacturer)}
+};
 
-      <Box sx={{ overflow: 'auto' }}>
-        <FormControl fullWidth>
-          Asset Number:
-          <Select value={assetNumber} onChange={handleAssetNumberChange}>
-            {/* Load options dynamically from the database */}
-            {/* Example: */}
-            {/* <MenuItem value={1}>Asset 1</MenuItem> */}
-          </Select>
-        </FormControl>
-      </Box>
-      <br />
-      <Box sx={{ overflow: 'auto' }}>
-        <FormControl fullWidth>
-          Device Name:
-          <Select value={deviceName} onChange={handleDeviceNameChange}>
-            {/* Load options dynamically from the database */}
-            {/* Example: */}
-            {/* <MenuItem value={1}>Device 1</MenuItem> */}
-          </Select>
-        </FormControl>
-      </Box>
-    </div >
-  );
+useEffect(() => {
+
+}, [type, product, manufacturer, assetNumber, deviceName]);
+
+
+return (
+  <div>
+    <Box sx={{ overflow: 'auto' }}>
+      <FormControl fullWidth>
+        Type:
+        <Select value={type} onChange={handleTypeChange}>
+          {data.optionType.map((option) => (
+            <MenuItem value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
+    <br />
+    <Box sx={{ overflow: 'auto' }}>
+      <FormControl fullWidth>
+        Product:
+        <Select value={product} onChange={handleProductChange}>
+          {(data.optionProduct[type] || []).map((option) => (
+            <MenuItem value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
+    <br />
+    <Box sx={{ overflow: 'auto' }}>
+      <FormControl fullWidth>
+        Manufacturer:
+        <Select value={manufacturer} onChange={handleManufacturerChange}>
+          {(data.optionManufacturer[product] || []).map((option) => (
+            <MenuItem value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
+    <br />
+
+    <Box sx={{ overflow: 'auto' }}>
+      <FormControl fullWidth>
+        Asset Number:
+        <Select value={assetNumber} onChange={handleAssetNumberChange}>
+          {data.optionassetNumber.map((option) => (
+            <MenuItem value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
+    <br />
+    <Box sx={{ overflow: 'auto' }}>
+      <FormControl fullWidth>
+        Device Name:
+        <Select value={assetNumber} onChange={handleDeviceNameChange}>
+          {data.optiondeviceName.map((option) => (
+            <MenuItem  value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
+
+    <br />
+    <Button variant="contained" onClick={handleCollectSelections}>
+        Filter
+      </Button>
+
+  </div >
+)
 };
 
 export default DropdownFilter;

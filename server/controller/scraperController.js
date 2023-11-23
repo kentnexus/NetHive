@@ -7,9 +7,9 @@ const scrapeData = async (req, res) => {
   try {
     const urls = [
       "https://www.cdw.com/search/networking/switches/?w=RJ",
-      // "https://www.cdw.com/search/networking/routers/?w=RG",
-      // "https://www.cdw.com/search/networking/network-security/?w=RF",
-      // "https://www.cdw.com/search/networking/wireless-access-points/?w=RK",
+      "https://www.cdw.com/search/networking/routers/?w=RG",
+      "https://www.cdw.com/search/networking/network-security/?w=RF",
+      "https://www.cdw.com/search/networking/wireless-access-points/?w=RK",
     ];
 
     // Create a new cluster
@@ -23,36 +23,53 @@ const scrapeData = async (req, res) => {
         defaultViewport: false,
         args: ["--disable-setuid-sandbox"],
         'ignoreHTTPSErrors': true,
+        timeout: 60000,
       }
     });
 
-    for (const url of urls) {
-      await browser.queue(url);
-    }
-
+    const scrapedDataArray = [];
+    let pageIdx = 1;
     // Define the scraping task
     await browser.task(async ({ page, data }) => {
-      const pageUrl = data;
-      console.log(`Navigating to ...` + pageUrl);
-      await page.goto(pageUrl, { waitUntil: 'networkidle2', timeout: 0 });
+      let hasNextPage = true;
+      while (hasNextPage) {
+        const pageUrl = `${data}&pcurrent=${pageIdx}`;
+        console.log(`Navigating to ...` + pageUrl);
+        await page.goto(pageUrl, { waitUntil: 'networkidle2', timeout: 0 });
 
-      // Extract Contents
-      const scrapedData = await page.evaluate((pageUrl) => {
-        console.log(`Scraping ..` + pageUrl);
-        const devices = Array.from(document.querySelectorAll('div.search-results > div.search-result'))
-        const data = devices.map(device => ({
-          product: device.querySelector('h2 > a').innerText,
-          model: device.querySelector('.product-codes > .mfg-code').innerText,
-          price: device.querySelector('div.price-type-price').innerText,
-          url: "https://www.cdw.com" + device.querySelector('h2 > a').getAttribute('href'),
-        }))
-        console.log(`Data Scraped for..` + pageUrl);
-        return data
-      })
-      console.log('Scraped data successful', scrapedData);
 
-      //Send scraped data to the client
-      res.json({ data: scrapedData });
+
+        // Extract Contents
+
+        const scrapedData = await page.evaluate((pageUrl) => {
+          console.log(`Scraping ..` + pageUrl);
+          const devices = Array.from(document.querySelectorAll('div.search-results > div.search-result'))
+          const data = devices.map(device => ({
+            product: 'Switch',
+            productdesc: device.querySelector('h2 > a').innerText,
+            model: device.querySelector('.product-codes > .mfg-code').innerText,
+            price: device.querySelector('div.price-type-price').innerText,
+            url: "https://www.cdw.com" + device.querySelector('h2 > a').getAttribute('href'),
+          }))
+          console.log(`Data Scraped for..` + pageUrl);
+          return data
+        })
+        console.log('Scraped data was successful', scrapedData);
+        scrapedDataArray.push(...scrapedData);
+
+        // Check for the presence of the "next page" link
+        hasNextPage = await page.evaluate(() => {
+          const nextPageButton = document.querySelector('a.no-hover');
+          return nextPageButton !== null;
+        });
+
+        // Move to the next page
+        if (hasNextPage) {
+          pageIdx++;
+        }
+      }
+
+
     });
 
 
@@ -61,11 +78,17 @@ const scrapeData = async (req, res) => {
       console.log(`Error crawling ${data}: ${err.message}`);
     });
 
+    for (const url of urls) {
+      await browser.queue(url);
+    }
 
 
     // Close the browser
     await browser.idle();
     await browser.close();
+
+    // Send scraped data to the client
+    res.json({ data: scrapedDataArray });
 
   } catch (error) {
     console.error('Error during scraping:', error);

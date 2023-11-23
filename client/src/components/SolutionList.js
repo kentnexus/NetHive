@@ -25,10 +25,10 @@ const SolutionList = () => {
         <div className="content">
 
           {/* intended scraper but still needs more work */}
-          {/* <ScrapeLoad /> */}  
+          <ScrapeLoad />  
 
           {/* static test scraper output */}
-          <LoadScrapedData />
+          {/* <LoadScrapedData /> */}
           
         </div>
       </div>
