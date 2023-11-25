@@ -3,6 +3,7 @@ import { FormControl, Select, Button, Box, MenuItem } from '@mui/material';
 import "../styles/Solutions.css";
 import * as assetService from "../services/assetService";
 import ScrapeLoad from '../components/ScrapeLoad.js';
+import ScrapeDisplay from './ScrapeDisplay.js';
 
 
 const DropdownFilter = () => {
@@ -46,14 +47,14 @@ const DropdownFilter = () => {
       ],
       hw: [
         { value: 'all', label: 'All' },
-        { value: 'ap', label: 'Access Point' },
+        { value: 'accesspoint', label: 'Access Point' },
         { value: 'swi', label: 'Switch' },
         { value: 'router', label: 'Router' },
         { value: 'firewall', label: 'Firewall' },
       ],
       all: [
         { value: 'all', label: 'All' },
-        { value: 'ap', label: 'Access Point' },
+        { value: 'accesspoint', label: 'Access Point' },
         { value: 'switch', label: 'Switch' },
         { value: 'router', label: 'Router' },
         { value: 'firewall', label: 'Firewall' },
@@ -72,7 +73,7 @@ const DropdownFilter = () => {
         { value: 'arista', label: 'Arista' },
         { value: 'others', label: 'Others' },
       ],
-      ap: [
+      accesspoint: [
         { value: 'aruba', label: 'Aruba' },
         { value: 'aironet', label: 'Cisco Aironet' },
       ],
@@ -159,7 +160,7 @@ const DropdownFilter = () => {
           Type:
           <Select value={type} onChange={handleTypeChange}>
             {data.optionType.map((option) => (
-              <MenuItem value={option.value}>
+              <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
@@ -172,7 +173,7 @@ const DropdownFilter = () => {
           Product:
           <Select value={product} onChange={handleProductChange}>
             {(data.optionProduct[type] || []).map((option) => (
-              <MenuItem value={option.value}>
+              <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
@@ -185,7 +186,7 @@ const DropdownFilter = () => {
           Manufacturer:
           <Select value={manufacturer} onChange={handleManufacturerChange}>
             {(data.optionManufacturer[type] || data.optionManufacturer[product]  || []).map((option) => (
-              <MenuItem value={option.value}>
+              <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
@@ -199,7 +200,7 @@ const DropdownFilter = () => {
           Asset Number:
           <Select value={assetNumber} onChange={handleAssetNumberChange}>
             {data.optionassetNumber.map((option) => (
-              <MenuItem value={option.value}>
+              <MenuItem  key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
@@ -212,7 +213,7 @@ const DropdownFilter = () => {
           Device Name:
           <Select value={deviceName} onChange={handleDeviceNameChange}>
             {data.optiondeviceName.map((option) => (
-              <MenuItem value={option.value}>
+              <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
