@@ -18,6 +18,21 @@ export async function patchUser(data) {
     console.error(error);
   }
 }
+
+export async function patchPassword(data) {
+  const request = {
+    ...data,
+  };
+  // console.log(request);
+  try {
+    const response = await axios.patch(`http://localhost:3000/users/password/${request._id}`, request);
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export function deleteUser(id) {
   try {
     const response = axios.delete(`http://localhost:3000/users/${id}`);

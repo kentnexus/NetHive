@@ -64,7 +64,7 @@ const useTable = () => {
 
     const getAllAssets = async () => {
       const allAssets = await assetService.fetchAssets();
-      if (allAssets) {
+      if (allAssets) { 
         if (cookies.user.role === "admin") {
           setRows(allAssets);
         } else {
@@ -88,7 +88,7 @@ const useTable = () => {
   const addOrEdit = async (asset, resetForm) => {
     if (isEdit) {
       const newRecord = await assetService.patchAsset(asset);
-      // console.log(newRecord);
+      console.log(newRecord);
       const getAllAssets = async () => {
         const allAssets = await assetService.fetchAssets();
         if (allAssets) {

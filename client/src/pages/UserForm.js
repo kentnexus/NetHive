@@ -15,7 +15,7 @@ const initialValues = {
 };
 const statusItems = [
   { id: 1, value: true, title: "Active" },
-  { id: 2, value: false, title: "Deactive" },
+  { id: 2, value: false, title: "Inactive" },
 ];
 
 const UserForm = (props) => {

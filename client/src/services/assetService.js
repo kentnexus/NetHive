@@ -1,23 +1,55 @@
 import axios from "axios";
-import { useEffect } from "react";
+import {
+  useEffect
+} from "react";
 
-export const getProductTypes = () => [
-  { id: "1", title: "Switch" },
-  { id: "2", title: "Router" },
-  { id: "3", title: "Workstation" },
-  { id: "4", title: "Firewall" },
-  { id: "5", title: "AP" },
+export const getProductTypes = () => [{
+    id: "1",
+    title: "Switch"
+  },
+  {
+    id: "2",
+    title: "Router"
+  },
+  {
+    id: "3",
+    title: "Workstation"
+  },
+  {
+    id: "4",
+    title: "Firewall"
+  },
+  {
+    id: "5",
+    title: "AP"
+  },
 ];
-export const getStatusTypes = () => [
-  { id: "1", title: "Active" },
-  { id: "2", title: "Decommised" },
-  { id: "3", title: "Maintenance" },
-  { id: "4", title: "In-Stock" },
+export const getStatusTypes = () => [{
+    id: "1",
+    title: "Active"
+  },
+  {
+    id: "2",
+    title: "Decommisioned"
+  },
+  {
+    id: "3",
+    title: "Maintenance"
+  },
+  {
+    id: "4",
+    title: "In-Stock"
+  },
 ];
 
-export const getAssetTypes = () => [
-  { id: "1", title: "Hardware" },
-  { id: "2", title: "Software" },
+export const getAssetTypes = () => [{
+    id: "1",
+    title: "Hardware"
+  },
+  {
+    id: "2",
+    title: "Software"
+  },
 ];
 
 export async function insertAsset(data) {
@@ -62,10 +94,7 @@ export async function patchAsset(data) {
   };
   console.log(request);
   try {
-    const response = await axios.patch(
-      `/assets/${request.assetNumber}`,
-      request
-    );
+    const response = await axios.patch(`http://localhost:3000/assets/${request.assetNumber}`, request);
     const data = await response.data;
     return data;
   } catch (error) {

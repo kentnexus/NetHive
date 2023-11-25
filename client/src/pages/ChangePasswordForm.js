@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 import Controls from "../helpers/Controls";
 import { useForm, Form } from "../hooks/useForm";
 import * as usersService from "../services/usersService";
+import { useCookies } from "react-cookie";
 
 const initialValues = {
   current_password: "",
@@ -11,7 +12,35 @@ const initialValues = {
 };
 
 const ChangePasswordForm = (props) => {
-  const { addOrEdit, editRecord, popupTitle } = props;
+  const { editRecord, popupTitle } = props;
+  const [isEdit, setIsEdit] = useState(false);
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+
+  const addOrEdit = async (user, resetForm) => {
+    const userInfo = (({
+      _id,
+      email,
+      current_password,
+      new_password
+    }) => ({
+      _id,
+      email,
+      current_password,
+      new_password
+    }))(user);
+    const newRecord = await usersService.patchPassword(userInfo);
+    console.log(newRecord);
+
+    setNotify({
+      isOpen: true,
+      message: "Updated Successfully",
+      type: "success",
+    });
+  };
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -38,20 +67,21 @@ const ChangePasswordForm = (props) => {
   const { values, setValues, errors, setErrors, resetForm, handleInputChange } =
     useForm(initialValues, true, validate);
 
+    
+  const [cookies, removeCookie] = useCookies([]);
+  const _attr = cookies.user;
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
+
     if (validate()) {
-      // console.log(values);
+      // console.log(_attr);
+      values._id = _attr._id;
+      values.email = _attr.email;
       addOrEdit(values, resetForm);
     }
   };
-
-  // useEffect(() => {
-  //   if (editRecord != null) {
-  //     setValues({ ...editRecord });
-  //   }
-  // }, [editRecord]);
 
   return (
     <div>
@@ -61,7 +91,7 @@ const ChangePasswordForm = (props) => {
             <Controls.Input
               label="Current Password"
               name="current_password"
-              // type="password"
+              type="password"
               value={values.current_password}
               onChange={handleInputChange}
               error={errors.current_password}
@@ -69,20 +99,25 @@ const ChangePasswordForm = (props) => {
             <Controls.Input
               label="New Password"
               name="new_password"
-              // type="password"
+              type="password"
               value={values.new_password}
               onChange={handleInputChange}
               error={errors.new_password}
             />
-
             <Controls.Input
               label="Confirm New Password"
               name="confirm_new"
-              // type="password"
+              type="password"
               value={values.confirm_new}
               onChange={handleInputChange}
               error={errors.confirm_new}
             />
+
+            {/* <Controls.Input
+              name="id"
+              type="hidden"
+              value={_attr._id}
+            />        */}
 
             <Controls.Button
               sx={{ m: 2, mt: 4 }}

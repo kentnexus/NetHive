@@ -10,12 +10,12 @@ const UserSchema = new mongoose.Schema(
     status: Boolean,
     email: {
       type: String,
-      required: [true, "Your email address is required"],
+      // required: [true, "Your email address is required"],
       unique: true,
     },
     password: {
       type: String,
-      required: [true, "Your password is required"],
+      // required: [true, "Your password is required"],
     },
     created_by: String,
     created_dt: {

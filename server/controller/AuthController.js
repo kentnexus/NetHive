@@ -39,11 +39,11 @@ module.exports.Signup = async (req, res, next) => {
             created_dt,
             modified_dt
         });
-        const token = createSecretToken(user._id);
-        res.cookie("token", token, {
-            withCredentials: true,
-            httpOnly: false,
-        });
+        // const token = createSecretToken(user._id);
+        // res.cookie("token", token, {
+        //     withCredentials: true,
+        //     httpOnly: false,
+        // });
         res
             .status(201)
             .json({
@@ -67,7 +67,7 @@ module.exports.Login = async (req, res, next) => {
       if(!user){
         return res.json({message:'Incorrect password or email' }) 
       }
-      const auth = await bcrypt.compare(password,user.password)
+      const auth = await bcrypt.compare(password, user.password)
       if (!auth) { 
         return res.json({message:'Incorrect password or email' }) 
       }
@@ -80,7 +80,8 @@ module.exports.Login = async (req, res, next) => {
          withCredentials: true,
          httpOnly: false
        });
-       res.cookie("user",user, {
+      //  console.log(user);
+       res.cookie("user", user, {
         withCredentials: true,
         httpOnly: false
       });

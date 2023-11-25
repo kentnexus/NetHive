@@ -42,7 +42,7 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      console.log(data);
+      // console.log(data);
       const { success, message, name } = data;
       if (success) {
         handleSuccess(message);    
@@ -63,7 +63,7 @@ const Login = () => {
       email: "",
       password: "",
     });
-    console.clear();
+    // console.clear();
   };
 
   return (

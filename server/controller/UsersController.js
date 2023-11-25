@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const bcrypt = require("bcryptjs");
 
 const User = require('../models/Users');
 const date = new Date();
@@ -20,7 +21,7 @@ router.get('/', (req, res, next) => {
             }
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             res.status(500).json({
                 error: err
             })
@@ -32,7 +33,7 @@ router.get('/:userId', (req, res, next) => {
     User.findById(id)
         .exec()
         .then(doc => {
-            console.log("From database", doc);
+            // console.log("From database", doc);
             if (doc) {
                 res.status(200).json(doc);
             } else {
@@ -42,14 +43,14 @@ router.get('/:userId', (req, res, next) => {
             }
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             res.status(500).json({
                 message: 'No valid entry for user'
             })
         });
 });
 
-router.patch('/:userId', (req, res, next) => {
+router.patch('/:userId', async (req, res, next) => {
     const id = req.params.userId;
     User.updateOne({
             _id: id
@@ -58,20 +59,57 @@ router.patch('/:userId', (req, res, next) => {
         // }, {
             // $set: {
                 modified_dt: date,
+                // password: await bcrypt.hash(req.body.password, 12)
             }
         })
         .exec()
         .then(result => {
-            console.log(result);
+            // console.log(result);
             res.status(200).json(result);
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             res.status(500).json({
                 error: err
             })
         });
 });
+
+router.patch('/password/:userId', async (req, res, next) => {
+    try {
+        const id = req.params.userId;
+        const { new_password, current_password, email } = req.body;
+
+        const user = await User.findOne({ email });
+        const auth = await bcrypt.compare(current_password, user.password);
+
+        // console.log(await bcrypt.hash(new_password, 12));
+
+        if (!auth) { 
+          return res.json({message:'Incorrect password' }) 
+        } else {
+            User.updateOne({
+                _id: id
+            }, {
+                $set: {password: await bcrypt.hash(new_password, 12)}
+            })
+            .exec()
+            .then(result => {
+                // console.log(result);
+                res.status(200).json(result);
+            })
+            .catch(err => {
+                // console.log(err);
+                res.status(500).json({
+                    error: err
+                })
+            });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+});
+
 
 router.delete('/deleteAll', (req, res, next) => {
     User.deleteMany()
@@ -80,7 +118,7 @@ router.delete('/deleteAll', (req, res, next) => {
             res.status(200).json(result);
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             res.status(500).json({
                 error: err
             });
@@ -99,7 +137,7 @@ router.delete('/:userId', (req, res, next) => {
             });
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
             res.status(500).json({
                 error: err
             });

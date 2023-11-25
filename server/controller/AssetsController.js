@@ -18,7 +18,7 @@ router.get("/", (req, res, next) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({
         error: err,
       });
@@ -100,21 +100,21 @@ router.post("/", (req, res, next) => {
       asset
         .save()
         .then((result) => {
-          console.log(result);
+          // console.log(result);
           res.status(201).json({
             message: "Handling POST requests to /assets",
             createdAsset: result,
           });
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           res.status(500).json({
             error: err,
           });
         });
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({
         error: err,
       });
@@ -192,7 +192,7 @@ router.post("/bulk", async (req, res, next) => {
       stats.push(err)
     }
   }
-  console.log(stats)
+  // console.log(stats)
   res.send(stats)
 });
 
@@ -212,7 +212,7 @@ router.get("/:assetNumber", (req, res, next) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({
         message: "No valid entry for asset",
         assetNumber,
@@ -228,7 +228,7 @@ router.patch("/:assetNumber", (req, res, next) => {
     updateOps[key] = value;
   }
 
-  console.log(updateOps);
+  // console.log(updateOps);
 
   Asset.updateOne(
     {
@@ -262,18 +262,18 @@ router.patch("/:assetNumber", (req, res, next) => {
         tags: updateOps.tags,
         notes: updateOps.notes,
         modified_dt: date,
-        customer_name: updateOps.customer_name,
+        customer_account: updateOps.customer_account,
         created_by: updateOps.created_by,
       },
     }
   )
     .exec()
     .then((result) => {
-      console.log(result);
+      // console.log(result);
       res.status(200).json(result);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({
         error: err,
       });
@@ -287,7 +287,7 @@ router.delete("/bulk", (req, res, next) => {
       res.status(200).json(result);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({
         error: err,
       });
@@ -305,7 +305,7 @@ router.delete("/:assetNumber", (req, res, next) => {
       res.status(200).json(result);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({
         error: err,
       });
@@ -323,7 +323,7 @@ router.delete("/id/:id", (req, res, next) => {
       res.status(200).json(result);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({
         error: err,
       });
@@ -346,7 +346,7 @@ router.patch("/:id", (req, res, next) => {
       res.status(200).json(result);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({
         error: err,
       });
