@@ -41,6 +41,8 @@ const useTable = () => {
 
   const [cookies, removeCookie] = useCookies([]);
 
+  const _attr = cookies.user.role;
+
   const updateRows = (newRow) => {
     setRows((prevRows) => [newRow, ...prevRows]);
   };
@@ -64,8 +66,8 @@ const useTable = () => {
 
     const getAllAssets = async () => {
       const allAssets = await assetService.fetchAssets();
-      if (allAssets) { 
-        if (cookies.user.role === "admin") {
+      if (allAssets) {
+        if (_attr === "admin") {
           setRows(allAssets);
         } else {
           let filteredRows = [];
@@ -92,7 +94,7 @@ const useTable = () => {
       const getAllAssets = async () => {
         const allAssets = await assetService.fetchAssets();
         if (allAssets) {
-          if (cookies.user.role === "admin") {
+          if (_attr === "admin") {
             setRows(allAssets);
           } else {
             let filteredRows = [];
@@ -169,12 +171,12 @@ const useTable = () => {
       // console.log("bulk add", jsonData);
       const newRecord = await assetService.insertBulkAssets(jsonText);
       console.log("success: ", newRecord.data);
-    }
+    };
 
     const getAllAssets = async () => {
       const allAssets = await assetService.fetchAssets();
       if (allAssets) {
-        if (cookies.user.role === "admin") {
+        if (_attr === "admin") {
           setRows(allAssets);
         } else {
           let filteredRows = [];
@@ -500,17 +502,23 @@ const useTable = () => {
               }}
             />
           )}
-          <Controls.Button
-            variant="outlined"
-            color="secondary"
-            text="Add Asset"
-            startIcon={<AddIcon />}
-            onClick={() => {
-              setPopupTitle("New Asset");
-              setOpenPopup(true);
-              setEditRecord(null);
-            }}
-          />
+          {_attr === "admin" ? (
+            <Controls.Button
+              sx={{ visibility: _attr === "admin" ? "visible" : "hidden" }}
+              variant="outlined"
+              color="secondary"
+              text="Add Asset"
+              startIcon={<AddIcon />}
+              onClick={() => {
+                setPopupTitle("New Asset");
+                setOpenPopup(true);
+                setEditRecord(null);
+              }}
+            />
+          ) : (
+            " "
+          )}
+
           <GridToolbarColumnsButton
             sx={{ m: 1, p: 1 }}
             size="small"
@@ -544,15 +552,19 @@ const useTable = () => {
             }}
             csvOptions={{ allColumns: true }}
           />
-          <InputLabel htmlFor="upload">
-            <Controls.Button
-              variant="outlined"
-              color="secondary"
-              startIcon={<UploadIcon />}
-              component="span"
-              text="Import"
-            ></Controls.Button>
-          </InputLabel>
+          {_attr === "admin" ? (
+            <InputLabel htmlFor="upload">
+              <Controls.Button
+                variant="outlined"
+                color="secondary"
+                startIcon={<UploadIcon />}
+                component="span"
+                text="Import"
+              ></Controls.Button>
+            </InputLabel>
+          ) : (
+            " "
+          )}
           <input
             type="file"
             style={{ display: "none" }}
@@ -584,12 +596,19 @@ const useTable = () => {
         columns={columns}
         getRowId={(rows) => rows.assetNumber}
         initialState={{
+          columns: {
+            columnVisibilityModel: {
+              // Hide columns status and traderName, the other columns will remain visible
+              Edit: _attr !== "admin" ? false : true,
+            },
+          },
+
           ...rows.initialState,
           pagination: { paginationModel: { pageSize: 10 } },
         }}
         pageSizeOptions={[5, 10, 25]}
         loading={isLoading}
-        checkboxSelection
+        checkboxSelection={_attr !== "admin" ? false : true}
         disableRowSelectionOnClick
         onRowSelectionModelChange={(data) => setRowSelections(data)}
         rowSelectionModel={rowSelections}
