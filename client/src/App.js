@@ -14,7 +14,7 @@ const App = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [first_name, setUsername] = useState("");
-
+  
   const removeCookies = () => {
     removeCookie("token");
     removeCookie("user");
@@ -46,6 +46,7 @@ const App = () => {
   // console.clear();
 
   return (
+    
     <div className="header">
       <div>
         <Routes>

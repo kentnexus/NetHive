@@ -9,10 +9,6 @@ import { InventoryContextProvider } from "./context/InventoryContext";
 const container = document.getElementById("root");
 const root = createRoot(container); 
 
-//initiate scraper | migrating to server
-// const browserObject = require('./components/VendorScrape.js');
-// browserObject.startBrowser();
-
 root.render(
   <BrowserRouter>
     <InventoryContextProvider>
