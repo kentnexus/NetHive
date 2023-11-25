@@ -11,7 +11,7 @@ const initialValues = {
   account_name: "",
   password: "",
   status: false,
-  role: "user"
+  role: "user",
 };
 const statusItems = [
   { id: 1, value: true, title: "Active" },
@@ -77,7 +77,6 @@ const UserForm = (props) => {
               onChange={handleInputChange}
               error={errors.first_name}
             />
-
             <Controls.Input
               label="Company"
               name="account_name"
@@ -85,7 +84,14 @@ const UserForm = (props) => {
               onChange={handleInputChange}
               error={errors.account_name}
             />
-
+            <Controls.Select
+              label="Role"
+              name="role"
+              value={values.role}
+              onChange={handleInputChange}
+              options={usersService.getUserRoles()}
+              error={errors.role}
+            />
             <Controls.RadioGroup
               sx={{ width: "90%", m: 1 }}
               label="Status"

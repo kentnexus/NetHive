@@ -4,6 +4,7 @@ import Controls from "../helpers/Controls";
 import { useForm, Form } from "../hooks/useForm";
 import * as usersService from "../services/usersService";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   current_password: "",
@@ -14,6 +15,11 @@ const initialValues = {
 const ChangePasswordForm = (props) => {
   const { editRecord, popupTitle } = props;
   const [isEdit, setIsEdit] = useState(false);
+  const [cookies, removeCookie] = useCookies([]);
+  const _attr = cookies.user;
+
+  const navigate = useNavigate();
+
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -21,25 +27,22 @@ const ChangePasswordForm = (props) => {
   });
 
   const addOrEdit = async (user, resetForm) => {
-    const userInfo = (({
+    const userInfo = (({ _id, email, current_password, new_password }) => ({
       _id,
       email,
       current_password,
-      new_password
-    }) => ({
-      _id,
-      email,
-      current_password,
-      new_password
+      new_password,
     }))(user);
     const newRecord = await usersService.patchPassword(userInfo);
     console.log(newRecord);
-
     setNotify({
       isOpen: true,
       message: "Updated Successfully",
       type: "success",
     });
+    removeCookie("token");
+    removeCookie("user");
+    navigate("/login");
   };
 
   const validate = (fieldValues = values) => {
@@ -67,13 +70,8 @@ const ChangePasswordForm = (props) => {
   const { values, setValues, errors, setErrors, resetForm, handleInputChange } =
     useForm(initialValues, true, validate);
 
-    
-  const [cookies, removeCookie] = useCookies([]);
-  const _attr = cookies.user;
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
 
     if (validate()) {
       // console.log(_attr);
