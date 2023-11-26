@@ -16,6 +16,8 @@ const DropdownFilter = (props) => {
 
   const [filteredData, setFilteredData] = useState([]);
 
+  let filtered_data = [];
+
   const [assets, setAssets] = useState([]);
 
   useEffect(() => {
@@ -134,21 +136,23 @@ const DropdownFilter = (props) => {
   };
 
   const handleCollectSelections = () => {
-    setFilteredData(dataScraped);
-    console.log(product);
-    console.log(dataScraped[0].product);
+    // setFilteredData(dataScraped);
+    // filData = dataScraped;
+    console.log("Filter:",product);
+    // console.log(dataScraped[0].product);
 
     if (product && product !== "all" && product !== "na") {
       const productLowerCase = product.toLowerCase();
-      console.log("product:", productLowerCase);
+      // console.log("product:", productLowerCase);
 
-      setFilteredData((r) =>
-        r.filter(
-          (item) =>
+      console.log("all data",dataScraped);
+      filtered_data = dataScraped.filter((item) =>
             item.product.toLowerCase().includes(productLowerCase) ||
             item.productdesc.toLowerCase().includes(productLowerCase)
-        )
+        
       );
+    } else {
+      filtered_data = dataScraped;
     }
 
     // if (manufacturer && manufacturer !== "all") {
@@ -167,7 +171,7 @@ const DropdownFilter = (props) => {
     //     filteredResults = filteredResults.filter(item => item.manufacturer.toLowerCase().includes(manufacturerLowerCase) || item.productdesc.toLowerCase().includes(manufacturerLowerCase));
     //   }
 
-    console.log(filteredData);
+    console.log("filtered data",filtered_data);
 
     //   if (selectedProduct && selectedProduct !== 'all') {
     //     const productLowerCase = selectedProduct.toLowerCase();
