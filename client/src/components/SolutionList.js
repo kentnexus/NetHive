@@ -1,21 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Solutions.css";
-import ScrapeLoad from '../components/ScrapeLoad.js';
+import ScrapeLoad from "../components/ScrapeLoad.js";
 import DropdownFilter from "../components/DropdownFilter.js";
-
+import axios from "axios";
+import ScrapeDisplay from "./ScrapeDisplay.js";
 
 const SolutionList = () => {
+  // const {
+  //   selectedType,
+  //   selectedProduct,
+  //   selectedManufacturer,
+  //   selectedAssetNumber,
+  //   selectedDeviceName,
+  // } = props;
+
+  const [dataScraped, setDataScraped] = useState([]);
+  useEffect(
+    () => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            "http://localhost:3000/api/ScrapeRoute"
+          );
+          console.log("Scraped data:", response.data);
+          const data = response.data.data;
+          setDataScraped(data);
+          // setFilteredData(dataScraped);
+        } catch (error) {
+          console.error("Error during scraping:", error);
+        }
+      };
+
+      fetchData();
+    },
+    [
+      // selectedType,
+      // selectedProduct,
+      // selectedManufacturer,
+      // selectedAssetNumber,
+      // selectedDeviceName,
+    ]
+  );
+
   return (
     <div className="sscontainer">
       <div className="column">
         <h3>Filter the solutions </h3>
-        <DropdownFilter />
+        <DropdownFilter dataScraped={dataScraped} />
       </div>
 
       <div className="column">
         <h3>Lists of Available Solutions</h3>
         <div className="content">
-          <ScrapeLoad />        
+          <ScrapeDisplay dataScraped={dataScraped} />
         </div>
       </div>
     </div>
