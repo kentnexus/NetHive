@@ -120,7 +120,8 @@ const DropdownFilter = (props) => {
   };
 
   const handleManufacturerChange = (event) => {
-    setManufacturer(event.target.value);
+    const selectedType = event.target.value;
+    setManufacturer(selectedType);
   };
 
   const handleAssetNumberChange = (event) => {
@@ -136,32 +137,33 @@ const DropdownFilter = (props) => {
     // filData = dataScraped;
 
     let filtered_data = dataScraped;
-    console.log("Filter:", product);
+    // console.log("Filter:", product);
     // console.log(dataScraped[0].product);
 
     if (product && product !== "all" && product !== "na") {
       const productLowerCase = product.toLowerCase();
       // console.log("product:", productLowerCase);
 
-      console.log("all data", filtered_data);
+      // console.log("all data", filtered_data);
       filtered_data = filtered_data.filter(
         (item) =>
           item.product.toLowerCase().includes(productLowerCase) ||
           item.productdesc.toLowerCase().includes(productLowerCase)
       );
     }
-
     if (manufacturer && manufacturer !== "all") {
+      console.log("manufacturer: ", manufacturer);
       const manufacturerLowerCase = manufacturer.toLowerCase();
 
-      filtered_data = filtered_data.filter(
-        (item) =>
-          item.manufacturer.toLowerCase().includes(manufacturerLowerCase) ||
-          item.productdesc.toLowerCase().includes(manufacturerLowerCase)
+      filtered_data = filtered_data.filter((item) =>
+        // item.manufacturer.toLowerCase().includes(manufacturerLowerCase) ||
+        item.productdesc.toLowerCase().includes(manufacturerLowerCase)
       );
     }
+    console.log("after filters: ", filtered_data);
+
     setFilteredData(filtered_data);
-    console.log("filtered data", filteredData);
+    // console.log("filtered data", filteredData);
 
     //   if (selectedProduct && selectedProduct !== 'all') {
     //     const productLowerCase = selectedProduct.toLowerCase();
@@ -230,7 +232,7 @@ const DropdownFilter = (props) => {
       </Box>
       <br />
 
-      <Box sx={{ overflow: "auto" }}>
+      {/* <Box sx={{ overflow: "auto" }}>
         <FormControl fullWidth>
           Asset Number:
           <Select value={assetNumber} onChange={handleAssetNumberChange}>
@@ -254,7 +256,7 @@ const DropdownFilter = (props) => {
             ))}
           </Select>
         </FormControl>
-      </Box>
+      </Box> */}
 
       <br />
       <Button variant="secondary" onClick={handleCollectSelections}>

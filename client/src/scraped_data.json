@@ -1,0 +1,674 @@
+[
+  {
+    "product": "Router",
+    "productdesc": "Cisco - SFP (mini-GBIC) transceiver module - GigE",
+    "model": "MFG#: GLC-LH-SMD=",
+    "price": "$863.99",
+    "url": "https://www.cdw.com/product/cisco-sfp-mini-gbic-transceiver-module-gige/2608478?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cisco Catalyst 8200-1N-4T - router - rack-mountable",
+    "model": "MFG#: C8200-1N-4T",
+    "price": "$3,577.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-8200-1n-4t-router-rack-mountable/6436110?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Silver Peak Unity EdgeConnect XS - application accelerator",
+    "model": "MFG#: 500210-004",
+    "price": "$2,821.99",
+    "url": "https://www.cdw.com/product/silver-peak-unity-edgeconnect-xs-6-port-chassis/5493481?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cisco Catalyst 8300-1N1S-4T2X - router - rack-mountable",
+    "model": "MFG#: C8300-1N1S-4T2X",
+    "price": "$11,924.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-8300-1n1s-4t2x-router-rack-mountable/6296776?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cisco Catalyst 8300-1N1S-6T - router - rack-mountable",
+    "model": "MFG#: C8300-1N1S-6T",
+    "price": "$8,744.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-8300-1n1s-6t-router-rack-mountable/6305007?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cisco Catalyst 8200L-1N-4T - router - rack-mountable",
+    "model": "MFG#: C8200L-1N-4T",
+    "price": "$1,589.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-8200l-1n-4t-router-rack-mountable/6532782?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Silver Peak EdgeConnect Small EC-S-P Chassis",
+    "model": "MFG#: 500618-004",
+    "price": "$9,937.99",
+    "url": "https://www.cdw.com/product/silver-peak-edgeconnect-small-ec-s-p-chassis/6359733?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Silver Peak Unity EC-M-H Chassis",
+    "model": "MFG#: 500633-004",
+    "price": "$12,881.99",
+    "url": "https://www.cdw.com/product/silver-peak-unity-ec-m-h-chassis/6692091?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Fortinet FortiExtender 511F - router - WWAN - Bluetooth - desktop, wall-mountable",
+    "model": "MFG#: FEX-511F",
+    "price": "$1,367.99",
+    "url": "https://www.cdw.com/product/fortinet-fortiextender-511f-router-wwan-bluetooth-desktop-wall-mou/6656117?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cisco Catalyst 8500L-8S4X - switch - 12 ports - rack-mountable",
+    "model": "MFG#: C8500L-8S4X",
+    "price": "$23,491.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-8500l-8s4x-switch-12-ports-rack-mountable/6440839?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cradlepoint W-Series 5G Wideband Adapter W1850-5GB - router - WWAN - 4G, 5G - desktop, wall-mountable",
+    "model": "MFG#: BEA3-18505GB-GN",
+    "price": "$2,099.00",
+    "url": "https://www.cdw.com/product/cradlepoint-w-series-5g-wideband-adapter-w1850-5gb-router-wwan-4g-5g/6594061?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cradlepoint R1900-5GB - wireless router - WWAN - LTE, 802.11a/b/g/n/ac/ax, Bluetooth - 5G - desktop",
+    "model": "MFG#: MB01-19005GB-GA",
+    "price": "$1,999.00",
+    "url": "https://www.cdw.com/product/cradlepoint-r1900-5gb-wireless-router-wwan-lte-802.11a-b-g-n-ac-ax/6506009?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cradlepoint W-Series 5G Wideband Adapter W1850-5GB - router - WWAN - 4G, 5G - desktop, wall-mountable",
+    "model": "MFG#: BE01-18505GB-GN",
+    "price": "$1,499.00",
+    "url": "https://www.cdw.com/product/cradlepoint-w-series-5g-wideband-adapter-w1850-5gb-router-wwan-4g-5g/6557030?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cradlepoint antenna",
+    "model": "MFG#: 170836-000",
+    "price": "$14.99",
+    "url": "https://www.cdw.com/product/cradlepoint-antenna/6050183?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "HPE Aruba 6400 Management Module - network management device",
+    "model": "MFG#: R0X31A",
+    "price": "$7,649.15",
+    "url": "https://www.cdw.com/product/hpe-aruba-6400-management-module-network-management-device/5841921?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Ubiquiti UniFi Dream Machine Pro - network management device",
+    "model": "MFG#: UDM-PRO",
+    "price": "$448.99",
+    "url": "https://www.cdw.com/product/ubiquiti-unifi-dream-machine-pro-network-management-device/5937491?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cradlepoint E300 Series Enterprise Router E300-5GB - wireless router - WWAN - Wi-Fi 6 - Wi-Fi 6 - 3G, 4G, 5G - desktop,",
+    "model": "MFG#: BF01-03005GB-GN",
+    "price": "$1,999.00",
+    "url": "https://www.cdw.com/product/cradlepoint-e300-series-enterprise-router-with-1-year-netcloud-essentials/7211017?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Sierra Wireless AirLink RV55 - router - WWAN - desktop",
+    "model": "MFG#: 1104303",
+    "price": "$829.00",
+    "url": "https://www.cdw.com/product/sierra-wireless-airlink-rv55-router-wwan-desktop/5523061?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cradlepoint R1900-5GB - wireless router - WWAN - LTE, 802.11a/b/g/n/ac/ax, Bluetooth - 5G - desktop",
+    "model": "MFG#: MB05-19005GB-GA",
+    "price": "$2,999.00",
+    "url": "https://www.cdw.com/product/cradlepoint-r1900-5gb-wireless-router-wwan-lte-802.11a-b-g-n-ac-ax/6506014?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cradlepoint W-Series 5G Wideband Adapter W1850-5GB - router - WWAN - 4G, 5G - desktop, wall-mountable",
+    "model": "MFG#: BE03-18505GB-GN",
+    "price": "$1,799.00",
+    "url": "https://www.cdw.com/product/cradlepoint-w-series-5g-wideband-adapter-w1850-5gb-router-wwan-4g-5g/6557031?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Silver Peak AC Power Supply for Unity EdgeConnect S Appliance",
+    "model": "MFG#: 500615-001",
+    "price": "$746.99",
+    "url": "https://www.cdw.com/product/silver-peak-ac-power-supply-for-unity-edgeconnect-s-appliance/6389129?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Wilson Broadband Splitter - antenna splitter",
+    "model": "MFG#: 859957",
+    "price": "$89.99",
+    "url": "https://www.cdw.com/product/wilson-broadband-splitter-antenna-splitter/2892541?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cradlepoint E300 Series Enterprise Router E300-5GB - wireless router - WWAN - Wi-Fi 6 - Wi-Fi 6 - 3G, 4G, 5G - desktop,",
+    "model": "MFG#: BF03-03005GB-GN",
+    "price": "$2,579.00",
+    "url": "https://www.cdw.com/product/cradlepoint-e300-series-enterprise-router-with-3-year-netcloud-essentials/7211014?pfm=srh"
+  },
+  {
+    "product": "Router",
+    "productdesc": "Cradlepoint MC400-5GB - wireless cellular modem - 5G LTE Advanced Pro",
+    "model": "MFG#: BF-MC400-5GB",
+    "price": "$999.99",
+    "url": "https://www.cdw.com/product/cradlepoint-mc400-5gb-wireless-cellular-modem-5g-lte-advanced-pro/7179042?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9300 Series Network Module - expansion module - 10 Gigabit SFP+ x 8",
+    "model": "MFG#: C9300-NM-8X",
+    "price": "$2,146.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9300-series-network-module-expansion-module/4727526?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Meraki Cloud Managed MS225-48FP - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: MS225-48FP-HW",
+    "price": "$7,323.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-cloud-managed-ms225-48fp-switch-48-ports-managed-rack/4401578?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Meraki Cloud Managed MS120-8 - switch - 8 ports - managed",
+    "model": "MFG#: MS120-8FP-HW",
+    "price": "$1,243.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-cloud-managed-ms120-8-switch-8-ports-managed/4839251?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Meraki Cloud Managed MS120-24P - switch - 24 ports - managed - rack-mountable",
+    "model": "MFG#: MS120-24P-HW",
+    "price": "$2,553.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-cloud-managed-ms120-24p-switch-24-ports-managed-rack-m/4830928?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco - network stacking module",
+    "model": "MFG#: C9200L-STACK-KIT",
+    "price": "$1,141.99",
+    "url": "https://www.cdw.com/product/cisco-network-stacking-module/5365454?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Fortinet FortiSwitch 148F-FPOE - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: FS-148F-FPOE",
+    "price": "$1,873.99",
+    "url": "https://www.cdw.com/product/fortinet-48x-ge-layer-2-managed-poe-switch/6248633?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Meraki Cloud Managed MS250-48FP - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: MS250-48FP-HW",
+    "price": "$9,823.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-cloud-managed-ms250-48fp-switch-48-ports-managed-rack/4403895?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9200L - Network Essentials - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: C9200L-48P-4X-E",
+    "price": "$6,749.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9200l-network-essentials-switch-48-ports-managed/5365446?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9200 Series Network Module - expansion module - 10 Gigabit SFP+ x 4",
+    "model": "MFG#: C9200-NM-4X",
+    "price": "$1,913.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9200-series-network-expansion-module-10-gigabit-s/5392277?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "HPE Aruba X372 - power supply - hot-plug / redundant - 680 Watt",
+    "model": "MFG#: JL086A#ABA",
+    "price": "$641.99",
+    "url": "https://www.cdw.com/product/hpe-aruba-x372-power-supply-hot-plug-redundant-680-w/4360870?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Nexus 93180YC-FX3 - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: N9K-C93180YC-FX3",
+    "price": "$21,194.99",
+    "url": "https://www.cdw.com/product/cisco-nexus-93180yc-fx3-switch-48-ports-managed-rack-mountable/6462067?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9300 - Network Advantage - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: C9300-48P-A",
+    "price": "$8,521.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9300-network-advantage-switch-48-ports-managed-rac/4694323?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Meraki Cloud Managed MS120-48FP - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: MS120-48FP-HW",
+    "price": "$4,706.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-cloud-managed-ms120-48fp-switch-48-ports-managed-rack/4995765?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Meraki Cloud Managed MS225-24P - switch - 24 ports - managed - rack-mountable",
+    "model": "MFG#: MS225-24P-HW",
+    "price": "$4,587.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-cloud-managed-ms225-24p-switch-24-ports-managed-rack-m/4404162?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Fortinet FortiSwitch 124F-FPOE - switch - 24 ports - managed - rack-mountable",
+    "model": "MFG#: FS-124F-FPOE",
+    "price": "$1,183.99",
+    "url": "https://www.cdw.com/product/fortinet-fortiswitch-124f-fpoe-switch-24-ports-managed-rack-mountab/6372156?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9200 - Essential Edition - switch - 48 ports - smart - rack-mountable",
+    "model": "MFG#: C9200-48P-E",
+    "price": "$6,188.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9200-essential-edition-switch-48-ports-smart-rack/5396216?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Verkada - PoE injector - 60 Watt",
+    "model": "MFG#: ACC-POE-60W",
+    "price": "$149.00",
+    "url": "https://www.cdw.com/product/verkada-poe-injector-60-watt/7249879?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9300 Series Network Module - expansion module - 10 Gigabit SFP+ x 8",
+    "model": "MFG#: C9300-NM-8X=",
+    "price": "$2,226.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9300-series-network-module-expansion-module-10-gigabit-s/4712833?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9300 Series Network Module - expansion module - 10 Gigabit SFP+ x 8",
+    "model": "MFG#: C9300-NM-8X=",
+    "price": "$2,242.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9300-series-network-module-expansion-module-10-gigabit-s/4907882?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9200L - Network Essentials - switch - 48 ports - rack-mountable",
+    "model": "MFG#: C9200L-48P-4G-E",
+    "price": "$5,385.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9200l-network-essentials-switch-48-ports-rack-mounta/5370640?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9200L - Network Essentials - switch - 24 ports - rack-mountable",
+    "model": "MFG#: C9200L-24P-4G-E",
+    "price": "$2,546.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9200l-network-essentials-switch-24-ports-rack-mounta/5383492?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "HPE Aruba X372 - power supply - hot-plug / redundant - 1050 Watt",
+    "model": "MFG#: JL087A#ABA",
+    "price": "$1,019.99",
+    "url": "https://www.cdw.com/product/hpe-aruba-x372-power-supply-hot-plug-redundant-1050-watt/4360871?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "HPE Aruba 6300M - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: JL661A",
+    "price": "$9,944.15",
+    "url": "https://www.cdw.com/product/hpe-aruba-6300m-48-port-1gbe-class-4-poe-and-4-port-sfp56-switch/5817451?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9300 Series Network Module - expansion module - 1Gb Ethernet/10Gb Ethernet/25Gb Ethernet SFP x 8",
+    "model": "MFG#: C9300X-NM-8Y",
+    "price": "$2,146.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9300-series-network-module-expansion-module-1gb-ethernet/6540383?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Meraki MR36 - wireless access point - 802.11a/b/g/n/ac/ax - cloud-managed",
+    "model": "MFG#: MR36-HW",
+    "price": "$635.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-mr36-wireless-access-point-802.11a-b-g-n-ac-ax-cloud-man/5980320?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Meraki MR44 - wireless access point - Wi-Fi 6 - cloud-managed",
+    "model": "MFG#: MR44-HW",
+    "price": "$1,033.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-mr44-wireless-access-point-wi-fi-6-cloud-managed/6312966?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Meraki MR46 - wireless access point - 802.11a/b/g/n/ac/ax - cloud-managed",
+    "model": "MFG#: MR46-HW",
+    "price": "$1,268.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-mr46-wireless-access-point-802.11a-b-g-n-ac-ax-cloud-man/5974838?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Meraki MR76 - wireless access point - Wi-Fi 6 - cloud-managed",
+    "model": "MFG#: MR76-HW",
+    "price": "$1,399.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-mr76-wireless-access-point-wi-fi-6-cloud-managed/6073862?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Catalyst 9120AXI - wireless access point - 802.15.4, Bluetooth, 802.11a/b/g/n/ac/ax",
+    "model": "MFG#: C9120AXI-B",
+    "price": "$1,454.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9120axi-wireless-access-point-802.15.4-bluetooth-802.1/5583205?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "HPE Aruba AP-635 (US) - Campus - wireless access point - ZigBee, Bluetooth, 802.11a/b/g/n/ac/ax (Wi-Fi 6E)",
+    "model": "MFG#: R7J28A",
+    "price": "$1,036.99",
+    "url": "https://www.cdw.com/product/hpe-aruba-ap-635-us-campus-wireless-access-point-zigbee-bluetooth/6667331?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "HPE Aruba AP-505 (US) - Campus - wireless access point - Bluetooth, 802.11a/b/g/n/ac/ax",
+    "model": "MFG#: R2H29A",
+    "price": "$620.50",
+    "url": "https://www.cdw.com/product/hpe-aruba-ap-505-us-campus-wireless-access-point/5795028?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Meraki MR56 - wireless access point - 802.11a/b/g/n/ac/ax - cloud-managed",
+    "model": "MFG#: MR56-HW",
+    "price": "$1,585.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-mr56-wireless-access-point-802.11a-b-g-n-ac-ax-cloud-man/5974819?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "HPE Aruba AP-515 (US) - Campus - wireless access point - Wi-Fi 5",
+    "model": "MFG#: Q9H63A",
+    "price": "$977.50",
+    "url": "https://www.cdw.com/product/aruba-ap-515-us-unified-ap/5364138?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Fortinet FortiAP U431F - wireless access point Bluetooth, Wi-Fi 6",
+    "model": "MFG#: FAP-U431F-A",
+    "price": "$618.99",
+    "url": "https://www.cdw.com/product/fortinet-fortiap-u431f-4x4-802.11-dual-band-access-point/5554029?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "HPE Aruba AP-565 (US) - wireless access point ZigBee, Bluetooth, Wi-Fi 6",
+    "model": "MFG#: R4W44A",
+    "price": "$1,174.99",
+    "url": "https://www.cdw.com/product/hpe-aruba-ap-565-us-wireless-access-point-zigbee-bluetooth-wi-fi-6/6272530?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Meraki MR57 - wireless access point - Wi-Fi 6E - cloud-managed",
+    "model": "MFG#: MR57-HW",
+    "price": "$1,887.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-mr57-wireless-access-point-wi-fi-6e-cloud-managed/6902379?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Fortinet FortiAP 231F - wireless access point - Wi-Fi 6",
+    "model": "MFG#: FAP-231F-A",
+    "price": "$482.99",
+    "url": "https://www.cdw.com/product/fortinet-fortiap-231f-wireless-access-point-wi-fi-6/6318240?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Ubiquiti UniFi U6-PRO - wireless access point - 802.11a/b/g/n/ac/ax",
+    "model": "MFG#: U6-PRO",
+    "price": "$174.99",
+    "url": "https://www.cdw.com/product/ubiquiti-unifi-u6-pro-wireless-access-point-802.11a-b-g-n-ac-ax/6826103?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Meraki MR86 - wireless access point - Wi-Fi 6 - cloud-managed",
+    "model": "MFG#: MR86-HW",
+    "price": "$1,947.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-mr86-wireless-access-point-wi-fi-6-cloud-managed/6073863?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Meraki MR46E - wireless access point - Wi-Fi 6 - cloud-managed",
+    "model": "MFG#: MR46E-HW",
+    "price": "$1,268.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-mr46e-wireless-access-point-wi-fi-6-cloud-managed/6073861?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Fortinet FortiAP 431F - wireless access point - Wi-Fi 6",
+    "model": "MFG#: FAP-431F-A",
+    "price": "$815.99",
+    "url": "https://www.cdw.com/product/fortinet-fortiap-431f-wireless-access-point-wi-fi-6/6110073?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "HPE Aruba AP-535 (US) - Campus - wireless access point ZigBee, Bluetooth, Wi-Fi 6",
+    "model": "MFG#: JZ337A",
+    "price": "$1,355.99",
+    "url": "https://www.cdw.com/product/hpe-aruba-ap-535-us-campus-wireless-access-point/5520240?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Meraki MR36 - wireless access point - 802.11a/b/g/n/ac/ax - cloud-managed",
+    "model": "MFG#: MR36-HW",
+    "price": "$497.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-mr36-wireless-access-point/5975248?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Catalyst 9120AXI - wireless access point - 802.15.4, Bluetooth, 802.11a/b/g/n/ac/ax",
+    "model": "MFG#: C9120AXI-B",
+    "price": "$1,111.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9120axi-wireless-access-point-802.15.4-bluetooth-802.1/5661464?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Fortinet FortiAP 431G Indoor Wireless Access Point",
+    "model": "MFG#: FAP-431G-A",
+    "price": "$1,021.99",
+    "url": "https://www.cdw.com/product/fortinet-fortiap-431g-indoor-wireless-access-point/7279324?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Catalyst 9164I - wireless access point - Bluetooth, 802.11a/b/g/n/ac/ax (Wi-Fi 6E) - cloud-managed",
+    "model": "MFG#: CW9164I-MR",
+    "price": "$1,482.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9164i-wireless-access-point-bluetooth-802.11a-b-g-n-ac/7095691?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Catalyst 9136I - wireless access point - Bluetooth, 802.11a/b/g/n/ac/ax (Wi-Fi 6E)",
+    "model": "MFG#: C9136I-B",
+    "price": "$2,022.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9136i-wireless-access-point-bluetooth-802.11a-b-g-n-ac/6847442?pfm=srh"
+  },
+  {
+    "product": "AccessPoint",
+    "productdesc": "Cisco Meraki MR44 - wireless access point - Wi-Fi 6 - cloud-managed",
+    "model": "MFG#: MR44-HW",
+    "price": "$807.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-mr44-wireless-access-point-wi-fi-6-cloud-managed/6312968?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Netgear GS305E Ethernet Switch",
+    "model": "MFG#: GS305E-100NAS",
+    "price": "$25.99",
+    "url": "https://www.cdw.com/product/netgear-5-port-gigabit-ethernet-smart-managed-plus-switch-gs305e/5491139?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Fortinet FortiSwitch 248E-FPOE - switch - 52 ports - managed - rack-mountable",
+    "model": "MFG#: FS-248E-FPOE",
+    "price": "$2,601.99",
+    "url": "https://www.cdw.com/product/fortinet-fortiswitch-248e-fpoe-switch-52-ports-managed/4709274?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Meraki Cloud Managed Ethernet Aggregation Switch MS425-16 - switch - 16 ports - managed - rack-mountable",
+    "model": "MFG#: MS425-16-HW",
+    "price": "$13,198.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-cloud-managed-ethernet-aggregation-switch-ms425-16-switch/4142281?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9200L - Network Essentials - switch - 48 ports - rack-mountable",
+    "model": "MFG#: C9200L-48P-4G-E",
+    "price": "$2,993.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9200l-network-essentials-switch-48-ports-rack-mounta/5400548?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Fortinet FortiSwitch 108F - switch - 8 ports - managed",
+    "model": "MFG#: FS-108F",
+    "price": "$299.99",
+    "url": "https://www.cdw.com/product/fortinet-fortiswitch-108f-switch-8-ports-managed/6673765?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9400 Series Line Card - switch - 48 ports - plug-in module",
+    "model": "MFG#: C9400-LC-48H",
+    "price": "$7,727.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9400-series-line-card-switch-48-ports-plug-in-module/5777222?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Meraki Cloud Managed Ethernet Aggregation Switch MS425-32 - switch - 32 ports - managed - rack-mountable",
+    "model": "MFG#: MS425-32-HW",
+    "price": "$20,739.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-cloud-managed-ethernet-aggregation-switch-ms425-32-switch/4145959?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Netgear ProSafe GS728TP Ethernet Switch",
+    "model": "MFG#: GS728TP-200NAS",
+    "price": "$369.99",
+    "url": "https://www.cdw.com/product/netgear-24-port-gbe-poe-smart-mngd-pro-switch-4-sfp-190w/5089069?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "HPE Aruba 6100 24G Class4 PoE 4SFP+ - switch - 28 ports - managed - rack-mountable",
+    "model": "MFG#: JL677A#ABA",
+    "price": "$2,369.99",
+    "url": "https://www.cdw.com/product/hpe-aruba-6100-24g-class4-poe-4sfp-switch-28-ports-managed-rack-mo/6415125?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9300 - Network Advantage - switch - 24 ports - managed - rack-mountable",
+    "model": "MFG#: C9300-24T-A",
+    "price": "$4,265.00",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9300-network-advantage-switch-24-ports-managed-rac/4727238?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Netgear ProSafe GS110TP Ethernet Switch",
+    "model": "MFG#: GS110TP-300NAS",
+    "price": "$199.99",
+    "url": "https://www.cdw.com/product/netgear-8-port-gigabit-poe-ethernet-smart-managed-pro-switch-gs110tp/5570829?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Fortinet FortiSwitch 448E-FPOE - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: FS-448E-FPOE",
+    "price": "$4,381.99",
+    "url": "https://www.cdw.com/product/fortinet-fortiswitch-448e-fpoe-switch-48-ports-managed-rack-mountab/6081021?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco - network stacking module",
+    "model": "MFG#: C9200L-STACK-KIT=",
+    "price": "$952.99",
+    "url": "https://www.cdw.com/product/cisco-network-stacking-module/5413622?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Meraki Cloud Managed MS125-48FP - switch - 48 ports - managed",
+    "model": "MFG#: MS125-48FP-HW",
+    "price": "$5,707.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-cloud-managed-ms125-48fp-switch-48-ports-managed/5625996?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9400 Series chassis - switch - rack-mountable - with 2 x C9400-LC-48U, Cisco ONE Advantage License, Cisco",
+    "model": "MFG#: C9410R-96U-BNDL-A",
+    "price": "$26,619.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9400-series-chassis-switch-rack-mountable/4729333?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Fortinet FortiSwitch 148F-POE - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: FS-148F-POE",
+    "price": "$1,561.99",
+    "url": "https://www.cdw.com/product/fortinet-fortiswitch-148f-poe-switch-48-ports-managed-rack-mountabl/6289390?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Meraki 802.3at Power over Ethernet Injector",
+    "model": "MFG#: MA-INJ-4",
+    "price": "$111.99",
+    "url": "https://www.cdw.com/product/cisco-meraki-802.3at-power-over-ethernet-injector/6776516?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "HPE Aruba 6100 48G Class4 PoE 4SFP+ 370W Switch - switch - 52 ports - managed - rack-mountable",
+    "model": "MFG#: JL675A#ABA",
+    "price": "$3,611.99",
+    "url": "https://www.cdw.com/product/hpe-aruba-6100-48g-class4-poe-4sfp-370w-switch-switch-52-ports-manag/6413454?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Netgear 8-Port PoE/PoE+ Gigabit Ethernet Unmanaged Switch (GS108LP)",
+    "model": "MFG#: GS108LP-100NAS",
+    "price": "$109.99",
+    "url": "https://www.cdw.com/product/netgear-8-port-poe-poe-gigabit-ethernet-unmanaged-switch-60w-poe-gs108lp/5231667?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9200L - Network Essentials - switch - 24 ports - rack-mountable",
+    "model": "MFG#: C9200L-24P-4G-E",
+    "price": "$1,504.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9200l-network-essentials-switch-24-ports-rack-mounta/5396427?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9300 - Network Advantage - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: C9300-48T-A",
+    "price": "$7,056.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9300-network-advantage-switch-48-ports-managed/4759226?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9300X - Network Advantage - switch - 24 ports - managed - rack-mountable",
+    "model": "MFG#: C9300X-24Y-A",
+    "price": "$21,043.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9300x-network-advantage-switch-24-ports-managed-ra/6522475?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Cisco Catalyst 9300X - Network Advantage - switch - 48 ports - managed - rack-mountable",
+    "model": "MFG#: C9300X-48HX-A",
+    "price": "$12,567.99",
+    "url": "https://www.cdw.com/product/cisco-catalyst-9300x-network-advantage-switch-48-ports-managed-ra/6890948?pfm=srh"
+  },
+  {
+    "product": "Switch",
+    "productdesc": "Netgear 300 GS305PP Ethernet Switch",
+    "model": "MFG#: GS305PP-100NAS",
+    "price": "$84.99",
+    "url": "https://www.cdw.com/product/netgear-5-port-gigabit-ethernet-poe-unmanaged-switch-83w-gs305pp/5775282?pfm=srh"
+  }
+]

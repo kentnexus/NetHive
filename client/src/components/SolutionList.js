@@ -5,6 +5,7 @@ import DropdownFilter from "../components/DropdownFilter.js";
 import axios from "axios";
 import ScrapeDisplay from "./ScrapeDisplay.js";
 
+// let scrapedData = require("../scraped_data.json");
 const SolutionList = () => {
   // const { filteredData } = props;
 
@@ -26,8 +27,9 @@ const SolutionList = () => {
           console.error("Error during scraping:", error);
         }
       };
-
       fetchData();
+
+      // setDataScraped(scrapedData);
     },
     [
       // selectedType,
