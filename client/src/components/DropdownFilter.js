@@ -7,16 +7,12 @@ import ScrapeDisplay from "./ScrapeDisplay.js";
 import SolutionList from "./SolutionList.js";
 
 const DropdownFilter = (props) => {
-  const { dataScraped } = props;
+  const { dataScraped, filteredData, setFilteredData } = props;
   const [type, setType] = useState("all");
   const [product, setProduct] = useState("all");
   const [manufacturer, setManufacturer] = useState("all");
   const [assetNumber, setAssetNumber] = useState("all");
   const [deviceName, setDeviceName] = useState("all");
-
-  const [filteredData, setFilteredData] = useState([]);
-
-  let filtered_data = [];
 
   const [assets, setAssets] = useState([]);
 
@@ -138,40 +134,34 @@ const DropdownFilter = (props) => {
   const handleCollectSelections = () => {
     // setFilteredData(dataScraped);
     // filData = dataScraped;
-    console.log("Filter:",product);
+
+    let filtered_data = dataScraped;
+    console.log("Filter:", product);
     // console.log(dataScraped[0].product);
 
     if (product && product !== "all" && product !== "na") {
       const productLowerCase = product.toLowerCase();
       // console.log("product:", productLowerCase);
 
-      console.log("all data",dataScraped);
-      filtered_data = dataScraped.filter((item) =>
-            item.product.toLowerCase().includes(productLowerCase) ||
-            item.productdesc.toLowerCase().includes(productLowerCase)
-        
+      console.log("all data", filtered_data);
+      filtered_data = filtered_data.filter(
+        (item) =>
+          item.product.toLowerCase().includes(productLowerCase) ||
+          item.productdesc.toLowerCase().includes(productLowerCase)
       );
-    } else {
-      filtered_data = dataScraped;
     }
 
-    // if (manufacturer && manufacturer !== "all") {
-    //   const manufacturerLowerCase = manufacturer.toLowerCase();
-    //   setFilteredData((r) =>
-    //     r.filter(
-    //       (item) =>
-    //         item.manufacturer.toLowerCase().includes(manufacturerLowerCase) ||
-    //         item.productdesc.toLowerCase().includes(manufacturerLowerCase)
-    //     )
-    //   );
-    // }
+    if (manufacturer && manufacturer !== "all") {
+      const manufacturerLowerCase = manufacturer.toLowerCase();
 
-    //   if (selectedManufacturer && selectedManufacturer !== 'all') {
-    //     const manufacturerLowerCase = selectedManufacturer.toLowerCase();
-    //     filteredResults = filteredResults.filter(item => item.manufacturer.toLowerCase().includes(manufacturerLowerCase) || item.productdesc.toLowerCase().includes(manufacturerLowerCase));
-    //   }
-
-    console.log("filtered data",filtered_data);
+      filtered_data = filtered_data.filter(
+        (item) =>
+          item.manufacturer.toLowerCase().includes(manufacturerLowerCase) ||
+          item.productdesc.toLowerCase().includes(manufacturerLowerCase)
+      );
+    }
+    setFilteredData(filtered_data);
+    console.log("filtered data", filteredData);
 
     //   if (selectedProduct && selectedProduct !== 'all') {
     //     const productLowerCase = selectedProduct.toLowerCase();

@@ -2,11 +2,7 @@
 import React from "react";
 import "../styles/Solutions.css";
 
-const ScrapeDisplay = ({
-  dataScraped,
-  selectedProduct,
-  selectedManufacturer,
-}) => {
+const ScrapeDisplay = ({ dataScraped, filteredData }) => {
   // const applyFilter = () => {
   //   let filteredResults = [...dataScraped];
 
@@ -43,10 +39,24 @@ const ScrapeDisplay = ({
   return (
     <div>
       <p>Number of items in scraped data: {dataScraped.length}</p>
-      <p>Number of items in filtered data: {dataScraped.length}</p>
+      <p>Number of items in filtered data: {filteredData.length}</p>
       {console.log("filtered scraped data: ", dataScraped)}
+      {console.log("scraped data: ", filteredData)}
 
-      {dataScraped && dataScraped.length > 0 ? (
+      {filteredData && filteredData.length > 0 ? (
+        filteredData.map((item) => (
+          <div className="scrape-block" key={item.url}>
+            <h1>
+              <a href={item.url}>{item.productdesc}</a>
+            </h1>
+            <p>
+              Model: {item.model}
+              <br />
+              Price: {item.price}
+            </p>
+          </div>
+        ))
+      ) : dataScraped && dataScraped.length > 0 ? (
         dataScraped.map((item) => (
           <div className="scrape-block" key={item.url}>
             <h1>
@@ -62,6 +72,23 @@ const ScrapeDisplay = ({
       ) : (
         <p>Loading results... </p>
       )}
+      {/* 
+      {dataScraped && dataScraped.length > 0 ? (
+        dataScraped.map((item) => (
+          <div className="scrape-block" key={item.url}>
+            <h1>
+              <a href={item.url}>{item.productdesc}</a>
+            </h1>
+            <p>
+              Model: {item.model}
+              <br />
+              Price: {item.price}
+            </p>
+          </div>
+        ))
+      ) : (
+        <p>Loading results... </p>
+      )} */}
     </div>
   );
 };

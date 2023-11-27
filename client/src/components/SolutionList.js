@@ -6,13 +6,9 @@ import axios from "axios";
 import ScrapeDisplay from "./ScrapeDisplay.js";
 
 const SolutionList = () => {
-  // const {
-  //   selectedType,
-  //   selectedProduct,
-  //   selectedManufacturer,
-  //   selectedAssetNumber,
-  //   selectedDeviceName,
-  // } = props;
+  // const { filteredData } = props;
+
+  const [filteredData, setFilteredData] = useState([]);
 
   const [dataScraped, setDataScraped] = useState([]);
   useEffect(
@@ -52,7 +48,10 @@ const SolutionList = () => {
       <div className="column">
         <h3>Lists of Available Solutions</h3>
         <div className="content">
-          <ScrapeDisplay dataScraped={dataScraped} />
+          <ScrapeDisplay
+            dataScraped={dataScraped}
+            filteredData={filteredData}
+          />
         </div>
       </div>
     </div>
