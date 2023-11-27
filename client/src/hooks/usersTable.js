@@ -94,13 +94,14 @@ const usersTable = () => {
       });
     } else {
       // console.log("This is add condition");
+
+      const newRecord = await usersService.insertUser(user);
+      updateRows(newRecord);
       setNotify({
         isOpen: true,
         message: "A user has been created",
         type: "success",
       });
-      const newRecord = await usersService.insertUser(user);
-      updateRows(newRecord);
     }
 
     setEditRecord(null);

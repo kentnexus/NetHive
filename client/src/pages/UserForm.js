@@ -3,15 +3,21 @@ import { Grid } from "@mui/material";
 import Controls from "../helpers/Controls";
 import { useForm, Form } from "../hooks/useForm";
 import * as usersService from "../services/usersService";
+var generator = require("generate-password");
+
+var myPassword = generator.generate({
+  length: 8,
+  numbers: true,
+});
 
 const initialValues = {
   first_name: "",
   last_name: "",
   email: "",
   account_name: "",
-  password: "",
+  password: myPassword,
   status: false,
-  role: "user",
+  role: "",
 };
 const statusItems = [
   { id: 1, value: true, title: "Active" },
@@ -35,6 +41,8 @@ const UserForm = (props) => {
       temp.account_name = /([A-Z]){3}/.test(fieldValues.account_name)
         ? ""
         : "Three Uppercase Characters only";
+    if ("role" in fieldValues)
+      temp.role = fieldValues.role ? "" : "This field is required";
     if ("email" in fieldValues)
       temp.email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(fieldValues.email)
         ? ""
@@ -119,12 +127,11 @@ const UserForm = (props) => {
             />
             {popupTitle === "New User" ? (
               <Controls.Input
-                type="password"
+                disabled
                 label="Password"
                 name="password"
                 value={values.password}
                 onChange={handleInputChange}
-                // error={errors.password}
               />
             ) : (
               ""

@@ -7,6 +7,8 @@ import Notification from "../components/Notification";
 import "../styles/UserProf.css";
 import { FaUserCircle } from "react-icons/fa";
 import ChangePasswordForm from "../pages/ChangePasswordForm";
+import * as usersService from "../services/usersService";
+
 const UserProfile = () => {
   const [cookies, removeCookie] = useCookies([]);
   const _attr = cookies.user;
@@ -31,15 +33,39 @@ const UserProfile = () => {
 
   const addOrEdit = async (user, resetForm) => {
     console.log("This is Update password condition");
-    setNotify({
-      isOpen: true,
-      message: "Update password query required",
-      type: "error",
-    });
-    // const newRecord = await usersService.insertUser(user);
-    // updateRows(newRecord);
-    resetForm();
-    setOpenPopup(false);
+    // setNotify({
+    //   isOpen: true,
+    //   message: "Update password query required",
+    //   type: "error",
+    // });
+    const userInfo = (({ _id, email, current_password, new_password }) => ({
+      _id,
+      email,
+      current_password,
+      new_password,
+    }))(user);
+    const newRecord = await usersService.patchPassword(userInfo);
+    console.log(newRecord);
+    if (newRecord.message == "Incorrect password") {
+      setNotify({
+        isOpen: true,
+        message: "Incorrect Password",
+        type: "error",
+      });
+      resetForm();
+    } else {
+      setNotify({
+        isOpen: true,
+        message: "Password Updated Successfully",
+        type: "success",
+      });
+      resetForm();
+      setOpenPopup(false);
+      removeCookie("token");
+      removeCookie("user");
+      setTimeout(() => navigate("/login"), 2000);
+      // navigate("/login");
+    }
   };
 
   return (

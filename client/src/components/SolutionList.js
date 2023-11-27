@@ -42,7 +42,11 @@ const SolutionList = () => {
     <div className="sscontainer">
       <div className="column">
         <h3>Filter the solutions </h3>
-        <DropdownFilter dataScraped={dataScraped} />
+        <DropdownFilter
+          dataScraped={dataScraped}
+          filteredData={filteredData}
+          setFilteredData={setFilteredData}
+        />
       </div>
 
       <div className="column">

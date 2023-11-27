@@ -13,37 +13,37 @@ const initialValues = {
 };
 
 const ChangePasswordForm = (props) => {
-  const { editRecord, popupTitle } = props;
-  const [isEdit, setIsEdit] = useState(false);
+  const { editRecord, popupTitle, addOrEdit } = props;
+  // const [isEdit, setIsEdit] = useState(false);
   const [cookies, removeCookie] = useCookies([]);
   const _attr = cookies.user;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const [notify, setNotify] = useState({
-    isOpen: false,
-    message: "",
-    type: "",
-  });
+  // const [notify, setNotify] = useState({
+  //   isOpen: false,
+  //   message: "",
+  //   type: "",
+  // });
 
-  const addOrEdit = async (user, resetForm) => {
-    const userInfo = (({ _id, email, current_password, new_password }) => ({
-      _id,
-      email,
-      current_password,
-      new_password,
-    }))(user);
-    const newRecord = await usersService.patchPassword(userInfo);
-    console.log(newRecord);
-    setNotify({
-      isOpen: true,
-      message: "Updated Successfully",
-      type: "success",
-    });
-    removeCookie("token");
-    removeCookie("user");
-    navigate("/login");
-  };
+  // const addOrEdit = async (user, resetForm) => {
+  //   const userInfo = (({ _id, email, current_password, new_password }) => ({
+  //     _id,
+  //     email,
+  //     current_password,
+  //     new_password,
+  //   }))(user);
+  //   const newRecord = await usersService.patchPassword(userInfo);
+  //   console.log(newRecord);
+  //   setNotify({
+  //     isOpen: true,
+  //     message: "Updated Successfully",
+  //     type: "success",
+  //   });
+  //   removeCookie("token");
+  //   removeCookie("user");
+  //   navigate("/login");
+  // };
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };

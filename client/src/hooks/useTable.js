@@ -504,7 +504,11 @@ const useTable = () => {
           )}
           {_attr === "admin" ? (
             <Controls.Button
-              sx={{ visibility: _attr === "admin" ? "visible" : "hidden" }}
+              sx={{
+                visibility: _attr === "admin" ? "visible" : "hidden",
+                m: 1,
+                p: 1,
+              }}
               variant="outlined"
               color="secondary"
               text="Add Asset"
