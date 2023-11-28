@@ -25,10 +25,12 @@ const UserProfile = () => {
 
   const navigate = useNavigate();
 
-  const Logout = () => {
+  const Logout = async () => {
     removeCookie("token");
     removeCookie("user");
-    navigate("/login");
+    setTimeout(() =>{
+      navigate("/login");
+    }, 1500)
   };
 
   const addOrEdit = async (user, resetForm) => {
@@ -45,11 +47,11 @@ const UserProfile = () => {
       new_password,
     }))(user);
     const newRecord = await usersService.patchPassword(userInfo);
-    console.log(newRecord);
+    // console.log(newRecord);
     if (newRecord.message == "Incorrect password") {
       setNotify({
         isOpen: true,
-        message: "Incorrect Password",
+        message: "Incorrect Current Password",
         type: "error",
       });
       resetForm();
@@ -61,9 +63,7 @@ const UserProfile = () => {
       });
       resetForm();
       setOpenPopup(false);
-      removeCookie("token");
-      removeCookie("user");
-      setTimeout(() => navigate("/login"), 2000);
+      Logout();
       // navigate("/login");
     }
   };

@@ -20,15 +20,24 @@ const App = () => {
     removeCookie("user");
   }
 
+  const Logout = async () => {
+    removeCookie("token");
+    removeCookie("user");
+    setTimeout(() =>{
+      navigate("/login");
+    }, 1500)
+  };
+
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
         navigate("/login");
       }
-      // if (cookies.token && window.location.pathname == "/login"){
+      if (cookies.token && window.location.pathname == "/login"){
         // removeCookies();
         // navigate("/");
-      // }
+        Logout();
+      }
       const { data } = await axios.post(
         "http://localhost:3000/",
         {},

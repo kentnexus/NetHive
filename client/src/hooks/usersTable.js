@@ -21,6 +21,8 @@ import Popup from "../helpers/Popup";
 import Notification from "../components/Notification";
 import ConfirmDialog from "../components/ConfirmDialog";
 import CircleIcon from "@mui/icons-material/Circle";
+// import sendEmail from "../functions/sendEmail";
+import emailjs from "@emailjs/browser";
 
 const usersTable = () => {
   const [rows, setRows] = useState("");
@@ -59,6 +61,7 @@ const usersTable = () => {
     };
     getAllUsers();
     setIsLoading(false);
+    emailjs.init("62-uW1qeYUH0N3-7N");
   }, []);
 
   const [openPopup, setOpenPopup] = useState(false);
@@ -83,7 +86,7 @@ const usersTable = () => {
         // role
       }))(user);
       const newRecord = await usersService.patchUser(userInfo);
-      console.log(newRecord);
+      // console.log(newRecord);
       const allUsers = await usersService.fetchUsers();
       if (allUsers) setRows(allUsers);
 
@@ -97,6 +100,24 @@ const usersTable = () => {
 
       const newRecord = await usersService.insertUser(user);
       updateRows(newRecord);
+      const serviceId = "service_nethive";
+      const templateId = "template_nethive";
+      try {
+        setIsLoading(true);
+        await emailjs.send(serviceId, templateId, {
+          to_name: user.first_name,
+          from_name: "NetHive Team",
+          sender: "nethive4495@gmail.com",
+          recipient: user.email,
+          message: "This is your temporary password " + user.password
+        });
+        alert("email successfully sent check inbox");
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+
       setNotify({
         isOpen: true,
         message: "A user has been created",

@@ -90,7 +90,7 @@ const useTable = () => {
   const addOrEdit = async (asset, resetForm) => {
     if (isEdit) {
       const newRecord = await assetService.patchAsset(asset);
-      console.log(newRecord);
+      // console.log(newRecord);
       const getAllAssets = async () => {
         const allAssets = await assetService.fetchAssets();
         if (allAssets) {
@@ -170,7 +170,7 @@ const useTable = () => {
     const bulkAdd = async (jsonText) => {
       // console.log("bulk add", jsonData);
       const newRecord = await assetService.insertBulkAssets(jsonText);
-      console.log("success: ", newRecord.data);
+      console.log("success: ", newRecord.length);
     };
 
     const getAllAssets = async () => {

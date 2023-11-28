@@ -2,14 +2,14 @@ import axios from "axios";
 
 export const getUserRoles = () => [
   { id: "1", title: "admin" },
-  { id: "2", title: "User" },
+  { id: "2", title: "user" },
 ];
 
 export async function patchUser(data) {
   const request = {
     ...data,
   };
-  console.log(request);
+  // console.log(request);
   try {
     const response = await axios.patch(`http://localhost:3000/users/${request._id}`, request);
     const data = await response.data;

@@ -123,7 +123,6 @@ router.post("/", (req, res, next) => {
 
 router.post("/bulk", async (req, res, next) => {
   const data = req.body;
-  let stats = [];
 
   for (let i = 0; i < data.length; i++) {
     const asset = new Asset(data[i]);

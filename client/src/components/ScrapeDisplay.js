@@ -47,7 +47,7 @@ const ScrapeDisplay = ({ dataScraped, filteredData }) => {
         filteredData.map((item) => (
           <div className="scrape-block" key={item.url}>
             <h1>
-              <a href={item.url}>{item.productdesc}</a>
+              <a href={item.url} target="_blank" rel="noopener noreferrer">{item.productdesc}</a>
             </h1>
             <p>
               Model: {item.model}
