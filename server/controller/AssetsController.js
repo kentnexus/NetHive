@@ -123,6 +123,7 @@ router.post("/", (req, res, next) => {
 
 router.post("/bulk", async (req, res, next) => {
   const data = req.body;
+  let stats = [];
 
   for (let i = 0; i < data.length; i++) {
     const asset = new Asset(data[i]);
@@ -133,7 +134,6 @@ router.post("/bulk", async (req, res, next) => {
         assetNumber,
       });
       if (existingAsset) {
-        stat = 0;
         const updateOps = {};
         for (const [key, value] of Object.entries(asset)) {
           updateOps[key] = value;
@@ -183,6 +183,70 @@ router.post("/bulk", async (req, res, next) => {
           .catch((err) => {
             stats.push(err)
           });
+      } else if (!assetNumber) {
+        counterModel
+        .findOneAndUpdate(
+          { id: "autoAssetnNo" },
+          { $inc: { seq: 1 } },
+          { new: true }
+        )
+        .then((cd) => {
+          let seqId;
+          if (cd == null) {
+            const newVal = new counterModel({ id: "autoAssetnNo", seq: 1 });
+            newVal.save();
+            seqId =
+              "NH" +
+              cd.seq.toLocaleString("en-US", {
+                minimumIntegerDigits: 8,
+                useGrouping: false,
+              });
+          } else {
+            seqId =
+              "NH" +
+              cd.seq.toLocaleString("en-US", {
+                minimumIntegerDigits: 8,
+                useGrouping: false,
+              });
+          }
+        console.log(seqId);
+        const new_asset = new Asset({
+          assetNumber: seqId,
+          customer_account: data[i].customer_account,
+          product: data[i].product,
+          asset_type: data[i].asset_type,
+          device_name: data[i].device_name,
+          manufacturer: data[i].manufacturer,
+          vendor: data[i].vendor,
+          model: data[i].model,
+          model_version: data[i].model_version,
+          serial_number: data[i].serial_number,
+          ip_address: data[i].ip_address,
+          snmp_community_string: data[i].snmp_community_string,
+          location: data[i].location,
+          owner_name: data[i].owner_name,
+          contracts_start_dt: data[i].contracts_start_dt,
+          contracts_end_dt: data[i].contracts_end_dt,
+          aggregated_to_: data[i].aggregated_to_,
+          status: data[i].status,
+          vendor_account_manager: data[i].vendor_account_manager,
+          contact_number: data[i].contact_number,
+          contact_email: data[i].contact_email,
+          website: data[i].website,
+          service_availed: data[i].service_availed,
+          cost: data[i].cost,
+          cost_frequency: data[i].cost_frequency,
+          tags: data[i].tags,
+          notes: data[i].notes,
+          modified_dt: date,
+          customer_name: data[i].customer_name,
+          created_by: data[i].created_by,
+          created_dt: data[i].created_dt,
+        });
+        new_asset
+          .save()
+      })
+        stats.push(data[i].seqId + " has been added.")
       } else {
         asset.save(data[i])
         stats.push(data[i].assetNumber + " has been added.")

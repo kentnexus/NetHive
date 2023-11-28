@@ -170,7 +170,7 @@ const useTable = () => {
     const bulkAdd = async (jsonText) => {
       // console.log("bulk add", jsonData);
       const newRecord = await assetService.insertBulkAssets(jsonText);
-      console.log("success: ", newRecord.length);
+      console.log("success: ", newRecord);
     };
 
     const getAllAssets = async () => {
