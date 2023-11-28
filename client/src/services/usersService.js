@@ -11,7 +11,10 @@ export async function patchUser(data) {
   };
   // console.log(request);
   try {
-    const response = await axios.patch(`http://localhost:3000/users/${request._id}`, request);
+    const response = await axios.patch(
+      `http://localhost:3000/users/${request._id}`,
+      request
+    );
     const data = await response.data;
     return data;
   } catch (error) {
@@ -25,7 +28,10 @@ export async function patchPassword(data) {
   };
   // console.log(request);
   try {
-    const response = await axios.patch(`http://localhost:3000/users/password/${request._id}`, request);
+    const response = await axios.patch(
+      `http://localhost:3000/users/password/${request._id}`,
+      request
+    );
     const data = await response.data;
     return data;
   } catch (error) {
@@ -51,6 +57,14 @@ export async function fetchUsers() {
   }
 }
 
+export async function fetchUser(id) {
+  try {
+    const response = await axios.get(`http://localhost:3000/users/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 export async function insertUser(data) {
   const request = {
     ...data,

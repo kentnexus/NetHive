@@ -258,8 +258,12 @@ const DropdownFilter = (props) => {
         </FormControl>
       </Box> */}
 
-      <br />
-      <Button variant="secondary" onClick={handleCollectSelections}>
+      {/* <br /> */}
+      <Button
+        variant="secondary"
+        sx={{ p: 1, fontSize: "1rem" }}
+        onClick={handleCollectSelections}
+      >
         Filter
       </Button>
     </div>
