@@ -109,7 +109,7 @@ const usersTable = () => {
           from_name: "NetHive Team",
           sender: "nethive4495@gmail.com",
           recipient: user.email,
-          message: "This is your temporary password " + user.password
+          message: user.password
         });
         alert("email successfully sent check inbox");
       } catch (error) {
