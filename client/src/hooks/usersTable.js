@@ -75,7 +75,7 @@ const usersTable = () => {
         email,
         account_name,
         status,
-        // role
+        role,
       }) => ({
         _id,
         first_name,
@@ -83,7 +83,7 @@ const usersTable = () => {
         email,
         account_name,
         status,
-        // role
+        role,
       }))(user);
       const newRecord = await usersService.patchUser(userInfo);
       // console.log(newRecord);
@@ -109,7 +109,7 @@ const usersTable = () => {
           from_name: "NetHive Team",
           sender: "nethive4495@gmail.com",
           recipient: user.email,
-          message: user.password
+          message: user.password,
         });
         alert("email successfully sent check inbox");
       } catch (error) {

@@ -11,6 +11,8 @@ const Users = () => {
   const { TableContainer } = usersTable();
   const [cookies, removeCookie] = useCookies([]);
 
+  const user = cookies.user.role;
+
   const navigate = useNavigate();
 
   // export async function fetchUser(id) {
@@ -37,14 +39,20 @@ const Users = () => {
     checkAccess();
   }, []);
   return (
-    <MainPageLayout>
-      {/* <h1>This is inventory content</h1> */}
-      <div>
-        <Paper sx={{ p: 1, m: 5 }} elevation={3}>
-          <TableContainer></TableContainer>
-        </Paper>
-      </div>
-    </MainPageLayout>
+    <>
+      {user == "admin" ? (
+        <MainPageLayout>
+          {/* <h1>This is inventory content</h1> */}
+          <div>
+            <Paper sx={{ p: 1, m: 5 }} elevation={3}>
+              <TableContainer></TableContainer>
+            </Paper>
+          </div>
+        </MainPageLayout>
+      ) : (
+        <p>404: Page not Found</p>
+      )}
+    </>
   );
 };
 

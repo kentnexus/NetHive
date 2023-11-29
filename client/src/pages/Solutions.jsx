@@ -9,6 +9,8 @@ import * as usersServices from "../services/usersService";
 const Solutions = () => {
   const [cookies, removeCookie] = useCookies([]);
 
+  const user = cookies.user.role;
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,11 +29,17 @@ const Solutions = () => {
   }, []);
 
   return (
-    <MainPageLayout>
-      <div>
-        <SolutionList />
-      </div>
-    </MainPageLayout>
+    <>
+      {user == "admin" ? (
+        <MainPageLayout>
+          <div>
+            <SolutionList />
+          </div>
+        </MainPageLayout>
+      ) : (
+        <p>404: Page not Found</p>
+      )}
+    </>
   );
 };
 
