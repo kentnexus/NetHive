@@ -9,9 +9,6 @@ const CategorizedAssets = (assets) => {
     let sw = [],  hw = [], parentsSB = ["","Assets","Assets"]
   
     for (let i=0; i<assets.length;i++){
-      if(!assets[i]['cost']){
-          continue;
-      }
 
       if(assets[i]['asset_type']=='Software') {
         sw.push(assets[i]['device_name']);

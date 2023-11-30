@@ -101,7 +101,19 @@ const ChangePasswordForm = (props) => {
               value={values.new_password}
               onChange={handleInputChange}
               error={errors.new_password}
+              inputProps={{
+                pattern:{
+                  value: "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
+                  message: "Must contain at least one number and one uppercase and \
+                    lowercase letter, and at least 8 or more characters."
+                }
+              }}
             />
+            {/* <div style={{
+              display: 'flex',
+            }}>
+              Must contain at least one number and one uppercase and 
+              lowercase letter, and at least 8 or more characters.</div> */}
             <Controls.Input
               label="Confirm New Password"
               name="confirm_new"

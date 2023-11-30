@@ -12,6 +12,7 @@ export default function Input(props) {
     others,
     disabled,
     type,
+    inputProps,
   } = props;
 
   return (
@@ -24,6 +25,7 @@ export default function Input(props) {
       onChange={onChange}
       disabled={disabled}
       type={type}
+      inputProps={inputProps}
       {...others}
       {...(error && { error: true, helperText: error })}
     />
