@@ -6,7 +6,6 @@ const AssetSchema = mongoose.Schema({
     assetNumber: {
         type: String,
         unique: true,
-        required: true,
     },
     customer_account: String,
     product: String,

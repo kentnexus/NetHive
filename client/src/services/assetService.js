@@ -92,7 +92,7 @@ export async function patchAsset(data) {
   const request = {
     ...data,
   };
-  console.log(request);
+  // console.log(request);
   try {
     const response = await axios.patch(`http://localhost:3000/assets/${request.assetNumber}`, request);
     const data = await response.data;
@@ -112,6 +112,9 @@ export function deleteAssets(id) {
 
 export async function fetchAssets() {
   try {
+    const serverAssets = await axios.get('http://localhost:3000/serverassets'); 
+    const jsonText = JSON.stringify(serverAssets.data);
+    const newRecord = await insertBulkAssets(jsonText);
     const response = await axios.get("http://localhost:3000/assets");
     return response.data;
   } catch (error) {
