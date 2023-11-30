@@ -12,10 +12,6 @@ const cards = (assets) => {
   const date = new Date();
 
   for (let i=0; i<assets.length;i++){
-      if(!assets[i]['cost']){
-          continue;
-      }
-      totalAssets+=assets[i]['cost'];
 
       const contract_dt = new Date(assets[i]['contracts_end_dt'])
       
@@ -24,6 +20,11 @@ const cards = (assets) => {
       }
 
       assets[i]['status'] != "Decommisioned" ? activeAssets.push(assets[i]['status']) : null
+
+      if(!assets[i]['cost']){
+          continue;
+      }
+      totalAssets+=assets[i]['cost'];
   }
 
   const statusList = counts(activeAssets)

@@ -112,11 +112,20 @@ export function deleteAssets(id) {
 
 export async function fetchAssets() {
   try {
+    const response = await axios.get("http://localhost:3000/assets");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchServerAssets() {
+  try {
     const serverAssets = await axios.get('http://localhost:3000/serverassets'); 
     const jsonText = JSON.stringify(serverAssets.data);
     const newRecord = await insertBulkAssets(jsonText);
-    const response = await axios.get("http://localhost:3000/assets");
-    return response.data;
+    // console.log(newRecord);
+    return newRecord;
   } catch (error) {
     console.error(error);
   }

@@ -146,31 +146,61 @@ const useTable = () => {
   };
 
   const handleFileUpload = (event) => {
+    
     const file = event.target.files[0];
-    // console.log("fetch json", file);
+    
     async function loadFile(file) {
       let text = await new Response(file).text();
       // console.log("loading file");
       // setJsonData(text);
-      bulkAdd(text);
-      getAllAssets();
+      // console.log(JSON.parse(text).length)
+      if (JSON.parse(text).length > 0) {
+        bulkAdd(text);
+
+        setNotify({
+          isOpen: true,
+          message: "File loaded successfully",
+          type: "success",
+        });
+
+        setTimeout(() => {
+          getAllAssets();
+        }, "1000");
+
+        setTimeout(() => {
+          getAllAssets();
+        }, "5000");
+
+      } else {
+          setNotify({
+            isOpen: true,
+            message: "No asset was loaded",
+            type: "error",
+          });
+        }
     }
 
-    loadFile(file);
+    if(file.type === "application/json"){
+        
+        loadFile(file);
+        
+      } else if (file.type === "text/csv"){
 
-    // Papa.parse(file, {
-    //   header: true,
-    //   skipEmptyLines: true,
-    //   complete: function (result) {
-    //     console.log(result);
-    //     // setCsvData(result.data);
-    //   },
-    // });
+        Papa.parse(file, {
+          header: true,
+          skipEmptyLines: true,
+          complete: function (result) {
+            // console.log(JSON.stringify(result.data));
+            loadFile(JSON.stringify(result.data));
+          },
+        });
+      }
 
     const bulkAdd = async (jsonText) => {
       // console.log("bulk add", jsonData);
       const newRecord = await assetService.insertBulkAssets(jsonText);
-      console.log("success: ", newRecord);
+      // console.log("success: ", newRecord);
+      // newRecord;
     };
 
     const getAllAssets = async () => {
@@ -192,6 +222,41 @@ const useTable = () => {
 
     event.preventDefault();
   };
+
+  const handleServerLoad = () => {
+    
+    const serverAdd = async () => {
+      const serverRecords = await assetService.fetchServerAssets();
+    }
+
+    const getAllAssets = async () => {
+      const allAssets = await assetService.fetchAssets();
+      if (allAssets) {
+        if (_attr === "admin") {
+          setRows(allAssets);
+        } else {
+          let filteredRows = [];
+          for (let i = 0; i < allAssets.length; i++) {
+            if (allAssets[i].customer_account === cookies.user.account_name) {
+              filteredRows = [...filteredRows, allAssets[i]];
+            }
+          }
+          setRows(filteredRows);
+        }
+      }
+    };
+
+    serverAdd();
+    setTimeout(() => {
+      getAllAssets();
+    }, "2000");
+
+    setNotify({
+      isOpen: true,
+      message: "Data from server was loaded succesfully.",
+      type: "success",
+    });
+  }
 
   const columns = [
     {
@@ -573,7 +638,7 @@ const useTable = () => {
             type="file"
             style={{ display: "none" }}
             id="upload"
-            accept=".json"
+            accept=".json, .csv"
             onChange={handleFileUpload}
           />
           {/* <Controls.Button
@@ -588,6 +653,19 @@ const useTable = () => {
           >
             <input type="file" accept=".csv" hidden />
           </Controls.Button> */}
+
+          {_attr === "admin" ? (
+            <Controls.Button
+              variant="outlined"
+              color="secondary"
+              startIcon={<UploadIcon />}
+              component="span"
+              text="Load from Server"
+              onClick={() => handleServerLoad()}
+            ></Controls.Button>
+          ) : (
+            " "
+          )}
         </Toolbar>
       </GridToolbarContainer>
     );

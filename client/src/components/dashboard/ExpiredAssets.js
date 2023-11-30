@@ -10,9 +10,9 @@ const ExpiredAssets = (assets) => {
     
     for (let i=0; i<assets.length;i++){
         const contract_dt = new Date(assets[i]['contracts_end_dt']);
-
-        if(contract_dt < date)
-        contracts.push(assets[i])
+        
+        if(contract_dt < date || contract_dt == "Invalid Date")
+            contracts.push(assets[i])
     }
     
     const columns = [
