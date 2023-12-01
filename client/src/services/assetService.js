@@ -57,7 +57,7 @@ export async function insertAsset(data) {
     ...data,
   };
   try {
-    const response = await axios.post("http://localhost:3000/assets", request);
+    const response = await axios.post("/api/assets", request);
     const data = await response.data.createdAsset;
     return data;
   } catch (error) {
@@ -75,7 +75,7 @@ export async function insertBulkAssets(data) {
   // console.log("request data: ", request);
 
   try {
-    const response = axios.post("http://localhost:3000/assets/bulk", request, {
+    const response = axios.post("/api/assets/bulk", request, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -94,7 +94,7 @@ export async function patchAsset(data) {
   };
   // console.log(request);
   try {
-    const response = await axios.patch(`http://localhost:3000/assets/${request.assetNumber}`, request);
+    const response = await axios.patch(`/api/assets/${request.assetNumber}`, request);
     const data = await response.data;
     return data;
   } catch (error) {
@@ -103,7 +103,7 @@ export async function patchAsset(data) {
 }
 export function deleteAssets(id) {
   try {
-    const response = axios.delete(`http://localhost:3000/assets/${id}`);
+    const response = axios.delete(`/api/assets/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -112,7 +112,7 @@ export function deleteAssets(id) {
 
 export async function fetchAssets() {
   try {
-    const response = await axios.get("http://localhost:3000/assets");
+    const response = await axios.get("/api/assets");
     return response.data;
   } catch (error) {
     console.error(error);
@@ -121,7 +121,7 @@ export async function fetchAssets() {
 
 export async function fetchServerAssets() {
   try {
-    const serverAssets = await axios.get('http://localhost:3000/serverassets'); 
+    const serverAssets = await axios.get('/api/serverassets'); 
     const jsonText = JSON.stringify(serverAssets.data);
     const newRecord = await insertBulkAssets(jsonText);
     // console.log(newRecord);

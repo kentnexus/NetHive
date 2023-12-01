@@ -17,7 +17,7 @@ const SolutionList = () => {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            "http://localhost:3000/api/ScrapeRoute"
+            "/api/api/ScrapeRoute"
           );
           console.log("Scraped data:", response.data);
           const data = response.data.data;
