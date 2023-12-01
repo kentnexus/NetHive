@@ -55,6 +55,12 @@ const ChangePasswordForm = (props) => {
       temp.new_password = fieldValues.new_password
         ? ""
         : "This field is required";
+    if ("new_password" in fieldValues)
+      temp.new_password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(
+        fieldValues.new_password
+      )
+        ? ""
+        : "Password requirements not met";
     if ("confirm_new" in fieldValues)
       temp.confirm_new =
         fieldValues.confirm_new === values.new_password
@@ -83,12 +89,14 @@ const ChangePasswordForm = (props) => {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit} 
+      <Form
+        onSubmit={handleSubmit}
         style={{
-          width: '400px'
-        }}>
+          width: "400px",
+        }}
+      >
         <Grid container>
-          <Grid 
+          <Grid
           // item xs={12}
           >
             <Controls.Input
@@ -107,7 +115,7 @@ const ChangePasswordForm = (props) => {
               onChange={handleInputChange}
               error={errors.new_password}
               inputProps={{
-                pattern:"?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,}"
+                pattern: "?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,}",
               }}
             />
             <Controls.Input
@@ -125,15 +133,21 @@ const ChangePasswordForm = (props) => {
               value={_attr._id}
             />        */}
 
-            <div style={{
-              // display: "flex",
-              // width: '400px',
-              height: '50px',
-              padding: '10px',
-              fontStyle: 'italic',
-              fontSize: '12px',
-            }}><h7>Must contain at least one number and one uppercase and
-            lowercase letter, and at least 8 or more characters.</h7></div>
+            <div
+              style={{
+                // display: "flex",
+                // width: '400px',
+                height: "50px",
+                padding: "10px",
+                fontStyle: "italic",
+                fontSize: "12px",
+              }}
+            >
+              <h7>
+                Must contain at least one number and one uppercase and lowercase
+                letter, and at least 8 or more characters.
+              </h7>
+            </div>
 
             <Controls.Button
               sx={{ m: 2, mt: 4 }}
@@ -149,7 +163,6 @@ const ChangePasswordForm = (props) => {
               text="Reset"
               onClick={resetForm}
             />
-            
           </Grid>
         </Grid>
       </Form>
