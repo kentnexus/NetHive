@@ -42,4 +42,4 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", authRoute);
 
-app.use('/api', scrapeRoute);
+app.use('/', scrapeRoute);
