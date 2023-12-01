@@ -82,12 +82,16 @@ router.patch('/password/:userId', async (req, res, next) => {
 
         const user = await User.findOne({ email });
         const auth = await bcrypt.compare(current_password, user.password);
+        const newauth = await bcrypt.compare(new_password, user.password);
 
         // console.log(await bcrypt.hash(new_password, 12));
+        console.log(newauth)
 
         if (!auth) { 
           return res.json({message:'Incorrect password' }) 
-        } else {
+        } else if (newauth) {
+          return res.json({message:'New password should NOT be the same as current password.' }) 
+        }else {
             User.updateOne({
                 _id: id
             }, {
@@ -105,6 +109,38 @@ router.patch('/password/:userId', async (req, res, next) => {
                 })
             });
         }
+      } catch (error) {
+        console.error(error);
+      }
+});
+
+router.patch('/password_admin/:userId', async (req, res, next) => {
+    try {
+        const id = req.params.userId;
+        const new_password = req.body.new_password;
+        // const { new_password, current_password, email } = req.body;
+        console.log(req.body)
+        // const user = await User.findOne({ id });
+        // const auth = await bcrypt.compare(current_password, user.password);
+        // const newauth = await bcrypt.compare(new_password, user.password);
+
+        // console.log(await bcrypt.hash(new_password, 12));
+        User.updateOne({
+            _id: id
+        }, {
+            $set: {password: await bcrypt.hash(new_password, 12)}
+        })
+        .exec()
+        .then(result => {
+            // console.log(result);
+            res.status(200).json(result);
+        })
+        .catch(err => {
+            // console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        });
       } catch (error) {
         console.error(error);
       }

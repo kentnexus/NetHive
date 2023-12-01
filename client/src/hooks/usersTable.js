@@ -23,6 +23,8 @@ import ConfirmDialog from "../components/ConfirmDialog";
 import CircleIcon from "@mui/icons-material/Circle";
 // import sendEmail from "../functions/sendEmail";
 import emailjs from "@emailjs/browser";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { grey } from "@mui/material/colors";
 
 const usersTable = () => {
   const [rows, setRows] = useState("");
@@ -111,7 +113,7 @@ const usersTable = () => {
           recipient: user.email,
           message: user.password,
         });
-        alert("email successfully sent check inbox");
+        alert("Email successfully sent.");
       } catch (error) {
         console.log(error);
       } finally {
@@ -162,7 +164,7 @@ const usersTable = () => {
       renderCell: () => {
         return (
           <GridActionsCellItem
-            icon={<EditIcon sx={{ color: "purple" }} />}
+            icon={<EditIcon sx={{ color: "grey" }} />}
             label="Edit"
           >
             <Controls.ActionButton></Controls.ActionButton>
@@ -246,81 +248,92 @@ const usersTable = () => {
   }
   function CustomToolbar() {
     return (
-      <GridToolbarContainer>
-        <Toolbar sx={{ justifyContent: "flex-start" }}>
-          <GridToolbarQuickFilter
-            sx={{ m: 1, p: 1 }}
-            variant="outlined"
-            color="secondary"
-            size="small"
-            text="Filters"
-          />
-          {rowSelections.length === 0 ? (
-            ""
-          ) : (
+      <ThemeProvider       
+      
+      theme={createTheme({
+        palette: {
+          secondary: {
+            main: grey[700],
+            dark: grey[400],
+          }
+        }
+      })}>
+        <GridToolbarContainer>
+          <Toolbar sx={{ justifyContent: "flex-start" }}>
+            <GridToolbarQuickFilter
+              sx={{ m: 1, p: 1 }}
+              variant="outlined"
+              color="secondary"
+              size="small"
+              text="Filters"
+            />
+            {rowSelections.length === 0 ? (
+              ""
+            ) : (
+              <Controls.Button
+                variant="outlined"
+                color="secondary"
+                text="Delete"
+                startIcon={<DeleteIcon />}
+                onClick={() => {
+                  setConfirmDialog({
+                    isOpen: true,
+                    title: `Are you sure you want to delete ${rowSelections.length} record(s)`,
+                    subTitle: "This action cannot be undone",
+                    onConfirm: () => deleteRecords(rowSelections),
+                  });
+                }}
+              />
+            )}
             <Controls.Button
               variant="outlined"
               color="secondary"
-              text="Delete"
-              startIcon={<DeleteIcon />}
+              text="Add User"
+              startIcon={<AddIcon />}
               onClick={() => {
-                setConfirmDialog({
-                  isOpen: true,
-                  title: `Are you sure you want to delete ${rowSelections.length} record(s)`,
-                  subTitle: "This action cannot be undone",
-                  onConfirm: () => deleteRecords(rowSelections),
-                });
+                setPopupTitle("New User");
+                setOpenPopup(true);
+                setEditRecord(null);
               }}
             />
-          )}
-          <Controls.Button
-            variant="outlined"
-            color="secondary"
-            text="Add User"
-            startIcon={<AddIcon />}
-            onClick={() => {
-              setPopupTitle("New User");
-              setOpenPopup(true);
-              setEditRecord(null);
-            }}
-          />
-          <GridToolbarColumnsButton
-            sx={{ m: 1, p: 1 }}
-            size="small"
-            variant="outlined"
-            color="secondary"
-            text="Columns"
-          />
+            <GridToolbarColumnsButton
+              sx={{ m: 1, p: 1 }}
+              size="small"
+              variant="outlined"
+              color="secondary"
+              text="Columns"
+            />
 
-          <GridToolbarDensitySelector
-            sx={{ m: 1, p: 1 }}
-            variant="outlined"
-            color="secondary"
-            size="small"
-            text="Columns"
-          />
-          <GridToolbarFilterButton
-            sx={{ m: 1, p: 1 }}
-            variant="outlined"
-            color="secondary"
-            size="small"
-            text="Columns"
-          />
+            <GridToolbarDensitySelector
+              sx={{ m: 1, p: 1 }}
+              variant="outlined"
+              color="secondary"
+              size="small"
+              text="Columns"
+            />
+            <GridToolbarFilterButton
+              sx={{ m: 1, p: 1 }}
+              variant="outlined"
+              color="secondary"
+              size="small"
+              text="Columns"
+            />
 
-          <GridToolbarExport
-            sx={{ m: 1, p: 1 }}
-            size="small"
-            variant="outlined"
-            color="secondary"
-            text="Export"
-            printOptions={{
-              hideFooter: true,
-              hideToolbar: true,
-            }}
-            csvOptions={{ allColumns: true }}
-          />
-        </Toolbar>
-      </GridToolbarContainer>
+            <GridToolbarExport
+              sx={{ m: 1, p: 1 }}
+              size="small"
+              variant="outlined"
+              color="secondary"
+              text="Export"
+              printOptions={{
+                hideFooter: true,
+                hideToolbar: true,
+              }}
+              csvOptions={{ allColumns: true }}
+            />
+          </Toolbar>
+        </GridToolbarContainer>
+      </ThemeProvider>
     );
   }
 

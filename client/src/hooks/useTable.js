@@ -22,7 +22,9 @@ import AddIcon from "@mui/icons-material/Add";
 import Notification from "../components/Notification";
 import ConfirmDialog from "../components/ConfirmDialog";
 import UploadIcon from "@mui/icons-material/Upload";
-import { styled } from "@mui/material/styles";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { grey } from "@mui/material/colors";
 import { Input, InputLabel } from "@mui/material";
 import Papa from "papaparse";
 import { useCookies } from "react-cookie";
@@ -269,7 +271,7 @@ const useTable = () => {
       renderCell: () => {
         return (
           <GridActionsCellItem
-            icon={<EditIcon sx={{ color: "purple" }} />}
+            icon={<EditIcon sx={{ color: "grey" }} />}
             label="Edit"
           >
             <Controls.ActionButton></Controls.ActionButton>
@@ -540,134 +542,144 @@ const useTable = () => {
 
   function CustomToolbar() {
     return (
-      <GridToolbarContainer>
-        <Toolbar sx={{ justifyContent: "flex-start" }}>
-          <GridToolbarQuickFilter
-            sx={{ m: 1, p: 1 }}
-            variant="outlined"
-            color="secondary"
-            size="small"
-            text="Filters"
-          />
-          {rowSelections.length === 0 ? (
-            ""
-          ) : (
-            <Controls.Button
+      <ThemeProvider       
+      theme={createTheme({
+        palette: {
+          secondary: {
+            main: grey[700],
+            dark: grey[400],
+          }
+        }
+      })}>
+        <GridToolbarContainer>
+          <Toolbar sx={{ justifyContent: "flex-start" }}>
+            <GridToolbarQuickFilter
+              sx={{ m: 1, p: 1 }}
               variant="outlined"
               color="secondary"
-              text="Delete"
-              startIcon={<DeleteIcon />}
-              onClick={() => {
-                setConfirmDialog({
-                  isOpen: true,
-                  title: `Are you sure you want to delete ${rowSelections.length} record(s)`,
-                  subTitle: "This action cannot be undone",
-                  onConfirm: () => deleteRecords(rowSelections),
-                });
-              }}
+              size="small"
+              text="Filters"
             />
-          )}
-          {_attr === "admin" ? (
-            <Controls.Button
-              sx={{
-                visibility: _attr === "admin" ? "visible" : "hidden",
-                m: 1,
-                p: 1,
-              }}
-              variant="outlined"
-              color="secondary"
-              text="Add Asset"
-              startIcon={<AddIcon />}
-              onClick={() => {
-                setPopupTitle("New Asset");
-                setOpenPopup(true);
-                setEditRecord(null);
-              }}
-            />
-          ) : (
-            " "
-          )}
-
-          <GridToolbarColumnsButton
-            sx={{ m: 1, p: 1 }}
-            size="small"
-            variant="outlined"
-            color="secondary"
-            text="Columns"
-          />
-          <GridToolbarDensitySelector
-            sx={{ m: 1, p: 1 }}
-            variant="outlined"
-            color="secondary"
-            size="small"
-            text="Columns"
-          />
-          <GridToolbarFilterButton
-            sx={{ m: 1, p: 1 }}
-            variant="outlined"
-            color="secondary"
-            size="small"
-            text="Columns"
-          />
-          <GridToolbarExport
-            sx={{ m: 1, p: 1 }}
-            size="small"
-            variant="outlined"
-            color="secondary"
-            text="Export"
-            printOptions={{
-              hideFooter: true,
-              hideToolbar: true,
-            }}
-            csvOptions={{ allColumns: true }}
-          />
-          {_attr === "admin" ? (
-            <InputLabel htmlFor="upload">
+            {rowSelections.length === 0 ? (
+              ""
+            ) : (
               <Controls.Button
                 variant="outlined"
                 color="secondary"
-                startIcon={<UploadIcon />}
-                component="span"
-                text="Import"
-              ></Controls.Button>
-            </InputLabel>
-          ) : (
-            " "
-          )}
-          <input
-            type="file"
-            style={{ display: "none" }}
-            id="upload"
-            accept=".json, .csv"
-            onChange={handleFileUpload}
-          />
-          {/* <Controls.Button
-            variant="outlined"
-            color="secondary"
-            // type="file"
-            // accept=".csv"
-            startIcon={<UploadIcon />}
-            component="label"
+                text="Delete"
+                startIcon={<DeleteIcon />}
+                onClick={() => {
+                  setConfirmDialog({
+                    isOpen: true,
+                    title: `Are you sure you want to delete ${rowSelections.length} record(s)`,
+                    subTitle: "This action cannot be undone",
+                    onConfirm: () => deleteRecords(rowSelections),
+                  });
+                }}
+              />
+            )}
+            {_attr === "admin" ? (
+              <Controls.Button
+                sx={{
+                  visibility: _attr === "admin" ? "visible" : "hidden",
+                  m: 1,
+                  p: 1,
+                }}
+                variant="outlined"
+                color="secondary"
+                text="Add Asset"
+                startIcon={<AddIcon />}
+                onClick={() => {
+                  setPopupTitle("New Asset");
+                  setOpenPopup(true);
+                  setEditRecord(null);
+                }}
+              />
+            ) : (
+              " "
+            )}
 
-            // onClick={(e) => handleFileUpload(e)}
-          >
-            <input type="file" accept=".csv" hidden />
-          </Controls.Button> */}
-
-          {_attr === "admin" ? (
-            <Controls.Button
+            <GridToolbarColumnsButton
+              sx={{ m: 1, p: 1 }}
+              size="small"
               variant="outlined"
               color="secondary"
+              text="Columns"
+            />
+            <GridToolbarDensitySelector
+              sx={{ m: 1, p: 1 }}
+              variant="outlined"
+              color="secondary"
+              size="small"
+              text="Columns"
+            />
+            <GridToolbarFilterButton
+              sx={{ m: 1, p: 1 }}
+              variant="outlined"
+              color="secondary"
+              size="small"
+              text="Columns"
+            />
+            <GridToolbarExport
+              sx={{ m: 1, p: 1 }}
+              size="small"
+              variant="outlined"
+              color="secondary"
+              text="Export"
+              printOptions={{
+                hideFooter: true,
+                hideToolbar: true,
+              }}
+              csvOptions={{ allColumns: true }}
+            />
+            {_attr === "admin" ? (
+              <InputLabel htmlFor="upload">
+                <Controls.Button
+                  variant="outlined"
+                  color="secondary"
+                  startIcon={<UploadIcon />}
+                  component="span"
+                  text="Import"
+                ></Controls.Button>
+              </InputLabel>
+            ) : (
+              " "
+            )}
+            <input
+              type="file"
+              style={{ display: "none" }}
+              id="upload"
+              accept=".json, .csv"
+              onChange={handleFileUpload}
+            />
+            {/* <Controls.Button
+              variant="outlined"
+              color="secondary"
+              // type="file"
+              // accept=".csv"
               startIcon={<UploadIcon />}
-              component="span"
-              text="Load from Server"
-              onClick={() => handleServerLoad()}
-            ></Controls.Button>
-          ) : (
-            " "
-          )}
-        </Toolbar>
-      </GridToolbarContainer>
+              component="label"
+
+              // onClick={(e) => handleFileUpload(e)}
+            >
+              <input type="file" accept=".csv" hidden />
+            </Controls.Button> */}
+
+            {_attr === "admin" ? (
+              <Controls.Button
+                variant="outlined"
+                color="secondary"
+                startIcon={<CloudUploadIcon />}
+                component="span"
+                text="Load from Server"
+                onClick={() => handleServerLoad()}
+              ></Controls.Button>
+            ) : (
+              " "
+            )}
+          </Toolbar>
+        </GridToolbarContainer>
+      </ThemeProvider>
     );
   }
 

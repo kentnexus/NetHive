@@ -188,7 +188,7 @@ const DropdownFilter = (props) => {
 
   return (
     <div>
-      <Box sx={{ overflow: "auto" }}>
+      {/* <Box sx={{ overflow: "auto" }}>
         <FormControl fullWidth>
           Type:
           <Select value={type} onChange={handleTypeChange}>
@@ -199,7 +199,7 @@ const DropdownFilter = (props) => {
             ))}
           </Select>
         </FormControl>
-      </Box>
+      </Box> */}
       <br />
       <Box sx={{ overflow: "auto" }}>
         <FormControl fullWidth>

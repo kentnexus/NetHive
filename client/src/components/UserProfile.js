@@ -34,7 +34,7 @@ const UserProfile = () => {
   };
 
   const addOrEdit = async (user, resetForm) => {
-    console.log("This is Update password condition");
+    // console.log("This is Update password condition");
     // setNotify({
     //   isOpen: true,
     //   message: "Update password query required",
@@ -52,6 +52,13 @@ const UserProfile = () => {
       setNotify({
         isOpen: true,
         message: "Incorrect Current Password",
+        type: "error",
+      });
+      resetForm();
+    } else if (newRecord.message == "New password should NOT be the same as current password.") {
+      setNotify({
+        isOpen: true,
+        message: "New password should NOT be the same as current password.",
         type: "error",
       });
       resetForm();

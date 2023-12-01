@@ -83,9 +83,14 @@ const ChangePasswordForm = (props) => {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} 
+        style={{
+          width: '400px'
+        }}>
         <Grid container>
-          <Grid item xs={12}>
+          <Grid 
+          // item xs={12}
+          >
             <Controls.Input
               label="Current Password"
               name="current_password"
@@ -102,18 +107,9 @@ const ChangePasswordForm = (props) => {
               onChange={handleInputChange}
               error={errors.new_password}
               inputProps={{
-                pattern:{
-                  value: "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
-                  message: "Must contain at least one number and one uppercase and \
-                    lowercase letter, and at least 8 or more characters."
-                }
+                pattern:"?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,}"
               }}
             />
-            {/* <div style={{
-              display: 'flex',
-            }}>
-              Must contain at least one number and one uppercase and 
-              lowercase letter, and at least 8 or more characters.</div> */}
             <Controls.Input
               label="Confirm New Password"
               name="confirm_new"
@@ -129,6 +125,16 @@ const ChangePasswordForm = (props) => {
               value={_attr._id}
             />        */}
 
+            <div style={{
+              // display: "flex",
+              // width: '400px',
+              height: '50px',
+              padding: '10px',
+              fontStyle: 'italic',
+              fontSize: '12px',
+            }}><h7>Must contain at least one number and one uppercase and
+            lowercase letter, and at least 8 or more characters.</h7></div>
+
             <Controls.Button
               sx={{ m: 2, mt: 4 }}
               size="large"
@@ -143,6 +149,7 @@ const ChangePasswordForm = (props) => {
               text="Reset"
               onClick={resetForm}
             />
+            
           </Grid>
         </Grid>
       </Form>

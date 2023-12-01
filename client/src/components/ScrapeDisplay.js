@@ -40,8 +40,8 @@ const ScrapeDisplay = ({ dataScraped, filteredData }) => {
     <div>
       <p>Number of items in scraped data: {dataScraped.length}</p>
       <p>Number of items in filtered data: {filteredData.length}</p>
-      {console.log("filtered scraped data: ", dataScraped)}
-      {console.log("scraped data: ", filteredData)}
+      {/* {console.log("filtered scraped data: ", dataScraped)} */}
+      {/* {console.log("scraped data: ", filteredData)} */}
 
       {filteredData && filteredData.length > 0 ? (
         filteredData.map((item) => (
