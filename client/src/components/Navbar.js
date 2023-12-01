@@ -1,4 +1,5 @@
-import React, { useState, setState } from "react";
+import React, { useState } from "react";
+import setState from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiFillCaretDown } from "react-icons/ai";
 import * as navItems from "../misc/navItems";
