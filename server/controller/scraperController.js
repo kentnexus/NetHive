@@ -26,7 +26,7 @@ const scrapeData = async (req, res) => {
       maxConcurrency: 4,
       monitor: true,
       puppeteerOptions: {
-        headless: true,
+        headless: "new",
         defaultViewport: false,
         args: ["--disable-setuid-sandbox"],
         'ignoreHTTPSErrors': true,

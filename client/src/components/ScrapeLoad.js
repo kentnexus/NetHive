@@ -18,7 +18,7 @@ const ScrapeLoad = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/ScrapeRoute"
+          "http://localhost:3000/ScrapeRoute"
         );
         console.log("Scraped data:", response.data);
         const dataScraped = response.data.data;

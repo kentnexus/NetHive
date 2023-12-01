@@ -12,7 +12,7 @@ export async function patchUser(data) {
   // console.log(request);
   try {
     const response = await axios.patch(
-      `/api/users/${request._id}`,
+      `http://localhost:3000/users/${request._id}`,
       request
     );
     const data = await response.data;
@@ -29,7 +29,7 @@ export async function patchPassword(data) {
   // console.log(request);
   try {
     const response = await axios.patch(
-      `/api/users/password/${request._id}`,
+      `http://localhost:3000/users/password/${request._id}`,
       request
     );
     const data = await response.data;
@@ -41,7 +41,7 @@ export async function patchPassword(data) {
 
 export function deleteUser(id) {
   try {
-    const response = axios.delete(`/api/users/${id}`);
+    const response = axios.delete(`http://localhost:3000/users/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -50,7 +50,7 @@ export function deleteUser(id) {
 
 export async function fetchUsers() {
   try {
-    const response = await axios.get("/api/users");
+    const response = await axios.get("http://localhost:3000/users");
     return response.data;
   } catch (error) {
     console.error(error);
@@ -59,7 +59,7 @@ export async function fetchUsers() {
 
 export async function fetchUser(id) {
   try {
-    const response = await axios.get(`/api/users/${id}`);
+    const response = await axios.get(`http://localhost:3000/users/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -70,7 +70,7 @@ export async function insertUser(data) {
     ...data,
   };
   try {
-    const response = await axios.post("/api/signup", request);
+    const response = await axios.post("http://localhost:3000/signup", request);
     const data = await response.data.user;
     return data;
   } catch (error) {

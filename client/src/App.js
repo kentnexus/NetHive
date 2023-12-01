@@ -39,7 +39,7 @@ const App = () => {
         Logout();
       }
       const { data } = await axios.post(
-        "/api/",
+        "http://localhost:3000/",
         {},
         { withCredentials: true }
       );
