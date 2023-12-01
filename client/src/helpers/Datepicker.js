@@ -1,31 +1,37 @@
-import React from "react";
-import DatePicker from "@mui/lab/DatePicker";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import { TextField, Stack } from "@mui/material";
+import * as React from 'react';
+import dayjs from 'dayjs';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
-export default function Datepicker(props) {
-  const { name, label, value, onChange } = props;
-
-  const convertToDefEventPara = (name, value) => ({
-    target: {
-      name,
-      value,
-    },
-  });
-
+export default function ResponsiveDatePickers() {
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Stack sx={{ width: "90%", m: 1.5 }}>
-        <DatePicker
-          inputVariant="outlined"
-          renderInput={(params) => <TextField {...params} />}
-          label={label}
-          name={name}
-          value={value}
-          onChange={(date) => onChange(convertToDefEventPara(name, date))}
-        />
-      </Stack>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer
+        components={[
+          'DatePicker',
+          'MobileDatePicker',
+          'DesktopDatePicker',
+          'StaticDatePicker',
+        ]}
+      >
+        <DemoItem label="Desktop variant">
+          <DesktopDatePicker defaultValue={dayjs('2022-04-17')} />
+        </DemoItem>
+        <DemoItem label="Mobile variant">
+          <MobileDatePicker defaultValue={dayjs('2022-04-17')} />
+        </DemoItem>
+        <DemoItem label="Responsive variant">
+          <DatePicker defaultValue={dayjs('2022-04-17')} />
+        </DemoItem>
+        <DemoItem label="Static variant">
+          <StaticDatePicker defaultValue={dayjs('2022-04-17')} />
+        </DemoItem>
+      </DemoContainer>
     </LocalizationProvider>
   );
 }
