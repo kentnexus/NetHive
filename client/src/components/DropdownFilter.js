@@ -163,43 +163,12 @@ const DropdownFilter = (props) => {
     console.log("after filters: ", filtered_data);
 
     setFilteredData(filtered_data);
-    // console.log("filtered data", filteredData);
-
-    //   if (selectedProduct && selectedProduct !== 'all') {
-    //     const productLowerCase = selectedProduct.toLowerCase();
-    //     // Check for specific product types
-    //     if (selectedProduct === 'accesspoint' || selectedProduct === 'switch' || selectedProduct === 'router' || selectedProduct === 'firewall') {
-    //       filteredResults = filteredResults.filter(item => item.product.toLowerCase() === selectedProduct || item.productdesc.toLowerCase().includes(productLowerCase));
-    //       console.log('Filter: ', selectedProduct)
-    //       console.log('Result: ', filteredResults)
-    //     } else if (selectedProduct === 'na') {
-    //       filteredResults = filteredResults.filter(item => item.product.toLowerCase() !== 'na');
-    //       console.log('Filter: ', selectedProduct)
-    //       console.log('Result: ', filteredResults)
-    //     }
-    //   }
-    //   if (selectedManufacturer && selectedManufacturer !== 'all') {
-    //     const manufacturerLowerCase = selectedManufacturer.toLowerCase();
-    //     filteredResults = filteredResults.filter(item => item.manufacturer.toLowerCase().includes(manufacturerLowerCase) || item.productdesc.toLowerCase().includes(manufacturerLowerCase));
-    //   }
   };
 
   useEffect(() => {}, [type, product, manufacturer, assetNumber, deviceName]);
 
   return (
     <div>
-      {/* <Box sx={{ overflow: "auto" }}>
-        <FormControl fullWidth>
-          Type:
-          <Select value={type} onChange={handleTypeChange}>
-            {data.optionType.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box> */}
       <br />
       <Box sx={{ overflow: "auto" }}>
         <FormControl fullWidth>
@@ -231,34 +200,6 @@ const DropdownFilter = (props) => {
         </FormControl>
       </Box>
       <br />
-
-      {/* <Box sx={{ overflow: "auto" }}>
-        <FormControl fullWidth>
-          Asset Number:
-          <Select value={assetNumber} onChange={handleAssetNumberChange}>
-            {data.optionassetNumber.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
-      <br />
-      <Box sx={{ overflow: "auto" }}>
-        <FormControl fullWidth>
-          Device Name:
-          <Select value={deviceName} onChange={handleDeviceNameChange}>
-            {data.optiondeviceName.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box> */}
-
-      {/* <br /> */}
       <Button
         variant="secondary"
         sx={{ p: 1, fontSize: "1rem" }}
