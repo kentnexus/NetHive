@@ -296,6 +296,7 @@ const useTable = () => {
       disableClickEventBubbling: true,
       disableExport: true,
       filterable: false,
+      hideable: false,
       renderCell: () => {
         return (
           <GridActionsCellItem
