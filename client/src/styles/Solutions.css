@@ -2,7 +2,8 @@
     margin: 10px 50px;
     padding: 20px;
     display: flex;
-    min-height: 600px;
+    min-height: 400px;
+    max-height: 700px;
 }
 
 
@@ -14,8 +15,8 @@
     border-radius: 5px;
 }
 .content {
-    height: 800px;
-    overflow: auto;
+    height: 700px;
+    overflow: scroll;
 }
 
 .scrape-block h1 {

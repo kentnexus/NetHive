@@ -32,7 +32,7 @@ const Inventory = () => {
     <MainPageLayout>
       {/* <h1>This is inventory content</h1> */}
       <div>
-        <Paper sx={{ p: 3, m: 5 }} elevation={3}>
+        <Paper sx={{ p: 1, m: 5, height: 750}} elevation={3}>
           <TableContainer></TableContainer>
         </Paper>
       </div>
