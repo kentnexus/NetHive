@@ -22,7 +22,7 @@ import AddIcon from "@mui/icons-material/Add";
 import Notification from "../components/Notification";
 import ConfirmDialog from "../components/ConfirmDialog";
 import UploadIcon from "@mui/icons-material/Upload";
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
 import { Input, InputLabel } from "@mui/material";
@@ -120,6 +120,11 @@ const useTable = () => {
 
       const newRecord = await assetService.insertAsset(asset);
       updateRows(newRecord);
+      setNotify({
+        isOpen: true,
+        message: "Record added Successfully",
+        type: "success",
+      });
     }
     setEditRecord(null);
     setIsEdit(false);
@@ -148,37 +153,37 @@ const useTable = () => {
   };
 
   const handleFileUpload = (event) => {
-    
     const file = event.target.files[0];
-    
+
     async function loadFile(file) {
       let text = await new Response(file).text();
-      text = text.replace("Asset Number","assetNumber")
-                    .replace("Customer Account","customer_account")
-                    .replace("Product","product")
-                    .replace("Asset Type","asset_type")
-                    .replace("Device Name","device_name")
-                    .replace("Manufacturer","manufacturer")
-                    .replace("Vendor","vendor")
-                    .replace("Model","model")
-                    .replace("Model Version","model_version")
-                    .replace("Serial Number","serial_number")
-                    .replace("IP address","ip_address")
-                    .replace("SNMP Community String","snmp_community_string")
-                    .replace("Location","location")
-                    .replace("Owner Name","owner_name")
-                    .replace("Contract Start Date","contracts_start_dt")
-                    .replace("Contract End date","contracts_end_dt")
-                    .replace("Status","status")
-                    .replace("Vendor Account Manager","vendor_account_manager")
-                    .replace("Contact Number","contact_number")
-                    .replace("Contact Email","contact_email")
-                    .replace("Website","website")
-                    .replace("Service Availed","service_availed")
-                    .replace("Cost","cost")
-                    .replace("Tags","tags")
-                    .replace("Notes","notes")
-      
+      text = text
+        .replace("Asset Number", "assetNumber")
+        .replace("Customer Account", "customer_account")
+        .replace("Product", "product")
+        .replace("Asset Type", "asset_type")
+        .replace("Device Name", "device_name")
+        .replace("Manufacturer", "manufacturer")
+        .replace("Vendor", "vendor")
+        .replace("Model", "model")
+        .replace("Model Version", "model_version")
+        .replace("Serial Number", "serial_number")
+        .replace("IP address", "ip_address")
+        .replace("SNMP Community String", "snmp_community_string")
+        .replace("Location", "location")
+        .replace("Owner Name", "owner_name")
+        .replace("Contract Start Date", "contracts_start_dt")
+        .replace("Contract End date", "contracts_end_dt")
+        .replace("Status", "status")
+        .replace("Vendor Account Manager", "vendor_account_manager")
+        .replace("Contact Number", "contact_number")
+        .replace("Contact Email", "contact_email")
+        .replace("Website", "website")
+        .replace("Service Availed", "service_availed")
+        .replace("Cost", "cost")
+        .replace("Tags", "tags")
+        .replace("Notes", "notes");
+
       // console.log(text)
       // console.log("loading file");
       // setJsonData(text);
@@ -199,31 +204,28 @@ const useTable = () => {
         setTimeout(() => {
           getAllAssets();
         }, "5000");
-
       } else {
-          setNotify({
-            isOpen: true,
-            message: "No asset was loaded",
-            type: "error",
-          });
-        }
-    }
-
-    if(file.type === "application/json"){
-        
-        loadFile(file);
-        
-      } else if (file.type === "text/csv"){
-        Papa.parse(file, {
-          header: true,
-          skipEmptyLines: true,
-          complete: function (result) {
-            console.log(result)
-            // console.log(JSON.stringify(result.data));
-            loadFile(JSON.stringify(result.data));
-          },
+        setNotify({
+          isOpen: true,
+          message: "No asset was loaded",
+          type: "error",
         });
       }
+    }
+
+    if (file.type === "application/json") {
+      loadFile(file);
+    } else if (file.type === "text/csv") {
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: function (result) {
+          console.log(result);
+          // console.log(JSON.stringify(result.data));
+          loadFile(JSON.stringify(result.data));
+        },
+      });
+    }
 
     const bulkAdd = async (jsonText) => {
       // console.log("bulk add", jsonData);
@@ -253,10 +255,9 @@ const useTable = () => {
   };
 
   const handleServerLoad = () => {
-    
     const serverAdd = async () => {
       const serverRecords = await assetService.fetchServerAssets();
-    }
+    };
 
     const getAllAssets = async () => {
       const allAssets = await assetService.fetchAssets();
@@ -285,7 +286,7 @@ const useTable = () => {
       message: "Data from server was loaded succesfully.",
       type: "success",
     });
-  }
+  };
 
   const columns = [
     {
@@ -569,15 +570,16 @@ const useTable = () => {
 
   function CustomToolbar() {
     return (
-      <ThemeProvider       
-      theme={createTheme({
-        palette: {
-          secondary: {
-            main: grey[700],
-            dark: grey[400],
-          }
-        }
-      })}>
+      <ThemeProvider
+        theme={createTheme({
+          palette: {
+            secondary: {
+              main: grey[700],
+              dark: grey[400],
+            },
+          },
+        })}
+      >
         <GridToolbarContainer>
           <Toolbar sx={{ justifyContent: "flex-start" }}>
             <GridToolbarQuickFilter
