@@ -153,6 +153,33 @@ const useTable = () => {
     
     async function loadFile(file) {
       let text = await new Response(file).text();
+      text = text.replace("Asset Number","assetNumber")
+                    .replace("Customer Account","customer_account")
+                    .replace("Product","product")
+                    .replace("Asset Type","asset_type")
+                    .replace("Device Name","device_name")
+                    .replace("Manufacturer","manufacturer")
+                    .replace("Vendor","vendor")
+                    .replace("Model","model")
+                    .replace("Model Version","model_version")
+                    .replace("Serial Number","serial_number")
+                    .replace("IP address","ip_address")
+                    .replace("SNMP Community String","snmp_community_string")
+                    .replace("Location","location")
+                    .replace("Owner Name","owner_name")
+                    .replace("Contract Start Date","contracts_start_dt")
+                    .replace("Contract End date","contracts_end_dt")
+                    .replace("Status","status")
+                    .replace("Vendor Account Manager","vendor_account_manager")
+                    .replace("Contact Number","contact_number")
+                    .replace("Contact Email","contact_email")
+                    .replace("Website","website")
+                    .replace("Service Availed","service_availed")
+                    .replace("Cost","cost")
+                    .replace("Tags","tags")
+                    .replace("Notes","notes")
+      
+      // console.log(text)
       // console.log("loading file");
       // setJsonData(text);
       // console.log(JSON.parse(text).length)
@@ -187,11 +214,11 @@ const useTable = () => {
         loadFile(file);
         
       } else if (file.type === "text/csv"){
-
         Papa.parse(file, {
           header: true,
           skipEmptyLines: true,
           complete: function (result) {
+            console.log(result)
             // console.log(JSON.stringify(result.data));
             loadFile(JSON.stringify(result.data));
           },
